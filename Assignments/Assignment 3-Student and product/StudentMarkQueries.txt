@@ -100,27 +100,43 @@ WHERE
 /****************************************************************************************/
 /*Show the student with  maximum of marks for Science*/    
     
-  SELECT 
-    marks,
-   refStudent,
-    refSubject,
-    stdName,
-    subjects
+SELECT 
+    tm.marks, ts.StdName
 FROM
-    tblmark tm
+    tblstudentdetail ts
         JOIN
-    tblstudentdetail ts ON tm.refStudent =ts.id
-    join
-    tblsubjects tsub on tm.refSubject=tsub.id
+    tblmark tm ON tm.refStudent = ts.id
+        JOIN
+    tblsubjects tsub ON tm.refSubject = tsub.id
 WHERE
-    marks = (SELECT 
-            MAX(marks)
-        FROM
-            tblmark
-        WHERE
-           tsub.subjects='Science');
-            
-            
+    tsub.subjects = 'Science'
+GROUP BY tm.marks
+ORDER BY tm.marks DESC
+LIMIT 1;  
+           
+/**********************************************************************************************************/
+
+/*Find student with highest marks in english and display Student details and subject details.*/
+
+SELECT 
+    tm.marks,ts.StdName
+	FROM
+    tblstudentdetail ts 
+   
+        JOIN
+         tblmark tm
+         
+	ON tm.refStudent =ts.id
+    join
+     tblsubjects tsub on tm.refSubject=tsub.id
+    where tsub.subjects='English' group by tm.marks order  by tm.marks desc
+    limit 1;
+ /*****************************************************************************************************/
+ 
+ /*Arrange students in the order of total marks .(first student being the highest)*/
+ 
+ select ts.StdName ,sum(m.marks) as 'Total Mark'
+ from tblstudentdetail ts,tblmark m where ts.id = m.refStudent group by ts.id order by m.marks desc;
             
 
    

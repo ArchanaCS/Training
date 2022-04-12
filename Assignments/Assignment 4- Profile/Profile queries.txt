@@ -1,0 +1,98 @@
+create database dbprofile;
+/**************************************************************************************/
+CREATE TABLE tblprofile (
+    ProfileID INT NOT NULL AUTO_INCREMENT,
+    PName VARCHAR(50),
+    gender VARCHAR(50),
+    Religion VARCHAR(50),
+    Caste VARCHAR(50),
+    City VARCHAR(50),
+    MobileNo INT,
+    EmailID VARCHAR(50),
+    LoginPassword VARCHAR(50),
+    PRIMARY KEY (ProfileID)
+);
+/*******************************************************************************/
+
+INSERT INTO `dbprofile`.`tblprofile`
+(
+`PName`,
+`gender`,
+`Religion`,
+`Caste`,
+`City`,
+`MobileNo`,
+`EmailID`,
+`LoginPassword`)
+VALUES
+('A	','Male','QWE','IN','Kochi',12345,'AAA','aaa111'),
+('B','Female','AHJ','BB','Trivandrum',12347,'BB','bbb111'),
+('C','Female','QWE','CCC','Calicut',12349,'CCC','ccc222'),
+('D','Male','ZRK',	'DDD',	'Kannur',12351,'DDD','ddd333'),
+('E','Male','AHJ','IN',	'Kochi',12353,'EEE','eee444'),
+('F','Female','QWE','FFF','Trivandrum',12355,'FFF','fff555'),
+('G','Female','ZRK','IN','Kochi',12357,'GGG','ggg666');
+
+/*******************************************************************************/
+/*Display all same 'caste / division'*/
+
+select Caste,PName from tblprofile order by Caste ;
+
+               
+/**********************************************************************************/
+/*Update City of Profile ID 5 with Kollam*/
+
+update tblprofile set city='Kollam' where ProfileID=5;
+
+/***********************************************************************************/
+
+/* Display all profile from city Kochi*/
+
+SELECT 
+    PName, City
+FROM
+    tblprofile
+WHERE
+    City = 'Kochi';
+
+/************************************************************************************/
+
+/*Select all Male and Female with two statement*/
+
+SELECT 
+    gender, PName
+FROM
+    tblprofile
+WHERE
+    gender = 'male' 
+UNION SELECT 
+    gender, PName
+FROM
+    tblprofile
+WHERE
+    gender = 'female';
+    
+    
+/************************************************************************************/
+
+/*Update City Kannur with Calicut*/
+
+update tblprofile set City='Calicut' where City='Kannur';
+
+
+/************************************************************************************/
+
+/*Display Name, Gender, Religion name for all*/
+
+select PName,gender,Religion from tblprofile order by gender;
+
+
+
+/************************************************************************************/
+/*Display Name, Gender, Religion name for all with city as Kochi*/
+
+select PName,gender,Religion from tblprofile where City='Kochi';
+
+
+/***********************************************************************************/
+

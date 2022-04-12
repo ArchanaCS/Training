@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>
+        function btnclick() 
+        {
+            var a=document.getElementById("result").innerHTML;
+            alert('p tag value'+'='+a);
+            var b= document.getElementById("userinput").value;
+            alert('textbox value'+'='+b);
+
+        }
+    </script>
+</head>
+
+<body>
+    <label>Number</label>
+    <input type="text" id="userinput"/><br>
+    <button id="btncalculte" onclick="btnclick()">Calculate</button>
+    <p id="result">Pass</p>
+</body>
+
+</html>

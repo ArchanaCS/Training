@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Switch case</title>
+    <script>
+
+
+        function switchfn() 
+        {
+            var a = parseInt(document.getElementById("txtbox").value);
+            var res = "";
+            switch (a) {
+                case 1:
+
+                    document.getElementById("txtmsg").innerHTML = "Selected number is " + a;
+                    break;
+                case 2:
+                    document.getElementById("txtmsg").innerHTML = "Selected number is " + a;
+                    break;
+                case 3:
+                    document.getElementById("txtmsg").innerHTML = "Selected number is " + a;
+                    break;
+                default: alert("no number selected or number beyond 3");
+            }
+
+
+        }
+    </script>
+</head>
+
+<body>
+    <label>Enter a number (1 to 3): </label>
+    <input type="text" id="txtbox" />
+    <button onclick="switchfn()">Switch Case</button>
+    <p id="txtmsg"></p>
+</body>
+
+</html>

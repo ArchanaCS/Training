@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>
+        function add() {
+
+            var a = parseInt(document.getElementById("text1").value);
+            var b = parseInt(document.getElementById("text2").value);
+            var c = a + b;
+            document.getElementById("text3").value = c;
+
+        }
+        function subtract() {
+            var a = parseInt(document.getElementById("text1").value);
+            var b = parseInt(document.getElementById("text2").value);
+            var c = a - b;
+            document.getElementById("text3").value = c;
+        }
+        function multiply() {
+            var a = parseInt(document.getElementById("text1").value);
+            var b = parseInt(document.getElementById("text2").value);
+            var c = a * b;
+            document.getElementById("text3").value = c;
+        }
+    </script>
+</head>
+
+<body>
+    
+            <label>a:</label>
+            <input type="text" id="text1" style="margin: 1%;"/><br>
+            <label>b:</label>
+            <input type="text" id="text2" style="margin: 1%;"/><br>
+            <label>Result:</label>
+            <input type="text" id="text3" style="margin: 1%;" /><br>
+            <button onclick="add()"> Add</button>
+            <button onclick="subtract()">Subtract</button>
+            <button onclick="multiply()">Multiply</button>
+        
+</body>
+
+</html>

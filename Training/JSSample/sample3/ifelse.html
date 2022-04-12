@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <title>If Else JS</title>
+    <script>
+        function result() 
+        {
+
+            var a = parseInt(document.getElementById("mark").value);
+
+            //Method 1
+            
+            /*if (a > 50) {
+                 document.getElementById("ptag").innerHTML = 'Pass';
+ 
+             }
+            else {
+                document.getElementById("ptag").innerHTML = 'Fail';
+             }*/
+
+             //Method 2
+
+            var res = 'Fail';
+
+            if (a > 50) {
+                res = 'Pass'
+            }
+
+            document.getElementById("ptag").innerHTML = res;
+        }
+    </script>
+</body>
+
+<head>
+    <label style="margin: 1%;">Mark:</label>
+    <input type="text" id="mark" style="margin: 1%;" /><br>
+    <button onclick="result()" style="margin: 1%;">Click Here</button>
+    <p id="ptag" style="color: red;"></p>
+</head>
+
+</html>

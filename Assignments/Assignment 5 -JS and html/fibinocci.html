@@ -1,0 +1,35 @@
+<!--Fibinocci number -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+            <title>
+                JS Fibinooci series.
+            </title>
+            <script>
+                function fibinocci()
+                {
+                    
+                    var t= document.getElementById("textbox").value;
+                    var a=0;
+                    var b=1;
+                    var result=b;
+                    for(i=0;i<=t;i++)
+                    {
+                        document.write(result+'<br/>');
+                        
+                        result=a+b;
+                        a=b;
+                        b=result;
+                    }
+                    
+                }
+            </script>
+    </head>
+    <body>
+              <label> Enter the number limit :</label>
+              <input type="text" id="textbox"/>
+              <button onclick="fibinocci()">Fibinooci</button>
+              <p id="fibinocci"></p>
+    </body>
+</html>

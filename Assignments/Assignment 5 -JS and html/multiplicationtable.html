@@ -1,0 +1,41 @@
+<!-- Display multiplication of entered value for the following <p> tag  -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>
+        function table() 
+        {
+            var a = parseInt(document.getElementById("number1").value);
+            var t = "";
+            if(a==0)
+            {
+                alert("The answer is always 0!!");
+            }
+            else
+            {
+            for (i = 1; i <= 10; i++)
+             {
+                
+              t =t+ i  + " * "  + a  + " = "  + i * a + "<br/>";
+            }
+        }
+             document.getElementById("tresult").innerHTML =t ;
+            
+         
+        }
+    </script>
+
+</head>
+
+<body>
+    <h1>Multiplication table using JS</h1>
+    <label id="number">Enter a number :</label><br>
+   <input type="text" id="number1" />
+    <button type="button" onclick="table()">Run</button>
+    <p id="tresult"></p>
+
+</body>
+
+</html>

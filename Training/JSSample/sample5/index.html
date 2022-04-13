@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JS Sample 5</title>
+    <script>
+        function addfun() 
+        {
+            var a=parseInt(document.getElementById("textbox1").value);
+            var b=parseInt(document.getElementById("textbox2").value);
+            c=a+b;
+            document.getElementById("textbox3").value=c;
+            
+        }
+        function sub()
+        {
+            var a=parseInt(document.getElementById("textbox1").value);
+            var b=parseInt(document.getElementById("textbox2").value);
+            c=a-b;
+            document.getElementById("textbox3").value=c;
+        }
+        function logic()
+        {
+            var a=parseInt(document.getElementById("textbox1").value);
+            var b=parseInt(document.getElementById("textbox2").value);
+            var c="";
+            if(a>10 && b>10)
+            {
+                //console.log("value of a"+a );  
+                c=a+b;
+                  
+            }
+            else{
+                c=a-b;
+               
+            }
+            document.getElementById("textbox3").value=c;
+            document.getElementsByClassName("b").value=c;
+        }
+    </script>
+</head>
+
+<body>
+    <label>Number 1 :</label>
+    <input type="text" id="textbox1" style="margin: 1%;" /><br>
+    <label>Number 2 :</label>
+    <input type="text" id="textbox2" style="margin: 1%;" /><br>
+    <button style="color: brown;" onclick="addfun()">ADDITION</button>
+    <button onclick="sub()">SUBTRACT</button><br>  
+    <button onclick="logic()">LOGIC</button><br>
+    <input type="text" id="textbox3" placeholder="RESULT" style="margin: 1%;"/><br>
+    <p class="b"></p>
+    
+</body>
+
+</html>

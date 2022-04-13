@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        JS Reverse.
+    </title>
+    <script>
+        function rev() {
+
+            var a = document.getElementById("textbox").value;
+            var l = parseInt(a.length);
+
+            var b = " ";
+            for (var i = l - 1; i >= 0; i--) 
+            {
+                b += a[i];
+
+            }
+
+            alert(b);
+        }
+    </script>
+</head>
+
+<body>
+    <label>Enter a string : </label>
+    <input type="text" id="textbox">
+    <button onclick="rev()">Reverse</button>
+    <p id="revsersstring"></p>
+</body>
+
+</html>

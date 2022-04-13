@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+                function evenodd()
+                {
+                    var a=parseInt(document.getElementById("num1").value);
+                   
+                    if(a%2==0)
+                    {
+                        
+                        document.getElementById("res").innerHTML='even';
+                    }
+                    else if(a%2==1)
+                    {
+                       
+                        document.getElementById("res").innerHTML='odd';
+                    }
+
+                }
+        </script>
+    </head>
+    <body>
+        <label>Enter a number : </label>
+        <input type="text" id="num1" placeholder="Number"/>
+        <button  onclick="evenodd()">EVEN / ODD</button>
+        <p id="res"></p>
+
+       
+    </body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            
+        </title>
+        <script>
+            function fact()
+            {
+            var num =document.getElementById("fac").value;
+            var a=1;
+            var prd=1;
+            for(i=1;i<=num;i++)
+            {
+                prd=i*a;
+                a=prd;
+                
+            }
+            document.getElementById("result").innerHTML=prd;
+        }
+        </script>
+    </head>
+    <body>
+        <label>Factorial of :</label>
+        <input type="text" id="fac"/>
+        <button onclick="fact()">Factorial!!!</button>
+        <p id="result"></p>
+    </body>
+</html>

@@ -1,0 +1,39 @@
+<!-- Find the palindrom in javascript -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JS for Palindrome</title>
+    <script>
+        function palindrome() 
+        {
+            var a = document.getElementById("textbox").value;
+             var l = parseInt(a.length);
+            for (var i = 0; i < l / 2; i++) 
+            {
+                if (a[i] !== a[l - 1 - i]) 
+                {
+                    alert("Not palindrome!!!");
+                }
+            }
+                 alert("Palindrome!!!");
+
+
+            
+        }
+            
+
+
+        
+
+    </script>
+</head>
+
+<body>
+    <label>Enter the string : </label>
+    <input type="text" id="textbox" />
+    <button onclick="palindrome()">CHECK PALINDROME</button>
+</body>
+
+</html>

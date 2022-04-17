@@ -1,0 +1,85 @@
+/*Insert two rows of data to 'studentdetail' table.*/
+
+        insert  into tblstudentdetail (StdName,district)values ('Deepa','TVM'),('Sree','EKM') ;
+
+
+/*******************************************************************************************************/
+
+/* Fetch data from the 'studentdetail' table.*/
+
+           SELECT 
+             id, StdName, district
+           FROM
+             tblstudentdetail;
+
+
+/*******************************************************************************************************/
+
+ /* Update column 'Marks' with 40 where id = 8 in table 'Mark'*/
+
+         UPDATE tblmark 
+          SET 
+        marks = 40
+          WHERE
+        id = 8;
+/*******************************************************************************************************/
+
+/*Alter table 'studentdetail' table with DateOfBirth date;*/
+
+       alter table 
+          tblstudentdetail 
+       add 
+          dateofbirth varchar(50);
+
+/*******************************************************************************************************/
+
+ /*Sorting the table Mark based on column Marks*/
+  
+  SELECT 
+    id, refStudent, refSubject, marks
+FROM
+    tblmark
+ORDER BY marks Desc;
+
+
+
+ 
+ /*****************************************************************************************************/
+ 
+ /*  Find the mininimum of column Marks in Mark table by using min() function*/
+
+
+ SELECT MIN(marks) 
+FROM tblmark;
+/*****************************************************************************************************/
+
+
+/*Find the maximum of column Marks in Mark table by using max() function*/
+ 
+  SELECT MAX(marks) 
+FROM tblmark;
+
+/*****************************************************************************************************/
+
+/*Use inner join with table Student Details and Mark. */
+SELECT 
+    marks, StdName
+FROM
+    tblstudentdetail s
+        JOIN
+    tblmark m
+WHERE
+    m.refStudent = s.id;
+
+/*****************************************************************************************************/
+
+/*Delete data from 'studentdetail' table WHERE id=5*/
+
+
+
+alter table tblmark  DROP  FOREIGN KEY tblmark_ibfk_2;
+
+delete from tblstudentdetail where id=5;
+
+/*****************************************************************************************************/
+

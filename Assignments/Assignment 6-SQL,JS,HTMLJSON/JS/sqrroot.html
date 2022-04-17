@@ -1,0 +1,26 @@
+<!-- Find the Square Root  -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Square root
+    </title>
+    <script>
+        function sqrroot() {
+            var a = document.getElementById("num").value;
+            var b = parseInt(Math.sqrt(a));
+            document.getElementById("res").innerHTML = "Square root of " + a + " is" + b;
+        }
+    </script>
+</head>
+
+<body>
+    <label> Enter a number : </label>
+    <input type="text" id="num" oninput="sqrroot()"></br>
+    <p id="res"></p>
+
+</body>
+
+</html>

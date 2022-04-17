@@ -1,0 +1,48 @@
+<!-- Program to Check if a number is Positive, Negative, or Zero -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Check NUmber
+    </title>
+
+    <head>
+        <script>
+            function check() {
+                var a = document.getElementById("num").value;
+
+                if (a == 0) 
+                {
+
+                    document.getElementById("res").innerHTML = "The number " + a + " is Zero";
+                }
+
+                else if (a > 0)
+                 {
+
+                    document.getElementById("res").innerHTML = "The number " + a + " is positive";
+                }
+                else 
+                {
+
+                    document.getElementById("res").innerHTML = "The number " + a + " is negative";
+
+                }
+            }
+           
+        </script>
+
+    </head>
+
+<body>
+    <label>Enter a number :</label>
+    <input type="text" id="num" /><br><br>
+    <button type="button" onclick="check()">CHECK</button>
+    <p id="res"></p>
+</body>
+
+</head>
+
+</html>

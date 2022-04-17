@@ -1,0 +1,41 @@
+<!-- JavaScript Program to Count the Number of Vowels in a String -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Vowel Count!!!</title>
+        <script>
+            function vowel()
+            {
+              
+                var a=" ";
+                a= document.getElementById("str").value;
+                var count=0;
+                var l=a.length;
+                var lowerarray=['a','e','i','o','u'];
+                var upperarray=['A','E','I','O','U'];
+                for(i=0;i<l;i++)
+                {
+                    for(j=0;j<l;j++)
+                    {
+                   
+                    if(a[j]==lowerarray[i] || a[j]==upperarray[i])
+                    {
+                       
+                        count=count+1;
+                    }
+                }
+                   
+                }
+                document.getElementById("vowel").innerHTML="The number of vowels in " +a + " is : "+count;
+                
+            }
+        </script>
+    </head>
+    <body>
+        <label> Enter the String : </label>
+        <input type="text" id="str">
+        <button onclick="vowel()">Vowel !!! </button>
+        <p id="vowel"></p>
+    </body>
+</html>

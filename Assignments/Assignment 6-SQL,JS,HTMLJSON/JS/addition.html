@@ -1,0 +1,29 @@
+<!-- Program to Add Two Numbers -->
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Addition
+        </title>
+        <script>
+            function add()
+            {
+                var a= parseInt(document.getElementById("num1").value);
+                var b=parseInt(document.getElementById("num2").value);
+                c=a+b;
+                document.getElementById("sum").innerText="Sum is "+c;
+            }
+        </script>
+
+    </head>
+    <body style= "width:auto;"> 
+        <label >Number 1 :</label>
+        <input type="text" id="num1" /><br/></br>
+        <label>Number 2 :</label>
+        <input type="text" id="num2"/></br></br>
+        <button onclick="add()">ADD</button>
+        <p id="sum" style="color: blue;"> </p>
+    </body>
+</html>

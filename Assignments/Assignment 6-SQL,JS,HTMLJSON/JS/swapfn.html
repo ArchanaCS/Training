@@ -1,0 +1,34 @@
+
+<!-- Swap Two Variables in Javascript -->
+
+<!DOCTYPE html>
+<html>
+    <title>
+        swap function
+    </title>
+    <script>
+        function swap()
+        {
+            var a =parseInt(document.getElementById("num1").value);
+            var b = parseInt(document.getElementById("num2").value);
+            document.getElementById("bswap").innerHTML="Before swap a=" +a +"  b = "+b;
+            var temp=0;
+            temp=a;
+            a=b;
+            b=temp;
+            document.getElementById("aswap").innerHTML="After swap a=" +a +"  b = "+b;
+
+        }
+    </script>
+    <head>
+
+    </head>
+    <body>
+        <label>Variable number 1: </label>
+        <input type="text" id="num1"/><br><br>
+        <label>Variable number 2 :</label>
+        <input type="text" id="num2" oninput="swap()"/>
+        <p id="bswap"></p>
+        <p id="aswap"></p>
+    </body>
+</html>

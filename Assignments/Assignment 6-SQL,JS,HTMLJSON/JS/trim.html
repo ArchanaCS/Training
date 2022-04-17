@@ -1,0 +1,29 @@
+<!-- Program to Trim a String -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Trim</title>
+    <script>
+        function trimstring() 
+        {
+            var s = document.getElementById("str").value;
+            var result = "";
+            result = s.trim();
+            document.getElementById("original").innerHTML = "This is the original string :" + s;
+            document.getElementById("res").innerHTML = "After trim : " + result;
+        }
+    </script>
+</head>
+
+<body>
+    <label> Enter a sentence :</label>
+    <input type="text" id="str" />
+    <button onclick="trimstring()">TRIM </button>
+    <p id="original"></p>
+    <p id="res"></p>
+
+</body>
+
+</html>

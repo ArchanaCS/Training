@@ -1,0 +1,77 @@
+/*1. Create fololowing employee table*/
+
+   //DB Creation 
+
+	create database employee1;
+
+  // Table creation
+    
+     CREATE TABLE employee (
+    Emp_Id INT NOT NULL AUTO_INCREMENT,
+    firstName VARCHAR(50),
+    lastName VARCHAR(50),
+    email VARCHAR(50),
+    age INT,
+    jobTitle VARCHAR(50),
+    empStarted DATE,
+    PRIMARY KEY (Emp_Id)
+    );
+
+   //Insert values
+
+insert into employee(firstName,lastName,email,age,jobTitle,empStarted)values
+('Diane','William','dwilliam@gmail.com',40,'Sale manager','2011-01-11'),
+('Murphy','Jain','mjain@gmail.com',	50	,'Sale manager','2011-04-25'),
+('Jeff','Loui',	'jloui@gmail.com',	null,	'Sales rep','2011-05-01'),
+('Bondur',	'Steve','bsteve@gmail.com',	35,'Sales rep','2011-06-01'),
+('Bow','Gerad','bgerad@gmail.com',	36,'Sales rep',	'2021-07-01'),
+('Jennings','Pamela','jpamela@gmail.com',33	,'Sales rep','2021-09-24'),
+('Firelli',	'Julie','fjulie@gmail.com',	35,'Sales rep','2021-09-24'),
+('Peterson','George','pgeorge@gmail.com',34	,'Marketing','2022-04-15'),
+('Hemandez','Lesile','hlesile@gmail.com',null,'Marketing','2022-04-15'),
+('Tseng;','Mary','tmary@gmail.com',	30	,'Marketing',	'2022-04-15');
+
+/***************************************************************************************/
+
+/*2. Select data with Limit three rows by using Order By keyword DESC, from the employee table.*/
+
+	SELECT 
+    Emp_Id, firstName, lastName
+FROM
+    employee
+ORDER BY Emp_Id DESC
+LIMIT 3;
+
+/***************************************************************************************/
+  
+
+/*3. Find the data from age above 35 by using switch cases.*/
+
+SELECT 
+    Emp_Id,
+    firstName,
+    lastName,
+    age,
+    CASE
+        WHEN age > 35 THEN 'Age is greater than 35'
+        WHEN age IS NULL THEN 'No age enterd'
+        ELSE 'Age less than or equal to 35'
+    END AS message
+FROM
+    employee
+ORDER BY age DESC;
+
+/*****************************************************************************************************/
+
+/*4. Write a query for find the data, based on null values of 'age' column.*/
+
+	SELECT 
+    Emp_Id, firstName, age
+FROM
+    employee
+WHERE
+    age IS NULL;
+
+
+
+     

@@ -26,7 +26,7 @@ app.post('/countryfetch', function (req, res) {
                 console.log(err);
             }
             else {
-                console.log("Data retrieved!!!!");
+                console.log("Data inserted!!!!");
                 res.send(result);
             }
         });
@@ -60,8 +60,8 @@ app.post('/statefetch', function (req, res) {
 // user insert
 
 app.post('/userinsert', function (req, res) {
-    var a = req.body.countryid;
-    console.log(a);
+   
+    
     con.connect(function (err) {
         if (err) {
             console.log(err);
@@ -69,7 +69,7 @@ app.post('/userinsert', function (req, res) {
         else {
             console.log("Connected");
         }
-        var sql = "select txtStateName from tblstate ts join tblcountry tc on ts.refCountryName=tc.id where tc.id='" + a + "'; ";
+        var sql = "insert into tblusers (txtUsername,txtPassword,txtFirstName,txtPincode,txtPhoneNo) values ('ancd','333','rrr',8977,234);";
         console.log(sql);
         con.query(sql, function (err, result) {
 

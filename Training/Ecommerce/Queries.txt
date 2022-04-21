@@ -1,0 +1,115 @@
+CREATE TABLE tblCountry (
+    id int not null auto_increment,
+    txtCountryName varchar(50) NOT NULL,
+    PRIMARY KEY (id)
+);
+-------------------------------------------------
+
+CREATE TABLE tblState (
+    id int NOT NULL auto_increment,
+    txtStateName varchar(50) NOT NULL,
+    refCountryName int,
+    PRIMARY KEY (id),
+    FOREIGN KEY (refCountryName) REFERENCES tblCountry(id)
+);
+
+--------------------------------------------------------------
+
+CREATE TABLE tblUsers (
+    id int NOT NULL auto_increment,
+    txtUserType varchar(50),
+    txtUsername varchar(50) not null,
+    txtPassword varchar(50) not null,
+    txtFirstName varchar(50) not null,
+    txtLastName varchar(50),
+    refCountry int,
+    refState int,
+    txtAddress varchar(50),
+    txtStreet varchar(50),
+    txtCity varchar(50),
+    txtPincode varchar(50) not null,
+    txtPhoneNo varchar(50),
+    txtWebsite varchar(50),
+    bIsRegisterd boolean,
+    dtCreatedOn datetime,
+    dtUpdatedOn datetime,
+    bDeleteFlag boolean,
+    PRIMARY KEY (id),
+    FOREIGN KEY (refCountry) REFERENCES tblCountry(id),
+	FOREIGN KEY (refState) REFERENCES tblState(id)
+);
+
+---------------------------------------------------------------------
+
+CREATE TABLE tblProduct (
+    id int NOT NULL auto_increment,
+    txtProdName varchar(50) NOT NULL,
+    txtProdPrice varchar(50) not null,
+    dtCreatedOn datetime,
+    dtUpdatedOn datetime,
+    bDeleteFlag boolean,
+    PRIMARY KEY (id)
+    
+);
+----------------------------------------------------------------------
+
+CREATE TABLE tblOrderHdr (
+    id int NOT NULL auto_increment,
+    refUser int not null,
+    txtOrderNo varchar(50) not null,
+    txtOrderAmount varchar(50),
+    dtCreatedOn datetime,
+    dtUpdatedOn datetime,
+    bDeleteFlag boolean,
+    PRIMARY KEY (id),
+    FOREIGN KEY (refUser) REFERENCES tblUsers(id)
+);
+
+-----------------------------------------------------------------------
+
+CREATE TABLE tblOrderChild(
+    id int NOT NULL auto_increment,
+    refOrderHdr int not null,
+    refProduct int not null,
+    txtQuantity int not null,
+    txtTotalAmount int not null,
+    dtCreatedOn datetime,
+    dtUpdatedOn datetime,
+    bDeleteFlag boolean,
+    PRIMARY KEY (id),
+    FOREIGN KEY (refOrderHdr) REFERENCES tblorderhdr(id),
+    FOREIGN KEY (refProduct) REFERENCES tblproduct(id)
+);
+
+-------------------------------------------------------------------------
+
+Insert Query
+------------
+
+INSERT INTO tblcountry (`txtCountryName`)
+VALUES ('India');
+
+---------------------------------------------------------------------------
+
+Select Query
+-------------
+SELECT * FROM ecommercetasks.tblcountry;
+
+
+----------------------------------------------------------------------------
+
+update Query
+---------------
+
+UPDATE tblcountry
+SET txtCountryName='Wuhan'
+where id=5;
+
+
+--------------------------------------------------------------------------------
+
+Distinct query
+---------------
+
+SELECT DISTINCT txtStateName
+FROM tblstate;

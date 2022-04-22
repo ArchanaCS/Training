@@ -18,7 +18,7 @@ app.post('/addproduct', function (req, res) {
         else {
             console.log("Connected");
         }
-        var sql = "insert into tblproduct (txtProdName,txtProdPrice)values('ring',45),('chain',34);";
+        var sql = "insert into tblproduct (txtProdName,txtProdPrice)values('hhh',45),('lll',34);";
 
         con.query(sql, function (err, result) {
 

@@ -9,10 +9,9 @@ var con = mysql.createConnection(
     password: "password",
     database: "ecommercetasks"
   });
-app.post('/updateuser',function(req,res)
+app.post('/fetchproducts',function(req,res)
 {
-    var id=req.body.uid;
-    var pw=req.body.pass;
+    var a=req.body.id;
     con.connect(function (err) 
 {
     if (err) 
@@ -23,7 +22,7 @@ app.post('/updateuser',function(req,res)
     {
         console.log("Connected");
     }
-    var sql = "update tblusers set txtPassword='"+pw+"' where id='"+id+"';";
+    var sql = "select id,txtProdName,bDeleteFlag from tblproduct where id='"+a+"'; ";
 
     con.query(sql, function (err, result) 
     {
@@ -33,6 +32,36 @@ app.post('/updateuser',function(req,res)
         }
         else {
             console.log("Data retrieved!!!!");
+            res.send(result);
+        }
+
+    });
+});
+   
+})
+app.post('/productupdate',function(req,res)
+{
+    var a=req.body.pid;
+    con.connect(function (err) 
+{
+    if (err) 
+    {
+        console.log(err);
+    }
+    else
+    {
+        console.log("Connected");
+    }
+    var sql = "update tblproduct set txtProdPrice='100' where id='"+a+"';";
+
+    con.query(sql, function (err, result) 
+    {
+        
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log("Product updated!!!!");
             res.send(result);
         }
 

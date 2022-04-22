@@ -9,9 +9,10 @@ var con = mysql.createConnection(
     password: "password",
     database: "ecommercetasks"
   });
-app.post('/editproduct',function(req,res)
+app.post('/fetchuser',function(req,res)
 {
-    var a=req.body.id;
+   
+    
     con.connect(function (err) 
 {
     if (err) 
@@ -22,7 +23,38 @@ app.post('/editproduct',function(req,res)
     {
         console.log("Connected");
     }
-    var sql = "select id,txtProdName,bDeleteFlag from tblproduct where id='"+a+"'; ";
+    var sql = "select id,txtUsername,txtPassword,txtFirstName from tblusers;";
+
+    con.query(sql, function (err, result) 
+    {
+        
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log("Data retrieved!!!!");
+            res.send(result);
+        }
+
+    });
+});
+   
+})
+app.post('/updateuser',function(req,res)
+{
+    var id=req.body.uid;
+    var pw=req.body.pass;
+    con.connect(function (err) 
+{
+    if (err) 
+    {
+        console.log(err);
+    }
+    else
+    {
+        console.log("Connected");
+    }
+    var sql = "update tblusers set txtPassword='"+pw+"' where id='"+id+"';";
 
     con.query(sql, function (err, result) 
     {

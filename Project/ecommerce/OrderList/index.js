@@ -9,9 +9,9 @@ var con = mysql.createConnection(
     password: "password",
     database: "ecommercetasks"
   });
-app.post('/productupdate',function(req,res)
+app.post('/orderfetch',function(req,res)
 {
-    var a=req.body.pid;
+    
     con.connect(function (err) 
 {
     if (err) 
@@ -22,7 +22,7 @@ app.post('/productupdate',function(req,res)
     {
         console.log("Connected");
     }
-    var sql = "update tblproduct set txtProdPrice='100' where id='"+a+"';";
+    var sql = "select refUser,txtOrderNo,txtOrderAmount from tblorderhdr;";
 
     con.query(sql, function (err, result) 
     {
@@ -31,7 +31,7 @@ app.post('/productupdate',function(req,res)
             console.log(err);
         }
         else {
-            console.log("Product updated!!!!");
+            console.log("Data retrieved!!!!");
             res.send(result);
         }
 

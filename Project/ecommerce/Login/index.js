@@ -23,7 +23,7 @@ app.post('/uservalidate', function (req, res) {
         else {
             console.log("Connected");
              }
-        var sql = "select txtUsername,txtPassword from tblusers where txtUsername='" + uname + "' and txtPassword='" + pass + "'; ";
+        var sql = "select id from tblusers where txtUsername='" + uname + "' and txtPassword='" + pass + "'; ";
         console.log(sql);
         con.query(sql, function (err, result) {
             if (err) {
@@ -33,14 +33,14 @@ app.post('/uservalidate', function (req, res) {
                 console.log("Validated!!!!");
             }
 
-            console.log(result);
+            res.send(result);
             // a = result[0];
             // if (a == undefined) {
-            //     res.send("");
+            //     res.send("check user");
             // }
             // else {
 
-            //     res.send("");
+            //     res.send("user exist");
             // }
         });
     });

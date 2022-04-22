@@ -34,7 +34,7 @@ app.post('/countryfetch', function (req, res) {
 })
 // state fetch
 app.post('/statefetch', function (req, res) {
-    var a = req.body.countryid;
+    var a = req.body.id;
     console.log(a);
     con.connect(function (err) {
         if (err) {

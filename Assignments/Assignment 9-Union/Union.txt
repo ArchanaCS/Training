@@ -1,0 +1,57 @@
+create database customers;
+/*****************************************************************************************/
+/* Customer table*/
+CREATE TABLE tblcustomer (
+    CustomerID INT NOT NULL AUTO_INCREMENT,
+    CustomerName VARCHAR(50),
+    Contact varchar(50),
+    City VARCHAR(50),
+    Country VARCHAR(50),
+    PRIMARY KEY (CustomerID)
+) auto_increment=1001;
+
+/******************************************************************************************/
+/* Suppliertable*/
+create table tblSuppliers(
+SupplierID	int not null auto_increment,
+SupplierName	varchar(50),
+Postalcode	int,
+City varchar(50),
+Country varchar(50),
+primary key(SupplierID)
+);
+
+/******************************************************************************************/
+/* insert into customer*/
+
+insert into tblcustomer(CustomerName ,Contact ,City,Country)values('Ajay',9845123652,'Bangalore','India'),
+('Alex',9645123652,'New York',	'United States'),
+('Maria',8943654987,'Frankfurt','Germany'),
+('Eric',7907854897,'Tokyo','Japan'),
+('Antony',8086549895,'Barcelona','Spain'),
+('Jordi',7553215654	,'Oviedo',	'Spain');
+
+/******************************************************************************************/
+
+/* insert into suppliers*/
+
+insert into tblSuppliers(SupplierName,Postalcode,City,Country)values('New Orleans Cajun Delights',	48104,'Tokyo','Japan'),
+('Grandma Kellys Homestead',3307,'Frankfurt','Germany'),
+('Pavlova Ltd',	60439,'Istanbul','Turkey'),
+('Specialty Biscuits, Ltd.',10785,'New York','United States'),
+('Refrescos Americanas LTDA',48100,'Bangalore','India'),
+('Norske Meierier',	24478,'Melbourne','Australia');
+
+/******************************************************************************************/
+
+/*SQL statement returns the German cities (only distinct values) from both the "Customers" and the "Suppliers" table*/
+
+SELECT City, Country FROM tblcustomer
+WHERE Country='Germany'
+UNION
+SELECT City, Country FROM tblsuppliers
+WHERE Country='Germany'
+ORDER BY City;
+
+/***********************************************************************************************************/
+

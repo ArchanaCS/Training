@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sign Up Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+    <style>
+        .fontstyle {
+            font-weight: lighter;
+
+        }
+
+        .outerclass {
+            margin-top: 30px;
+        }
+
+        .statewidth {
+            width: 350px;
+        }
+
+        .btn {
+            float: right;
+        }
+
+        .imagesize {
+            color: blue;
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container outerclass">
+
+        <h1 class="text-center outerclass">Add an address so you can get paid</h1>
+        <i class="glyphicon glyphicon-user imagesize"></i>
+        <h4 class="text-center fontstyle" style="color: grey;"> This will be used as your default business account</h4>
+        <h4 class="text-center fontstyle" style="color: grey;"> You can change this at anytime</h4>
+
+        <!--Country/Region Drop-->
+        <form>
+            <div class="form-group">
+                <label class="control-label">Country/Region</label>
+                <select id="company" class="form-control">
+                    <option>India</option>
+                    <option>Sri Lanka</option>
+                    <option>UK</option>
+                </select>
+            </div>
+            <!--Firstname and lastname-->
+            <div class="row">
+                <div class="form-group col-xs-6">
+                    <label for="fname">Firstname:</label>
+                    <input type="text" class="form-control" id="usr" />
+                </div>
+
+                <div class="form-group col-xs-6">
+                    <label for="lname">Lastname:</label>
+                    <input type="text" class="form-control" id="usr" />
+                </div>
+
+                <!--Address and Apartment and City-->
+                <div class="form-group col-xs-12">
+                    <label for="add">Address</label>
+                    <input type="text" class="form-control" id="usr" />
+                </div>
+
+                <div class="form-group col-xs-12">
+                    <label for="apt">Appartment,suite etc</label>
+                    <input type="text" class="form-control" id="usr" />
+                </div>
+
+
+
+                <div class="form-group col-xs-4">
+                    <label for="city">City</label>
+                    <input type="text" class="form-control" id="usr" />
+                </div>
+
+                <!--State dropdown-->
+
+                <div class="form-group col-xs-4">
+                    <label class="control-label ">State</label>
+                    <select id="state" class=" statewidth form-group form-control">
+
+                        <option>Kerala</option>
+                        <option>TN</option>
+                        <option>Karnataka</option>
+                    </select>
+                </div>
+                <!--Pin ,phone and website -->
+                <div class="form-group col-xs-4">
+                    <label for="pin">Pin</label>
+                    <input type="text" class="form-control" id="pin" />
+                </div>
+
+                <div class="form-group col-xs-6">
+                    <label for="Phone">Phone</label>
+                    <input type="text" class="form-control" id="phone" />
+                </div>
+
+
+                <div class="form-group col-xs-6">
+                    <label for="website">Business or personal website</label>
+                    <input type="text" class="form-control" id="phone" />
+                </div>
+
+                <!--Check box-->
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        This store is registerd.
+                    </label>
+                </div>
+                <!--Button-->
+                <div class="form-group">
+                    <button type="button" style="background-color: green" class="btn">Enter my Store</button>
+                </div>
+            </div>
+        </form>
+
+        <a class="text-center"><a href="login.html"> > Back</a>
+    </div>
+</body>
+
+</html>

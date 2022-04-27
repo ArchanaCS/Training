@@ -6,7 +6,7 @@ var con = mysql.createConnection(
     {
         host: "localhost",
         user: "root",
-        password: "password",
+        password: "password1234",
         database: "ecommercetasks"
     });
 // country fetch

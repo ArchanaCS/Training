@@ -20,6 +20,8 @@ app.post('/topbarpart1', function (req, res) {
         }
         var sql = "select count(id) as productcount from tblproduct ;";
 
+        con.query(sql, function (err, result) 
+        {
 
             if (err) {
                 console.log(err);

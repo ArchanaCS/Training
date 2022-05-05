@@ -19,11 +19,11 @@ con.connect(function (err) {
         console.log("Connected");
     }
 })
-/******************************** API  ******************************************************************/
+
 
 /***************************************** LOGIN PAGE  *******************************************/
 
- 
+
 /*User validate to check user and username and password -Login Page */
 
 app.post('/uservalidate', function (req, res) {
@@ -119,13 +119,13 @@ app.post('/ownerfetch', function (req, res) {
 /*API for project Update */
 app.post('/projectUpdate', function (req, res) {
 
-    var pname=req.body.prjctname;
-    var ptype=req.body.prjcttype;
-    var owner=req.body.refowner;
-    var startdate=req.body.strtdate;
-    var enddate=req.body.endate;
-    var prjctid=req.body.id;
-    var sql = "update tblprojects set txtName='"+pname+"', txtType='"+ptype+"',refProjectOwner='"+owner+"',dtEstStartDate='"+startdate+"',dtEstEndDate='"+enddate+"' where id='"+prjctid+"' ;;"
+    var pname = req.body.prjctname;
+    var ptype = req.body.prjcttype;
+    var owner = req.body.refowner;
+    var startdate = req.body.strtdate;
+    var enddate = req.body.endate;
+    var prjctid = req.body.id;
+    var sql = "update tblprojects set txtName='" + pname + "', txtType='" + ptype + "',refProjectOwner='" + owner + "',dtEstStartDate='" + startdate + "',dtEstEndDate='" + enddate + "' where id='" + prjctid + "' ;;"
     con.query(sql, function (err, result) {
         if (err) throw err;
         res.send(result);
@@ -133,10 +133,44 @@ app.post('/projectUpdate', function (req, res) {
 })
 /*************************************** EPIC PAGE ****************************************************************/
 
+/*API to fetch Epic details from Epic table */
+app.post('/epicfetch', function (req, res) {
+    var pid=req.body.prjctid;
+    var sql = "SELECT te.id as id,te.txtTitle as EpicName,te.txtStatus as Statuss,tp.txtName as ProjectName,tt.txtTitle as TaskName,tt.txtStatus as TaskStatus FROM tblprojects tp JOIN tblepic te ON tp.id=te.refProjectId join tbltasks tt on te.id= tt.refEpicid where te.refProjectId='"+pid+"';";
+    con.query(sql, function (err, result) {
+        if (err) throw err;
+        res.send(result);
+    })
+})
+
+/******************************************* ADD EPIC PAGE ************************************************************** */
+
+/* API for UserFetch - 'Assigned to' dropdown for Add epic */
+app.post('/userfetchEpic', function (req, res) {
+    var sql = "select id,txtUserName from tblusers  where refUserRole = 2;;"
+    con.query(sql, function (err, result) {
+        if (err) throw err;
+        res.send(result);
+    })
+})
+
+/*  API for Projectfetch*/
+
+app.post('/projectfetch', function (req, res) {
+    var ownerid=req.body.prjctowner;
+    var sql = "select id,txtName from tblprojects where refProjectOwner='"+ownerid+"';;"
+    con.query(sql, function (err, result) {
+        if (err) throw err;
+        res.send(result);
+    })
+})
+
+/* API for EpicInsert */
 
 
-/********************************************************************************************************* */
-/* UserRole Fetch to return all users to populate dropdown*/
+
+/*****************************************  ADD USER  **************************************************************** */
+/* API for fetchUserRole-- populate dropdown*/
 
 app.post('/userRolefetch', function (req, res) {
     var sql = "select refUserRole from tblusers;;"
@@ -170,8 +204,8 @@ app.post('/insertuser', function (req, res) {
         }
     });
 })
-
-/*Update user , validation:check user */
+/************************************************* EDIT USER ******************************************************* */
+/* API for Updateuser-- validation:check user */
 
 app.post('/userupdate', function (req, res) {
     //fetch id from users where username=req username
@@ -206,6 +240,7 @@ app.post('/userupdate', function (req, res) {
         }
     });
 })
+/********************************************************************************************************* */
 
 
 
@@ -213,14 +248,6 @@ app.post('/userupdate', function (req, res) {
 
 
 
-/*API to fetch Epic details from Epic table */
-app.post('/epicfetch', function (req, res) {
-    var sql = "";
-    con.query(sql, function (err, result) {
-        if (err) throw err;
-        res.send(result);
-    })
-})
 
 app.listen(8080, () => {
     console.log("Server is running");

@@ -1,0 +1,29 @@
+create database stdents;
+
+
+create table students (
+Student_name varchar(20) not null,
+ Student_Class varchar(20),
+ TotalExamGiven int );
+ 
+ INSERT INTO students
+(Student_name, Student_Class, TotalExamGiven )
+VALUES
+    ('Sayan', 'IX', 8 ),
+    ('Nitin', 'X',  5 ),
+    ('Aniket', 'XI', 6 ),
+    ('Abdur', 'X',  7 ),
+    ('Riya', 'IX', 4 ),
+    ('Jony', 'X', 10 ),
+    ('Deepak', 'X',  7 ),
+    ('Ankana', 'XII', 5 ),
+    ('Shreya', 'X',  8 ) ;
+    
+    /*Q1: Find whether a student has appeared total odd number of exam or even?*/
+    
+    select  Student_name ,
+    case 
+    when mod(TotalExamGiven,2)=0 then 'Even number' 
+    when mod(TotalExamGiven,2)!=0 then 'Odd number' 
+    end total
+    from students ;

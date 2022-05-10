@@ -37,9 +37,10 @@ app.post("/uservalidate", function (req, res) {
         console.log(err);
       } else {
         console.log("Validated!!!!");
+        res.send(result);
       }
 
-      res.send(result);
+      
       // a = result[0];
       // if (a == undefined) {
       //   res.send("check user");

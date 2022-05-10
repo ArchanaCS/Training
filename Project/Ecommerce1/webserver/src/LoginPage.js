@@ -6,12 +6,12 @@ function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errormessage, setErrorMessage] = useState("");
-  var url = "http://localhost:8080/uservalidate";
-  var req = { username: username, password: password };
-  const header = {};
   const navigate = useNavigate();
 
   function login() {
+    var url = "http://localhost:8080/uservalidate";
+    var req = { username: username, password: password };
+    const header = {};
     axios
       .post(url, req, header)
       .then((res) => {

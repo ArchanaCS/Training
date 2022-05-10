@@ -8,6 +8,9 @@ function Dashboard(){
             </div>
             
            {/* side menu */}
+           <div>
+               
+           </div>
 
         </div>
     )

@@ -1,0 +1,249 @@
+API for countryfetch
+----------------------
+req-{}
+res-[
+    {
+        "txtCountryName": "India",
+        "id": 1
+    },
+    {
+        "txtCountryName": "Sri Lanka",
+        "id": 2
+    },
+    {
+        "txtCountryName": "USA",
+        "id": 3
+    },
+    {
+        "txtCountryName": "UK",
+        "id": 4
+    },
+    {
+        "txtCountryName": "Wuhan",
+        "id": 5
+    }
+]
+
+/****************************************************************************************************************/
+
+API for statefetch
+--------------------
+req- {
+       "id":1
+     }
+res- [
+    {
+        "txtStateName": "Kerala"
+    }
+]
+/*********************************************************************************************************************/
+
+API for userinsert
+---------------------
+
+req-{}
+
+res- {
+    "fieldCount": 0,
+    "affectedRows": 1,
+    "insertId": 5,
+    "serverStatus": 2,
+    "warningCount": 0,
+    "message": "",
+    "protocol41": true,
+    "changedRows": 0
+}
+
+/****************************************************************************************************************************/
+
+api for uservalidation
+------------------------
+no user
+-----------
+req-{
+  "username": "sshs",
+  "password":"232"
+  
+}
+
+res-[]
+
+....................................
+user exist
+------------
+req-{
+  "username": "sss",
+  "password":"232"
+  
+}
+
+res- [
+    {
+        "id": 1
+    }
+]
+
+/*******************************************************************************************************************************/
+
+api for productfetch(product list)
+-----------------------------------
+req-{}
+
+res-[
+    {
+        "id": 1,
+        "txtProdName": "Tshirt",
+        "bDeleteFlag": 0
+    },
+    {
+        "id": 2,
+        "txtProdName": "Kurti",
+        "bDeleteFlag": 1
+    },
+    {
+        "id": 3,
+        "txtProdName": "Shirt",
+        "bDeleteFlag": 1
+    }
+]
+/********************************************************************************************************************************/
+api for orderfetch
+-------------------
+req-{
+  "refuserid":1
+}
+
+res-[
+    {
+        "refUser": 1,
+        "txtOrderNo": "123",
+        "txtOrderAmount": "100"
+    },
+    {
+        "refUser": 1,
+        "txtOrderNo": "143",
+        "txtOrderAmount": "200"
+    }
+]
+
+
+
+
+
+/****************************************************************************************************************************/
+
+api for add product
+-------------------
+req-{}
+
+res- {
+    "fieldCount": 0,
+    "affectedRows": 2,
+    "insertId": 9,
+    "serverStatus": 2,
+    "warningCount": 0,
+    "message": "&Records: 2  Duplicates: 0  Warnings: 0",
+    "protocol41": true,
+    "changedRows": 0
+}
+
+/*************************************************************************************************************************************/
+
+api for update product
+-------------------------
+res- {"pid":3}
+
+req-{
+    "fieldCount": 0,
+    "affectedRows": 1,
+    "insertId": 0,
+    "serverStatus": 2,
+    "warningCount": 0,
+    "message": "(Rows matched: 1  Changed: 1  Warnings: 0",
+    "protocol41": true,
+    "changedRows": 1
+}
+
+
+/*************************************************************************************************************************************/
+
+api for productfetch(with id)
+------------------------------
+req-  {"id":1}
+
+res- [
+    {
+        "id": 1,
+        "txtProdName": "Tshirt",
+        "bDeleteFlag": 0
+    }
+]
+
+
+/**********************************************************************************************************************************/
+
+api for userfetch
+------------------
+
+req- {}
+
+res- [
+    {
+        "id": 1,
+        "txtUsername": "sss",
+        "txtPassword": "232",
+        "txtFirstName": "df"
+    },
+    {
+        "id": 2,
+        "txtUsername": "aaa",
+        "txtPassword": "bbb",
+        "txtFirstName": "ccc"
+    },
+    {
+        "id": 3,
+        "txtUsername": "aaa",
+        "txtPassword": "bbb",
+        "txtFirstName": "ccc"
+    },
+    {
+        "id": 4,
+        "txtUsername": "aaa",
+        "txtPassword": "bbb",
+        "txtFirstName": "ccc"
+    },
+    {
+        "id": 5,
+        "txtUsername": "ancd",
+        "txtPassword": "333",
+        "txtFirstName": "rrr"
+    },
+    {
+        "id": 6,
+        "txtUsername": "ancd",
+        "txtPassword": "333",
+        "txtFirstName": "rrr"
+    }
+]
+
+/****************************************************************************************************************************************************/
+
+
+api for userupdate
+-----------------------
+res - {
+    "uid":2,
+    "pass":"a123"
+}
+
+req- {
+    "fieldCount": 0,
+    "affectedRows": 1,
+    "insertId": 0,
+    "serverStatus": 2,
+    "warningCount": 0,
+    "message": "(Rows matched: 1  Changed: 1  Warnings: 0",
+    "protocol41": true,
+    "changedRows": 1
+}
+/****************************************************************************************************************************************************/

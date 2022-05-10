@@ -1,0 +1,55 @@
+.body{
+    margin:0;
+    padding:0;
+}
+.container{
+  
+    background-color:white;
+    width: 100%;
+    height: 100vh;
+    padding-top: 50px;
+}
+.innerdiv{
+    border: 1px solid black;
+    width: 30%;
+    margin-left: 10%;
+    background-color: rgba(178, 228, 248, 0.989);
+    margin-top: 50px;
+    padding: 40px 20px 70px 20px;
+    border-radius: 3px;
+    border-style:solid ;
+    margin:0 auto;
+}
+.innerdivh2{
+    margin-bottom: 10;
+    font-size: 15px;
+}
+.formelement{
+    margin-bottom: 30px;
+    width:96%;  
+    
+    
+}
+/* .formelementinput{
+    
+   padding: 10px;
+   
+} */
+.button{
+    background-color: rgb(38, 117, 235);
+    color: white;
+    border-radius: 3px;
+}
+.formelementinput input[type=text]
+{
+    width:100%;
+    padding: 5px ; 
+    margin-bottom: 20px;
+   
+  
+}
+.formelementinput input[type=password]
+{
+    width:100%;
+    padding: 5px ;
+}

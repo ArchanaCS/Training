@@ -35,3 +35,12 @@
 {
     color:red;
 }
+.dashtop
+{
+    
+    text-align: right;
+    font-size: large;
+     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: blue;
+    font-weight: 700;
+}

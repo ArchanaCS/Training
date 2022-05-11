@@ -1,14 +1,12 @@
-import {useState } from "react";
+import { useState } from "react";
 
 import "./style.css";
 function Dashboard() {
-  const [productList, setProductList] =
-    useState([
-      { Id: "1", Product: "Shirt", Price: "500", Tax: "5%" },
-      { Id: "2", Product: "Shoes", Price: "1500", Tax: "5%" },
-      { Id: "3", Product: "Jeans", Price: "2000", Tax: "10%" }
-    ]);
-    
+  const [productList, setProductList] = useState([
+    { Id: "1", Product: "Shirt", Price: "500", Tax: "5%" },
+    { Id: "2", Product: "Shoes", Price: "1500", Tax: "5%" },
+    { Id: "3", Product: "Jeans", Price: "2000", Tax: "10%" },
+  ]);
 
   return (
     <div>
@@ -28,7 +26,7 @@ function Dashboard() {
           </nav>
         </div>
       </div>
-      
+
       {/* body part to list  */}
       <div className="tabledesign">
         <table>
@@ -38,22 +36,19 @@ function Dashboard() {
             <th>Price</th>
             <th>Tax</th>
           </thead>
-          
-            <tbody>
-              {productList.map((item, index) => {
-                return (
-                  <tr>
-                    
-                    <td>{item.Id}</td> 
-                    <td>{item.Product}</td>
-                    <td>{item.Price}</td> 
-                    <td>{item.Tax}</td>
-                  </tr>
-                  
-                );
-              })}
-            </tbody>
-          
+
+          <tbody>
+            {productList.map((item, index) => {
+              return (
+                <tr>
+                  <td>{item.Id}</td>
+                  <td>{item.Product}</td>
+                  <td>{item.Price}</td>
+                  <td>{item.Tax}</td>
+                </tr>
+              );
+            })}
+          </tbody>
         </table>
       </div>
     </div>

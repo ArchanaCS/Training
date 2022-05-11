@@ -65,3 +65,114 @@
   background-color: blue;
   color: white;
 }
+
+
+
+.h1 {
+  color: black;
+  text-align: center;
+
+}
+
+.h4 {
+  color: gray;
+  text-align: center;
+}
+
+.innerconatiner {
+  text-align: justify;
+  padding: 5px;
+  /* width: 120%;
+  content: "/a";
+  white-space: pre; */
+
+}
+
+.innerconatiner select {
+  width: 100%;
+}
+
+.formclass {
+  background-color: beige;
+
+
+}
+
+.outercontainer {
+  height: 600px;
+  width: 600px;
+  margin-right: auto;
+  margin-left: 20%;
+  margin-top: 0px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 0px;
+  position: fixed;
+
+}
+
+.formelement {
+  width: 50%;
+  float: left;
+  line-height: 2;
+}
+
+.formelement.fname {
+  width: 55%;
+  margin-left: 150px;
+
+
+}
+
+.formelement.lname {
+  width: 40%;
+
+
+}
+
+.formelement3 {
+  width: 100%;
+
+}
+
+.formelement2 {
+  width: 100%;
+  line-height: 2;
+
+}
+
+.formelement2.add {
+  width: 50%;
+}
+
+.formelement2.apt {
+  width: 70%;
+}
+
+/* .formelement select
+{
+  width:60%;
+  padding:2px 0;
+} */
+.formelement.pin {
+  width: 50%;
+}
+
+.formelement4 {
+  float: left;
+  line-height: 2;
+  width: 33%;
+}
+
+.selectclass {
+  width: 90%;
+}
+.formelementfortext
+{
+  width:100%;
+}
+.btn
+{
+  text-align: right;
+  
+}

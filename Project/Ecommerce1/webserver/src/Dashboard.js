@@ -22,10 +22,18 @@ function Dashboard() {
           {/* body part to list  */}
           <div>
               <table>
+                <thead>
                   <th>Id</th>
                   <th> Product</th>
                   <th>Price</th>
                   <th>Tax</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
               </table>
           </div>
 

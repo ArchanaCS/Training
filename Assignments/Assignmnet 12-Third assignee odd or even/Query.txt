@@ -1,0 +1,16 @@
+create table topic(id INT NOT NULL AUTO_INCREMENT, assignee varchar(20),primary key(id));
+
+insert into topic (assignee)values('A'),('B'),('C'),('D'),('E'),('F'),('G'),('H'),('I'),('J'),('K'),('L'),('M'),('N'),('O'),('P'),('Q'),('R'),('S'),('T');
+/*Insert 20 of topic with three assignee(Divide it for 3 users)*/
+SELECT 
+    assignee,
+    NTILE (3) OVER (
+        ORDER BY assignee
+    ) groupsof
+FROM 
+    topic;
+    
+    
+    /*Q1: Find topic count of third assignee is odd or even*/
+
+    select count(id) as counts  ,if(mod(count(id),2),"odd","even") from topic where mod(id,3)=0;

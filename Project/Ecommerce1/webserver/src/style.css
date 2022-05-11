@@ -24,7 +24,7 @@
   margin-left: 10px;
 }
 .btn {
-  background-color: blue;
+  background-color:cadetblue;
   color: whilte;
 }
 .errormessage {
@@ -66,7 +66,7 @@
   color: white;
 }
 
-
+/* signup page */
 
 .h1 {
   color: black;
@@ -171,8 +171,36 @@
 {
   width:100%;
 }
-.btn
+.btn1
 {
   text-align: right;
+  
+}
+.link
+{
+  color: blue;
+}
+.link:hover
+{
+  color:brown;
+}
+/* tabledesign  dashboard*/
+.tabledesign
+{
+  
+  border-width: 100%;
+  
+}
+.tabledesign td,tr{
+  border: 1px solid antiquewhite;
+  padding: 8px;
+  width:34%;
+}
+.tabledesign th{
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color:cadetblue;
+  color: white;
   
 }

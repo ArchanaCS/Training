@@ -11,7 +11,13 @@ var con = mysql.createConnection({
   password: "password1234",
   database: "ecommercetasks",
 });
-
+con.connect(function (err) {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log("Connected");
+  }
+});
 // user validate
 app.post("/uservalidate", function (req, res) {
   var a;
@@ -29,12 +35,7 @@ app.post("/uservalidate", function (req, res) {
   res.setHeader("Access-Control-Allow-Credentials", true);
   //res.send("hello world");
 
-  con.connect(function (err) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log("Connected");
-    }
+  
     var sql =
       "select id from tblusers where txtUsername='" +
       uname +
@@ -58,7 +59,7 @@ app.post("/uservalidate", function (req, res) {
       // }
     });
   });
-});
-app.listen(8080, (req, res) => {
+
+app.listen(8000, (req, res) => {
   console.log("Connected!!!");
 });

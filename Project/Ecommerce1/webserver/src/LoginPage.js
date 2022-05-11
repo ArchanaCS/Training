@@ -9,7 +9,7 @@ function LoginPage() {
   const navigate = useNavigate();
 
   function login() {
-    var url = "http://localhost:8080/uservalidate";
+    var url = "http://localhost:8000/uservalidate";
     var req = { username: username, password: password };
     const header = {};
     axios

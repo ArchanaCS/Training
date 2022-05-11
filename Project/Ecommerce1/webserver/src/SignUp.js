@@ -9,7 +9,7 @@ function SignUp() {
   const [firstname, setFirstname] = useState("");
   const [pin, setPin] = useState("");
   const [phone, setPhone] = useState("");
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   function insert() {
     var req = {
       username: username,
@@ -27,10 +27,9 @@ function SignUp() {
       })
       .catch();
   }
-  function Loginpage(e)
-  {
-      e.preventDefault();
-      navigate("/");
+  function Loginpage(e) {
+    e.preventDefault();
+    navigate("/");
   }
 
   return (
@@ -171,12 +170,20 @@ function SignUp() {
         </div>
 
         {/* <!--Button--> */}
-        <div class="btn">
+        <div class="btn1">
           <button type="button" onClick={insert}>
             Enter my Store
           </button>
         </div>
-        <p onClick={(e)=>{Loginpage(e)}}  class="link"> Back </p>
+        <p
+          onClick={(e) => {
+            Loginpage(e);
+          }}
+          class="link"
+        >
+          {" "}
+          Back{" "}
+        </p>
       </div>
     </div>
   );

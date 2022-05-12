@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
 import axios from "axios";
+import { ReactSession } from "react-client-session";
+
 function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -15,10 +17,16 @@ function LoginPage() {
     axios
       .post(url, req, header)
       .then((res) => {
-        if (res.data.length > 0) {
-          navigate("/dashboard");
+        
+        if (res.data.token =="") {
+          setErrorMessage("Check username or password !!"); 
+          
         } else {
-          setErrorMessage("Check username or password !!");
+          var tok=res.data.token;
+          ReactSession.set("token",tok);
+          ReactSession.set("username",username);
+          ReactSession.set("password",password);
+          navigate("/dashboard");
         }
       })
       .catch();

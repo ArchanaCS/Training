@@ -5,6 +5,8 @@ const cors = require("cors");
 app.use(cors());
 var mysql = require("mysql");
 const { isNull } = require("util");
+const jwt = require("jsonwebtoken");
+const { send } = require("express/lib/response");
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -18,24 +20,34 @@ con.connect(function (err) {
     console.log("Connected");
   }
 });
+
+
+
+function verifyToken(req, res, next){
+  
+  const bearerHeader = req.headers["authorization"];
+  if (typeof bearerHeader !== "undefined") {
+ 
+    const bearerToken = bearerHeader.split(" ")[1];
+    jwt.verify(bearerToken,"secretkey",(err, authData)=>{
+      if(err)
+        res.sendStatus(403)
+      else{
+        next();
+      }
+    })
+  }else{
+    res.sendStatus(403);
+  }
+
+
+}
+
 // user validate
 app.post("/uservalidate", function (req, res) {
   var a;
   var uname = req.body.username;
   var pass = req.body.password;
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "X-Requested-With,content-type"
-  );
-  res.setHeader("Access-Control-Allow-Credentials", true);
-  //res.send("hello world");
-
-  
     var sql =
       "select id from tblusers where txtUsername='" +
       uname +
@@ -44,10 +56,19 @@ app.post("/uservalidate", function (req, res) {
       "'; ";
     console.log(sql);
     con.query(sql, function (err, result) {
-      if (err) {
-        console.log(err);
+      if (result.length>0) {
+        const usr=result[0];
+        jwt.sign({user:usr},"secretkey",(err,token)=>{
+          if(err)
+          {
+            res.send(err);
+          }
+          else{
+            res.json({"token":token})
+          }
+        })
       } else {
-        console.log("Validated!!!!");
+        res.json({"token":""});
       }
 
       res.send(result);
@@ -59,6 +80,31 @@ app.post("/uservalidate", function (req, res) {
       // }
     });
   });
+
+// product fecth
+  app.post('/productfetch',verifyToken,function (req, res) {
+    
+    con.connect(function (err) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log("Connected");
+        }
+        var sql = "select id,txtProdName,bDeleteFlag from tblproduct; ";
+
+        con.query(sql, function (err, result) {
+
+            if (err) {
+                console.log(err);
+            }
+            else {
+                console.log("Product retrieved!!!!");
+                res.send(result);
+            }
+        });
+    });
+})
 
 app.listen(8000, (req, res) => {
   console.log("Connected!!!");

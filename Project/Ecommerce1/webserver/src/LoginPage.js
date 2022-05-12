@@ -20,12 +20,12 @@ function LoginPage() {
       .post(url, req, header)
       .then((res) => {
         console.log("res as response :" +JSON.stringify(res.data));
-        if (res.data =="") {
+        if (res.data.token =="") {
           
           setErrorMessage("Check username or password !!"); 
           
         } else {
-          var tok=res.data;
+          var tok=res.data.token;
           console.log("tok :"  +tok);
           ReactSession.set("token",tok);
           ReactSession.set("username",username);

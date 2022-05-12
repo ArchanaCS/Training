@@ -4,31 +4,37 @@ import "./style.css";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 function ProductList() {
-   const [productList, setProductList] = useState([
-    { Id: "1", Product: "Shirt", Price: "500", Tax: "5%" },
-    { Id: "2", Product: "Shoes", Price: "1500", Tax: "5%" },
-    { Id: "3", Product: "Jeans", Price: "2000", Tax: "10%" },
-  ]);
+ 
+  console.log("Productlistpage");
+   
+  //   { Id: "1", Product: "Shirt", Price: "500", Tax: "5%" },
+  //   { Id: "2", Product: "Shoes", Price: "1500", Tax: "5%" },
+  //   { Id: "3", Product: "Jeans", Price: "2000", Tax: "10%" },
+  // ]);
   const [sample, setSample]=useState('');
   const [usr, setUsrName]=useState('');
   const navigate = useNavigate();
- 
+  const [productList, setProductList] = useState([]);
   useEffect(() => {
     if(ReactSession.get("username")==undefined){
       navigate('/')
     }
-    setUsrName(ReactSession.get("username"))
-
-    setSample('')
-    var token=ReactSession.get("token")
+   
+    setUsrName(ReactSession.get("username"));
+   
+    setSample('');
+    var token=ReactSession.get("token");
+    
+    console.log("token in prodlist : "+token);
     var url = "http://localhost:8000/productfetch";
-    var request = {};
+    var request = {token};
+   
     var header ={ Authorization: `Bearer ${token}`};      
     console.log(header);
     axios
-      .get(url, request, {headers:header})
+      .post(url, request, {headers:header})
       .then((res) => {
-        console.log(res.data);
+        console.log("res data " +res.data);
         if (res.data.length > 0) { 
           setProductList(res.data)
           console.log(res.data);
@@ -83,19 +89,19 @@ function addProduct()
             <th>Price</th>
             <th>Tax</th>
           </thead>
-         
-          <tbody>
+          
+           <tbody>
             {productList.map((item, index) => {
               return (
                 <tr>
-                  <td>{item.Id}</td>
-                  <td>{item.Product}</td>
-                  <td>{item.Price}</td>
-                  <td>{item.Tax}</td>
+                  <td>{item.id}</td>
+                  <td>{item.txtProdName}</td>
+                  <td>{item.txtProdPrice}</td>
+                  
                 </tr>
               );
             })}
-          </tbody>
+          </tbody>  
         </table>
         </div>
        </div>

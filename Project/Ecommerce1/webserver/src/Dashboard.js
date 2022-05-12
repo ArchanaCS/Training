@@ -22,6 +22,7 @@ function Dashboard() {
 
     setSample('')
     var token=ReactSession.get("token");
+    //console.log("token in das" +token);
     
   })
    // var url = "http://localhost:8000/productfetch";

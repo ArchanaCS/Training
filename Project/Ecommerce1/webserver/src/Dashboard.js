@@ -21,24 +21,26 @@ function Dashboard() {
     setUsrName(ReactSession.get("username"))
 
     setSample('')
-    var token=ReactSession.get("token")
-    var url = "http://localhost:8000/productfetch";
-    var request = { };
-    var header ={ Authorization: `Bearer ${token}`};      
+    var token=ReactSession.get("token");
     
-    axios
-      .post(url, request, {headers:header})
-      .then((res) => {
-        console.log(res.data);
-        if (res.data.length > 0) { 
-          setProductList(res.data)
-        } else { 
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  })
+   // var url = "http://localhost:8000/productfetch";
+    //var request = { };
+    //var header ={ Authorization: `Bearer ${token}`};      
+    
+  //   axios
+  //     .post(url, request, {headers:header})
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       if (res.data.length > 0) { 
+  //         setProductList(res.data)
+  //       } else { 
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
   function productListPage()
 {
   navigate("/productlist");
@@ -72,30 +74,7 @@ function homePage()
        <h3>Dashboard</h3>
        </div>
        </div>
-      {/* body part to list 
-      <div className="tabledesign">
-        <table>
-          <thead>
-            <th>Id</th>
-            <th> Product</th>
-            <th>Price</th>
-            <th>Tax</th>
-          </thead>
-
-          <tbody>
-            {productList.map((item, index) => {
-              return (
-                <tr>
-                  <td>{item.Id}</td>
-                  <td>{item.Product}</td>
-                  <td>{item.Price}</td>
-                  <td>{item.Tax}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div> */}
+      
     </div>
   );
 }

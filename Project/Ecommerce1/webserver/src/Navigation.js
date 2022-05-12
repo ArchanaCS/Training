@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Addproduct from "./Addproduct";
 import Dashboard from "./Dashboard";
 import LoginPage from "./LoginPage";
 import ProductList from "./ProductList";
@@ -13,6 +14,7 @@ function Navigation() {
           <Route path="/signup" element={<SignUp />}></Route>
           <Route path="/dashboard" element={<Dashboard />}></Route>
           <Route path="/productlist" element={<ProductList />}></Route>
+          <Route path="/addproduct" element={<Addproduct />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

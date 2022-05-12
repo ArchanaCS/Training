@@ -13,16 +13,20 @@ function LoginPage() {
   function login() {
     var url = "http://localhost:8000/uservalidate";
     var req = { username: username, password: password };
-    const header = {};
+    var header ={}; 
+    
+  
     axios
       .post(url, req, header)
       .then((res) => {
-        
-        if (res.data.token =="") {
+        console.log("res as response :" +JSON.stringify(res.data));
+        if (res.data =="") {
+          
           setErrorMessage("Check username or password !!"); 
           
         } else {
-          var tok=res.data.token;
+          var tok=res.data;
+          console.log("tok :"  +tok);
           ReactSession.set("token",tok);
           ReactSession.set("username",username);
           ReactSession.set("password",password);

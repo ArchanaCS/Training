@@ -1,0 +1,34 @@
+.outerdiv {
+  width: 100%;
+  height: 100vh;
+  background-color: black;
+}
+.firstrow {
+  background-color: red;
+  height: 50px;
+  width: 100%;
+  }
+  .firstrow label{
+      float:right;
+  }
+.secondrow {
+  background-color: aqua;
+  width: 100%;
+  height: 100vh;
+}
+.secFirstColumn {
+    height: 100vh;
+    width:20%;
+    background-color: green;
+    float:left;
+}
+.secSecondColumn {
+    height: 100vh;
+    width:80%;
+    background-color:aqua;
+    float:left;
+
+}
+.secSecondColumn td,th{
+    border:1px solid black;
+}

@@ -1,0 +1,31 @@
+.reddiv {
+  background-color: red;
+  width: 100%;
+  height: 5vh;
+}
+.green {
+  background-color: green;
+  width: 30%;
+  height: 100vh;
+  float: left;
+}
+
+.blue {
+  float: right;
+  background-color: lightskyblue;
+  width: 70%;
+  height: 100vh;
+}
+.table {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+.table th {
+  border: 1px solid black;
+  width: 50%;
+}
+.table tr,
+td {
+  border: 1px solid black;
+  text-align: center;
+}

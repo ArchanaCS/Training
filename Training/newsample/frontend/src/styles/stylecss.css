@@ -1,79 +1,67 @@
-.outer
-{
-    background-color:whitesmoke;
+.outer {
+  background-color: whitesmoke;
 
-    width:100%;
-    height:100vh;
+  width: 100%;
+  height: 100vh;
 }
-.firstrow
-{
-    width:100%;
-    background-color:white;
-    height: 5vh;
+.firstrow {
+  width: 100%;
+  background-color: white;
+  height: 5vh;
 }
-.firstrow label{
- color: blue;
- font-size: larger;
- float: right;
+.firstrow label {
+  color: blue;
+  font-size: larger;
+  float: right;
 }
-.secondrow
-{
-   
-    width:100%;
-    height: 100vh;
-
+.secondrow {
+  width: 100%;
+  height: 100vh;
 }
-.firstcolmn
-{
-    width:10%;
-    height:100vh;
-    background-color: white;
-    border-top: 2%;
-    list-style: none;  
-    float:left;  
+.firstcolmn {
+  width: 10%;
+  height: 100vh;
+  background-color: white;
+  border-top: 2%;
+  list-style: none;
+  float: left;
 }
-.firstcolmn li{
-    padding-top: 20%;
-    font-size:large;
-    font-weight: 200;
+.firstcolmn li {
+  padding-top: 20%;
+  font-size: large;
+  font-weight: 200;
 }
-.firstcolmn img{
-    width: 10%;
-
+.firstcolmn img {
+  width: 10%;
 }
-.cart
-{
-    width:100%;
+.cart {
+  width: 100%;
 }
 
-.secondcolmn
-{
-    width:90%;
-    height: 100vh;
-     float:left;
+.secondcolmn {
+  width: 90%;
+  height: 100vh;
+  float: left;
 }
-.scfirstrow
-{
+.scfirstrow {
   border-radius: 15px;
   border: 2px solid white;
   padding: 50px;
   width: 85%;
-  height:0vh;
+  height: 0vh;
   background-color: white;
   margin-top: 2%;
   margin-left: 2%;
   font-size: medium;
   font-weight: 600;
-
 }
-.scsecondrow
-{
-    border-radius: 15px;
-    /* border: 2px solid white; */
-    padding: 50px;
-    width: 85%;
-    height: 0px;
-    background-color: white;
-    margin-top: 2%;
-    margin-left: 2%; 
+.scsecondrow {
+  border-radius: 15px;
+  /* border: 2px solid white; */
+  padding: 50px;
+  width: 85%;
+  height: 0px;
+  background-color: white;
+  margin-top: 2%;
+  margin-left: 2%;
 }

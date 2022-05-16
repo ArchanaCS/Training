@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Dash from './Dash';
+import AddUser from './AddUser';
+
 
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Dash />
+    <AddUser />
   </React.StrictMode>
 );
 

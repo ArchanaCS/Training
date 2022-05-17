@@ -1,15 +1,19 @@
+import Singleuser from "./Singleuser";
 import "./style/styles.css";
 function Dash() {
+ 
   return (
     <div>
       <div className="outer">
         {/* USer name with icon */}
         <div className="firstrow">
-          <div className="usericon"></div>
+          <div className="usericon"> </div>
           <label>User</label>
+         
         </div>
         <div className="secondrow">
           {/* Side navigation menu */}
+
           <div className="firstcolumn">
             <nav>
               <li>Board</li>
@@ -24,20 +28,9 @@ function Dash() {
           {/* Main outline */}
           <div className="secondcolumn">
             <div className="usernamerow">
-              <div className="eachuser">
-                <div className="users">
-                  <div className="userlabel">
-                    <label>User1</label>{" "}
-                  </div>
-                </div>
-              </div>
-              <div className="eachuser">
-                <div className="users">
-                  <div className="userlabel">
-                    <label>User1</label>{" "}
-                  </div>
-                </div>
-              </div>
+              <Singleuser/><Singleuser/><Singleuser/><Singleuser/><Singleuser/>
+             
+             
             </div>
             {/* Task status name */}
             <div className="statusnamerow">

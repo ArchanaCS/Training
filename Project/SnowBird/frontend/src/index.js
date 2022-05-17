@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import AddUser from './AddUser';
+import Dash from './Dash';
 
 
 
@@ -8,7 +9,7 @@ import AddUser from './AddUser';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <AddUser />
+    <Dash />
   </React.StrictMode>
 );
 

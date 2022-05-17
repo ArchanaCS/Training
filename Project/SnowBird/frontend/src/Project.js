@@ -1,4 +1,11 @@
+import { useNavigate } from "react-router-dom";
+
 function Project() {
+ const navigate=useNavigate();
+  function createnew()
+  {
+    navigate('/addproject');
+  }
   return (
     <div>
       <div className="outer">
@@ -23,7 +30,7 @@ function Project() {
           <div className="secondcolumn">
             <div className="prowone">
               <label>Projects</label>
-              <button>Create New</button>
+              <button onClick={createnew}>Create New</button>
             </div>
             <div className="tablerow">
               <table>
@@ -34,6 +41,11 @@ function Project() {
                 </thead>
 
                 <tbody>
+                  <tr>
+                    <td>1 </td>
+                    <td>ECommerce</td>
+                    <td>Abc</td>
+                  </tr>
                   <tr>
                     <td>1 </td>
                     <td>ECommerce</td>

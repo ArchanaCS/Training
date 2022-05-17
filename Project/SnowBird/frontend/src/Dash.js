@@ -1,7 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import Singleuser from "./Singleuser";
 import "./style/styles.css";
 function Dash() {
- 
+  var navigate=useNavigate();
+ function project()
+
+ {
+   navigate('/project');
+ }
   return (
     <div>
       <div className="outer">
@@ -17,7 +23,7 @@ function Dash() {
           <div className="firstcolumn">
             <nav>
               <li>Board</li>
-              <li>Projects</li>
+              <li onClick={project}>Projects</li>
               <li>Epics</li>
               <li>Tasks</li>
               <li>Sprints</li>
@@ -35,9 +41,9 @@ function Dash() {
             {/* Task status name */}
             <div className="statusnamerow">
               <label>TO DO</label>
-              <label>IN PROGRESS</label>
-              <label>REVIEW</label>
-              <label>COMPLETE</label>
+              <label>InProgress</label>
+              <label>Review</label>
+              <label>Complete</label>
             </div>
             <div className="tasks"></div>
             <div className="taskbar1"> </div>

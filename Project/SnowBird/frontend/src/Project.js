@@ -36,7 +36,7 @@ function Project() {
               <table>
                 <thead>
                   <th>#id</th>
-                  <th>Project name</th>
+                  <th className="nameth">Project name</th>
                   <th>Project owner</th>
                 </thead>
 

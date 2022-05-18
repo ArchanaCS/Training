@@ -148,8 +148,8 @@
 .tablerow table {
   /* background-color: aqua; */
   border-top: 1px solid gray;
-  padding-left: 5%;
-  border-left: 5%;
+  padding-left:2%;
+  
 }
 
 .tablerow {
@@ -161,7 +161,8 @@
 .tablerow th {
   color: slategray;
   border-bottom: 1px solid gray;
-  width: 30%;
+  /* width: 20%; */
+  
 }
 .tablerow td {
   color: slategray;
@@ -252,5 +253,13 @@ width:100%;
 }
 .typerow select{
     color: grey;
+}
+.tablerow thead.idth
+{
+    width:10%;
+}
+.tablerow.nameth
+{
+    width:20%;
 }
 

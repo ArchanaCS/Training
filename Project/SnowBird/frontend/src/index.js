@@ -4,6 +4,8 @@ import AddUser from './AddUser';
 import Dash from './Dash';
 import Navigation from './Navigation';
 import Project from './Project';
+import Sample from './Sample';
+import Sample1 from './Sample1';
 
 
 
@@ -12,7 +14,7 @@ import Project from './Project';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Navigation />
+    <Sample1 />
   </React.StrictMode>
 );
 

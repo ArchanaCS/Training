@@ -52,31 +52,36 @@ app.post('/projectdetailfetch', function (req, res) {
     var sql = "select tp.id,tp.txtName AS projectName,te.refAssignee as assignee,te.txtTitle AS Epic,te.id as Epicid ,te.txtStatus as Epicstatus,tt.txtTitle AS Task,tt.txtStatus AS taskstatus,tu.txtUserName as Projectowner FROM tblprojects tp JOIN tblepic te ON tp.id = te.refProjectId JOIN tbltasks tt ON tt.refEpicid = te.refProjectId join tblusers tu on te.refAssignee=tu.id WHERE tp.refProjectOwner = '3';";
     con.query(sql, function (err, result) {
         if (err) throw err;
-       var epic=[];
-       var task=[];
-       var sample={};
-       var len=result.length;
-       console.log(len);
-       var sample=[];
-       var task1=[];
-       //res.send(result);
-       for(var i=0;i<=len;i++)
-       {
+        
+    //    var epic=[];
+    //    var task=[];
+    //    var sample={};
+    //    var len=result.length;
+    //    console.log(len);
+    //    var sample=[];
+    //    var task1=[];
+    //    res.send(result);
+    //    for(var i=0;i<=len;i++)
+    //    {
             
-       sample=[{"taskname":result[i].Epicid}];
+    //    sample=[{"taskname":result[i].Epicid}];
 
-       if(sample[0].taskname==1)
-       {
-           task=[sample];
-       }
-       else{
-            task1=[sample];
-       }
-         console.log("task"+JSON.stringify(task));
-         console.log("task1"+JSON.stringify(task1));
-       }
-       //res.send(result);
-
+    //    if(sample[0].taskname==1)
+    //    {
+    //        task=[sample];
+    //    }
+    //    else{
+    //         task1=[sample];
+    //    }
+    //    console.log("task"+JSON.stringify(task));
+    //    console.log("task1"+JSON.stringify(task1)); 
+    //    }
+    //    //res.send(result);
+     
+        var epic=[];
+        var epicid=result[0].Epicid;
+        console.log(epicid);
+       
 
 
     })

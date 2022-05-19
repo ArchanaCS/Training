@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 var mysql = require('mysql');
+const cors=require('cors');
+app.use(cors());
 app.use(express.json());
 var con = mysql.createConnection(
     {
@@ -46,47 +48,72 @@ app.post('/usertaskfetch', function (req, res) {
 /* API to fetch project details -Project Page  */
 
 app.post('/projectdetailfetch', function (req, res) {
+
     var pownerid = req.body.poid;
-
-    
-    var sql = "select tp.id,tp.txtName AS projectName,te.refAssignee as assignee,te.txtTitle AS Epic,te.id as Epicid ,te.txtStatus as Epicstatus,tt.txtTitle AS Task,tt.txtStatus AS taskstatus,tu.txtUserName as Projectowner FROM tblprojects tp JOIN tblepic te ON tp.id = te.refProjectId JOIN tbltasks tt ON tt.refEpicid = te.refProjectId join tblusers tu on te.refAssignee=tu.id WHERE tp.refProjectOwner = '3';";
-    con.query(sql, function (err, result) {
-        if (err) throw err;
+    console.log(pownerid);
+    var project = [];
+    var epic = [];
+    var task = [];
+    //var sql = "select tp.id,tp.txtName AS projectName,te.refAssignee as assignee,te.txtTitle AS Epic,te.id as Epicid ,te.txtStatus as Epicstatus,tt.txtTitle AS Task,tt.txtStatus AS taskstatus,tu.txtUserName as Projectowner FROM tblprojects tp JOIN tblepic te ON tp.id = te.refProjectId JOIN tbltasks tt ON tt.refEpicid = te.refProjectId join tblusers tu on te.refAssignee=tu.id WHERE tp.refProjectOwner = '3';";
+      
+    con.query("SELECT  tp.id,tp.txtName,tu.txtUserName FROM tblprojects tp join tblusers tu on tp.refProjectOwner=tu.id where refProjectOwner ='" + pownerid + "';", function (err, result) {
+       //console.log(result);
+        project = [...result];
         
-    //    var epic=[];
-    //    var task=[];
-    //    var sample={};
-    //    var len=result.length;
-    //    console.log(len);
-    //    var sample=[];
-    //    var task1=[];
-    //    res.send(result);
-    //    for(var i=0;i<=len;i++)
-    //    {
-            
-    //    sample=[{"taskname":result[i].Epicid}];
-
-    //    if(sample[0].taskname==1)
-    //    {
-    //        task=[sample];
-    //    }
-    //    else{
-    //         task1=[sample];
-    //    }
-    //    console.log("task"+JSON.stringify(task));
-    //    console.log("task1"+JSON.stringify(task1)); 
-    //    }
-    //    //res.send(result);
-     
-        var epic=[];
-        var epicid=result[0].Epicid;
-        console.log(epicid);
-       
-
-
     })
-    
+    con.query("select id,refProjectId,refAssignee,txtTitle,txtStatus from tblepic;", function (err, result) {
+        //console.log(result);
+
+        epic = [...result];
+
+       
+    })
+    con.query("select id,refEpicid,txtTitle,txtStatus from tbltasks;", function (err, result) {
+        task = [...result];
+    //})
+        taskobj = {};
+        epicobj = {};
+        projectobj = {};
+        task.forEach(element => {
+            if (taskobj[element.refEpicid] == undefined)
+                taskobj[element.refEpicid] = [element];
+            else {
+                temparray = taskobj[element.refEpicid];
+                temparray.push(element)
+            }
+        });
+        
+        epic.forEach(element => {
+            if (epicobj[element.refProjectId] == undefined)
+                epicobj[element.refProjectId] = [element];
+           
+
+            else {
+                temparray1 = epicobj[element.refProjectId];
+                temparray1.push(element)
+            }
+            element["task"] = taskobj[element.id]
+        });
+        
+        project.forEach(element => {
+            if (projectobj[element.refProjectId] == undefined)
+                projectobj[element.refProjectId] = [element];
+            else {
+                temparray = projectobj[element.refEpicid];
+                temparray.push(element)
+            }
+            element["Epic"] = epicobj[element.id]
+        });
+        
+        console.log(JSON.stringify(project));
+        res.send(project);
+
+    })    
+
 })
+
+
+
 /**************************************************ADD PROJECT PAGE***************************************************************************************/
 /*API to insert project details - Add Project Page */
 
@@ -94,18 +121,22 @@ app.post('/projectinsert', function (req, res) {
     var txtName = req.body.name;
     var txtType = req.body.type;
     var refProjectOwner = req.body.owner;
-    var dtEstStartDate = req.body.stdate;
-    var dtEstEndDate = req.body.endate;
-    var sql = "insert into tblprojects(txtName,txtType,refProjectOwner,dtEstStartDate,dtEstEndDate)values('" + txtName + "','" + txtType + "','" + refProjectOwner + "','" + dtEstStartDate + "','" + dtEstEndDate + "');";
+   // var dtEstStartDate = req.body.stdate;
+   // var dtEstEndDate = req.body.endate;
+   
+    var sql = "insert into tblprojects(txtName,txtType,refProjectOwner)values('" + txtName + "','" + txtType + "','" + refProjectOwner + "');";
     con.query(sql, function (err, result) {
         if (err) throw err;
-        res.send(result);
+        else
+        //res.send(JSON.stringify(req));
+        //res.send(result);
+        console.log(sql);
     })
 })
 /* API to fetch Managers- populate dropdown list  */
 
 app.post('/ownerfetch', function (req, res) {
-    
+
     var sql = "select tu.txtUserName,tu.id from tblusers tu join tbluserroles tr on tu.refUserRole=tr.id where txtUserRole='Manager'"
     con.query(sql, function (err, result) {
         if (err) throw err;
@@ -129,14 +160,7 @@ app.post('/projectUpdate', function (req, res) {
     })
 })
 /**************************************************************************************************************************************************************************** */
-// var epic=[{"epic":"name1"},{"epic":"name2"}];
-// var task1=[1,2,3];
-// var task2=[4,5,6];
 
-// var result=epic;
-// result[0]["task"]=task1
-// result[1]["task"]=task2;
-// console.log(result)
 app.listen(8000, () => {
     console.log("Server is running");
 })

@@ -1,0 +1,161 @@
+create database project;
+
+/******************************************************************************************/
+/* Table creation for ProjectMangagement tool*/
+
+CREATE TABLE tblUserRoles (
+    id INT NOT NULL AUTO_INCREMENT,
+    txtUserRole VARCHAR(50) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+/*********************************************************************************************/
+
+
+CREATE TABLE tblUsers (
+    id INT NOT NULL AUTO_INCREMENT,
+    txtUserName VARCHAR(50) NOT NULL,
+    txtPassword VARCHAR(50) NOT NULL,
+    refUserRole INT NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (refUserRole)
+        REFERENCES tbluserroles (id)
+);
+
+
+/************************************************************************************************/
+
+CREATE TABLE tblProjects (
+    id INT NOT NULL AUTO_INCREMENT,
+    txtName VARCHAR(50) NOT NULL,
+    txtType VARCHAR(50) NOT NULL,
+    refProjectOwner INT NOT NULL,
+    dtEstStartDate DATETIME,
+    dtEstEndDate DATETIME,
+    PRIMARY KEY (id),
+    FOREIGN KEY (refProjectOwner)
+        REFERENCES tblUSers (id)
+);
+
+/*************************************************************************************************/
+
+CREATE TABLE tblEpic (
+    id INT NOT NULL AUTO_INCREMENT,
+    refProjectId INT NOT NULL,
+    refAssignee INT,
+    txtTitle VARCHAR(50) NOT NULL,
+    txtDescription VARCHAR(150),
+    txtStatus VARCHAR(10) NOT NULL,
+    dtEstStartDate DATETIME,
+    dtEstEndDate DATETIME,
+    dtActStartDate DATETIME,
+    dtActEndDate DATETIME,
+    PRIMARY KEY (id),
+    FOREIGN KEY (refProjectId)
+        REFERENCES tblProjects (id),
+    FOREIGN KEY (refAssignee)
+        REFERENCES tblUsers (id)
+);
+
+/***********************************************************************************************************/
+
+CREATE TABLE tblSprints (
+    id INT NOT NULL AUTO_INCREMENT,
+    txtSprintName VARCHAR(50) NOT NULL,
+    dtEstStartDate DATETIME,
+    dtEstEndDate DATETIME,
+    dtActStartDate DATETIME,
+    dtActEndDate DATETIME,
+    PRIMARY KEY (id)
+);
+
+/*******************************************************************************************************************/
+
+CREATE TABLE tblTasks (
+    id INT NOT NULL AUTO_INCREMENT,
+    refEpicid INT NOT NULL,
+    refAssignee INT,
+    txtTitle VARCHAR(50) NOT NULL,
+    txtDescription VARCHAR(250),
+    txtStatus VARCHAR(10) NOT NULL,
+    refSprintid INT,
+    dtEstStartDate DATETIME,
+    dtEstEndDate DATETIME,
+    dtActStartDate DATETIME,
+    dtActEndDate DATETIME,
+    PRIMARY KEY (id),
+    FOREIGN KEY (refSprintid)
+        REFERENCES tblsprints (id),
+    FOREIGN KEY (refEpicid)
+        REFERENCES tblepic (id),
+    FOREIGN KEY (refAssignee)
+        REFERENCES tblusers (id)
+);
+
+/*********************************************************************************************************/
+CREATE TABLE tblLogs (
+    id INT NOT NULL AUTO_INCREMENT,
+    refTaskid INT NOT NULL,
+    txtStatus VARCHAR(10) NOT NULL,
+    refUser INT NOT NULL,
+    dtLoggedOn DATETIME NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (refTaskid)
+        REFERENCES tblTasks (id),
+    FOREIGN KEY (refUser)
+        REFERENCES tblusers (id)
+);
+/*****************************************************************************************************************/
+
+/* Insert query */
+/*******************************************************************************************************************/
+
+insert into tbluserroles(txtUserRole) values('Manager'),('Employee'),('Team Lead');
+
+/***************************************************************************************************************/
+
+insert into tblusers(txtUserName,txtPassword,refUserRole)values('Aadi','adi123',2),
+															   ('Alaka','ala123',2),
+                                                               ('Ajay','ajy123',1),
+                                                               ('Vijay','vi345',1),
+                                                               ('Appu','appu123',2);
+
+/***************************************************************************************************************/
+
+INSERT INTO tblprojects(`txtName`,`txtType`,`refProjectOwner`,`dtEstStartDate`,`dtEstEndDate`)
+                  VALUES('Ecommerce','Business',3,'2022-04-4','2022-04-23'),
+                  ('Project Management','Management',4,'2022-04-25','2022-05-25'),
+                  ('Account Managemnt','Banking',3,'2022-05-26','2022-06-12'),
+                  ('GST','Finance',3,'2022-06-15','2022-07-15'),
+                  ('Event Management','Organise',4,'2022-07-12','2022-07-30');
+                  
+                  
+ /************************************************************************************************************************************/
+ 
+ INSERT INTO tblepic(`refProjectId`,`refAssignee`,`txtTitle`,`txtDescription`,`txtStatus`,`dtEstStartDate`,`dtEstEndDate`,`dtActStartDate`,`dtActEndDate`)
+			VALUES(1,3,'User','customers as users','To-do','2022-04-4','2022-04-23','2022-04-10','2022-04-30'),
+            (2,4,'Owner','Managers as owners','To-do','2022-04-25','2022-05-25','2022-04-25','2022-05-30'),
+            (3,3,'Accounts','Managing accounts','To-do','2022-05-26','2022-06-12','2022-05-30','2022-06-17');
+            
+/*******************************************************************************************************************************************************/
+
+INSERT INTO `tblsprints`(`txtSprintName`,`dtEstStartDate`,`dtEstEndDate`,`dtActStartDate`,`dtActEndDate`)
+				VALUES('Sprint1','2022-04-12','2022-04-25','2022-04-15','2022-04-27'),
+                ('Sprint2','2022-05-12','2022-05-25','2022-05-15','2022-05-29'),
+                ('Sprint3','2022-04-22','2022-05-15','2022-04-26','2022-05-18');
+
+/***********************************************************************************************************************************************************/
+
+INSERT INTO tbltasks(`refEpicid`,`refAssignee`,`txtTitle`,`txtDescription`,`txtStatus`,`refSprintid`,`dtEstStartDate`,`dtEstEndDate`,`dtActStartDate`,`dtActEndDate`)
+                        VALUES(1,1,'task1','task1','to-do',1,'2022-04-12','2022-04-25','2022-04-15','2022-04-27'),
+                        (2,2,'task2','task2','Inprogress',2,'2022-05-12','2022-05-25','2022-05-15','2022-05-29'),
+                        (3,2,'task3','task3','completed',3,'2022-04-22','2022-05-15','2022-04-26','2022-05-18');
+                        
+
+/***********************************************************************************************************************************************************/
+
+INSERT INTO `project`.`tbllogs`(`refTaskid`,`txtStatus`,`refUser`,`dtLoggedOn`)
+VALUES(1,'Review',1,'2022-04-12'),
+      (2,'InProgress',2,'2022-04-21'),
+      (3,'Completed',1,'2022-04-12');
+/*********************************************************************************************************************************************************/

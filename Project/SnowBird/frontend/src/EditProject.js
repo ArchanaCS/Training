@@ -1,4 +1,13 @@
+import { useEffect } from "react";
+
+
 function EditProject() {
+  useEffect(()=>{
+
+    
+
+
+  },[])
     return (
       <div>
         <div className="outer">

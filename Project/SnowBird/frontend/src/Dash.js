@@ -1,8 +1,22 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Singleuser from "./Singleuser";
 import "./style/styles.css";
 function Dash() {
   var navigate=useNavigate();
+  const [array,setArray]=useState([]);
+  useEffect(()=>{
+    var url="http://localhost:8000/userfetch";
+    var request={};
+    var header={};
+     axios.post(url,request,header).then((res)=>{
+
+      console.log(JSON.stringify(res.data));
+      setArray(res.data);
+
+     }).catch()
+  },[])
  function project()
 
  {
@@ -33,10 +47,14 @@ function Dash() {
 
           {/* Main outline */}
           <div className="secondcolumn">
+          <div className="slider">
             <div className="usernamerow">
-              <Singleuser/><Singleuser/><Singleuser/><Singleuser/><Singleuser/>
              
+            <Singleuser array={array}/>
+
+               {/* <Singleuser={}/><Singleuser/><Singleuser/><Singleuser/><Singleuser/><Singleuser/>  */}
              
+             </div>
             </div>
             {/* Task status name */}
             <div className="statusnamerow">

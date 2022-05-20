@@ -8,7 +8,7 @@ function AddProject() {
  const [owner, setRefOwner] = useState("3");
   //  Dropdown for owner
   useEffect(() => {
-    //e.preventDefault();
+   
     var url = "http://localhost:8000/ownerfetch";
     var request = {};
     var header = {};
@@ -26,12 +26,13 @@ function AddProject() {
 
       })
       .catch();
-  });
+  },[]);
   //Insert of new project
   function handleclick() {
     var url = "http://localhost:8000/projectinsert";
     var request = { name:name, type:type,owner:owner};
-    console.log(JSON.stringify(request));
+   // console.log(JSON.stringify(request));
+    console.log("options :"+JSON.stringify(options));
     var header = {};
     axios
       .post(url, request, header)
@@ -98,9 +99,12 @@ function AddProject() {
                 <br></br>
                 {/* onSelect={(e)=>{setRefOwner(e.target.value)}} */}
                 <select onChange={(e)=>{setRefOwner(e.target.value)}} >
-                  {/* {options.map((item, index) => {
-                    return <option>{item.txtUserName}</option>;
-                  })} */}
+                 
+                  {options.map((item, index) => {
+                    return <option>{item.txtUserName}</option>
+                          
+                    
+                  })}
 
                 </select>
               </div>

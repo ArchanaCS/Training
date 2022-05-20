@@ -1,7 +1,21 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Project() {
  const navigate=useNavigate();
+ const [array,setArray]=useState([]);
+ var url="http://localhost:8000/projectdetailfetch";
+ var request={poid:4};
+ var header={};
+ useEffect(()=>{
+      
+       axios.post(url,request,header).then((res)=>{
+             setArray(res.data);             
+       }).catch();
+
+ },[])
+ const [test,setTest]=useState([1,2,3])
   function createnew()
   {
     navigate('/addproject');
@@ -36,12 +50,36 @@ function Project() {
               <table>
                 <thead>
                   <th>#id</th>
-                  <th className="nameth">Project name</th>
+                  <th >Project name</th>
                   <th>Project owner</th>
                 </thead>
 
                 <tbody>
-                  <tr>
+                  {array.map((item,index)=>{
+                    return(<>
+                    <tr>
+                      <td>{item.id}</td>
+                      <td>{item.txtName}</td>
+                      <td>{item.txtUserName}</td>
+                      <td>{JSON.stringify(item.Epic)}</td>
+                    </tr>
+                    <> 
+                    {test.map((chilItem,childIndex)=>{
+                      return <tr><td>Test</td></tr>
+                    })}
+                    </>
+                     
+                   {/* {item.Epic.map((epicitem,epicindex)=>{
+                      <tr>
+                      <td>{epicitem.txtTitle}</td>
+                      <td>{epicitem.txtStatus}</td>
+                    </tr>
+                  })}   */}
+                    
+                    </>)
+                  })}
+                 
+                  {/* <tr>
                     <td>1 </td>
                     <td>ECommerce</td>
                     <td>Abc</td>
@@ -50,7 +88,7 @@ function Project() {
                     <td>1 </td>
                     <td>ECommerce</td>
                     <td>Abc</td>
-                  </tr>
+                  </tr> */}
                 </tbody>
               </table>
               <div className="pbutton">

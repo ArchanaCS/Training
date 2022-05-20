@@ -46,6 +46,7 @@
 .usernamerow {
   width: 100%;
   height: 15vh;
+  background-color: aqua;
 }
 /* .users label
 {
@@ -69,10 +70,11 @@
 .eachuser {
   padding: 2%;
   float: left;
-
   width: 10%;
   height: 6vh;
   text-align: center;
+  
+
 }
 .statusnamerow {
   width: 100%;
@@ -262,4 +264,11 @@ width:100%;
 {
     width:20%;
 }
-
+.slider{
+  width:50%;
+  margin-left: 25%;
+  height: 150px;
+  overflow-y: scroll;
+  display: flex;
+  
+}

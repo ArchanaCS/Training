@@ -13,6 +13,7 @@ function Sample1() {
         <tr>
           <th>Id</th>
           <th>Name</th>
+          <th>Project Owner</th>
         </tr>
         {array.map((item, index) => {
           return (
@@ -20,9 +21,11 @@ function Sample1() {
               <tr>
                 <td>{item.id}</td>
                 <td>{item.name}</td>
+                
                 <td></td>
               </tr>
-              {item.epic.map((epicitem, epicIndex) => {
+           {/* {item} */}
+              {/* {item.Epic.map((epicitem, epicIndex) => {
                 return (
                   <>
                     <tr>
@@ -31,10 +34,11 @@ function Sample1() {
                     </tr>
                   </>
                 );
-              })}
+              })} */}
             </>
           );
         })}
+        
       </table>
     </>
   );

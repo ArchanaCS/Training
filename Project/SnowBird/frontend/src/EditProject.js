@@ -1,10 +1,16 @@
+import axios from "axios";
 import { useEffect } from "react";
 
 
 function EditProject() {
   useEffect(()=>{
 
-    
+    var url="http://localhost:8000/selectedproject";
+    var header={};
+    var request={};
+    axios.post(url,).then((res)=>{
+      console.log(res.data);
+    }).catch();
 
 
   },[])
@@ -12,6 +18,7 @@ function EditProject() {
       <div>
         <div className="outer">
           {/* USer name with icon */}
+          
           <div className="firstrow">
             <div className="usericon"> </div>
             <label>User</label>

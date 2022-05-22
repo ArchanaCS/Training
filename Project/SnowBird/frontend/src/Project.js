@@ -1,25 +1,54 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaAngleDown, FaAngleRight } from "react-icons/fa";
 
 function Project() {
- const navigate=useNavigate();
- const [array,setArray]=useState([]);
- var url="http://localhost:8000/projectdetailfetch";
- var request={poid:4};
- var header={};
- useEffect(()=>{
-      
-       axios.post(url,request,header).then((res)=>{
-             setArray(res.data);             
-       }).catch();
+  const navigate = useNavigate();
+  const [array, setArray] = useState([]);
+  var url = "http://localhost:8000/projectdetailfetchNew";
+  var request = { poid: 4 };
+  var header = {};
+  useEffect(() => {
+    axios
+      .post(url, request, header)
+      .then((res) => {
+        setArray(res.data);
+        console.log(res.data);
+      })
+      .catch();
+  }, []);
+  const [test, setTest] = useState([1, 2, 3]);
 
- },[])
- const [test,setTest]=useState([1,2,3])
-  function createnew()
-  {
-    navigate('/addproject');
+  function createnew() {
+    navigate("/addproject");
   }
+
+  function editproject() {
+
+    navigate('/editproject');
+
+  }
+  const handleExpand = (e, item, index) => {
+    e.preventDefault();
+    var temp = [...array];
+    temp[index].isExpaned = temp[index].isExpaned ? false : true;
+    setArray(temp);
+  };
+  const handleChildExpand = (e, item, index, childIndex) => {
+    e.preventDefault();
+    var temp = [...array];
+    console.log(childIndex);
+    console.log(temp[index].list);
+    temp[index].list[childIndex].isExpaned = temp[index].list[childIndex]
+      .isExpaned
+      ? false
+      : true;
+    setArray(temp);
+  };
+  const handleTaskExpand = (e, item, index) => {
+    e.preventDefault();
+  };
   return (
     <div>
       <div className="outer">
@@ -49,46 +78,104 @@ function Project() {
             <div className="tablerow">
               <table>
                 <thead>
-                  <th>#id</th>
-                  <th >Project name</th>
-                  <th>Project owner</th>
+                  <th className="withborder constant"></th>
+                  <th className="withborder constant">#id</th>
+                  <th className="withborder">Project name</th>
+                  <th className="withborder">Project owner</th>
                 </thead>
 
                 <tbody>
-                  {array.map((item,index)=>{
-                    return(<>
-                    <tr>
-                      <td>{item.id}</td>
-                      <td>{item.txtName}</td>
-                      <td>{item.txtUserName}</td>
-                      <td>{JSON.stringify(item.Epic)}</td>
-                    </tr>
-                    <> 
-                    {test.map((chilItem,childIndex)=>{
-                      return <tr><td>Test</td></tr>
-                    })}
-                    </>
-                     
-                   {/* {item.Epic.map((epicitem,epicindex)=>{
-                      <tr>
-                      <td>{epicitem.txtTitle}</td>
-                      <td>{epicitem.txtStatus}</td>
-                    </tr>
-                  })}   */}
-                    
-                    </>)
+                  {array.map((item, index) => {
+                    return (
+                      <>
+                        <tr key={item.id}></tr>
+                        {/* <td className="right constant"></td> */}
+                        <tr className="project">
+                          <td>
+                            {item.isExpaned ? (
+                              <FaAngleDown
+                                onClick={(e) => handleExpand(e, item, index)}
+                              />
+                            ) : (
+                              <FaAngleRight
+                                onClick={(e) => handleExpand(e, item, index)}
+                              />
+                            )}
+                          </td>
+                          <td className="constant">{item.id}</td>
+                          <td onClick={editproject} >{item.txtName}</td>
+                          <td>{item.txtUserName}</td>
+                          <td></td>
+                          {/* <td>{JSON.stringify(item.epic)}</td>  */}
+                        </tr>
+
+                        {item.epic.map((epicitem, epicindex) => {
+                          return (
+                            <>
+                              <tr
+                                className={item.isExpaned ? "none" : "display"}
+                              >
+                                <td className="constant"></td>
+                                <td>
+                                  {epicitem.isExpaned ? (
+                                    <FaAngleDown
+                                      onClick={(e) =>
+                                        handleChildExpand(e, item, index, epicindex)
+                                      }
+                                    />
+                                  ) : (
+                                    <FaAngleRight
+                                      onClick={(e) =>
+                                        handleChildExpand(e, item, index, epicindex)
+                                      }
+                                    />
+                                  )}
+                                </td>
+
+                                <td></td>
+                                <td>{epicitem.txtTitle}</td>
+                                <td>{epicitem.txtStatus}</td>
+                                <td></td>
+                              </tr>
+                              {epicitem.task.map((taskitem, tasklist) => {
+                                return (
+                                  <>
+                                    <tr
+                                      className={
+                                        item.isExpaned ? "none" : "display"
+                                      }
+                                    >
+                                      <td className="constant"></td>
+                                      <td className="right constant">
+                                        {taskitem.isExpaned ? (
+                                          <FaAngleDown
+                                            onClick={(e) =>
+                                              handleChildExpand(e, item, index, tasklist)
+                                            }
+                                          />
+                                        ) : (
+                                          <FaAngleRight
+                                            onClick={(e) =>
+                                              handleChildExpand(e, item, index, taskitem)
+                                            }
+                                          />
+                                        )}
+                                      </td>
+
+                                      <td></td>
+                                      <td>{taskitem.txtTitle}</td>
+                                      <td>{taskitem.txtStatus}</td>
+                                      {/* <td> {JSON.stringify(epicitem.task)}</td> */}
+                                    </tr>
+                                  </>
+                                );
+                              })}
+                            </>
+                          );
+                        })}
+                      </>
+                    );
                   })}
-                 
-                  {/* <tr>
-                    <td>1 </td>
-                    <td>ECommerce</td>
-                    <td>Abc</td>
-                  </tr>
-                  <tr>
-                    <td>1 </td>
-                    <td>ECommerce</td>
-                    <td>Abc</td>
-                  </tr> */}
                 </tbody>
               </table>
               <div className="pbutton">

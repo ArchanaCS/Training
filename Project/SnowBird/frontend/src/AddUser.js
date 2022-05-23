@@ -22,13 +22,39 @@ function AddUser() {
             </nav>
           </div>
           <div className="secondcolumn">
-              <div className="header">
-               <div className="">
+            <div className="prowone">
+              <label>Add User</label>
+              <button >SAVE</button>
+            </div>
 
-               </div>
+
+            <div className="psecondrow">
+              <div className="titlerow">
+                <label>User Name</label>
+                <br></br>
+                <input type="text"/>
               </div>
 
-          </div>
+              <div className="titlerow">
+                <label>Password</label>
+                <br></br>
+                <input type="text"/>
+              </div>
+              <div className="typerow">
+                <label>Role</label>
+                <br></br>
+                <select>
+                  <option>--options--</option>
+                  <option>Employee</option>
+                  <option>Manager</option>
+                </select>
+              </div>
+
+              </div>
+            
+              </div>
+
+          
         </div>
       </div>
     </div>

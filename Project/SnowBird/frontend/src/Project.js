@@ -26,11 +26,13 @@ function Project() {
     
   }
 
-  function editproject() {
-
+  function editproject(n) {
+    console.log(n);
+    setPrjctId(n);
+    ReactSession.set("id",n);
+    console.log("id:"+JSON.stringify(id));
     navigate('/editproject');
-    //ReactSession.set("id",id);
-    console.log(id);
+   
 
   }
   const handleExpand = (e, item, index) => {
@@ -106,7 +108,7 @@ function Project() {
                               />
                             )}
                           </td>
-                          <td onClick={editproject(()=>{ReactSession.setPrjctId(item.id)})} value={item.id} className="constant">{item.id}</td>
+                          <td   className="constant" value={item.id} onClick={()=>{editproject(item.id)}}>{item.id}</td>
                           <td  >{item.txtName}</td>
                           <td>{item.txtUserName}</td>
                           <td></td>

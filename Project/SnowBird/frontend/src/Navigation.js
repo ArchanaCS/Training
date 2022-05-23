@@ -4,6 +4,7 @@ import Dash from "./Dash";
 import EditProject from "./EditProject";
 import Epic from "./Epic";
 import Project from "./Project";
+import AddUser from "./AddUser";
 
 function Navigation() {
   return (
@@ -21,6 +22,7 @@ function Navigation() {
           </Route>
           <Route path="/editproject" element={<EditProject/>}></Route>
           <Route path="/epic" element={<Epic/>}></Route>
+          <Route path="/adduser" element={<AddUser/>}></Route>
           
         </Routes>
       </BrowserRouter>

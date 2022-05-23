@@ -129,7 +129,7 @@ app.post('/projectinsert', function (req, res) {
     if (err) throw err;
     else
       //res.send(JSON.stringify(req));
-      //res.send(result);
+      res.send(result);
       console.log(sql);
   })
 })
@@ -249,9 +249,23 @@ app.post('/projectdetailfetchNew', function (req, res) {
   });
 
 })
-/****************************************************edit project***************************************8 */
+/****************************************************Epic ****************************************/
 
+app.post('/epicfetch',function(req,res)
+{
+     
+  const epic = new Promise((resolve, reject) => {
+    con.query(
+      "select * from tblepic;",
+      function (err, result) {
+        if (err) resolve(err);
+        resolve(result);
+      }
+    );
+  });
+}
 
+)
 
 app.listen(8000, () => {
   console.log("Server is running");

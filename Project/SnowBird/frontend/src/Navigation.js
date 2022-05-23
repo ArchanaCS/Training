@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AddProject from "./AddProject";
 import Dash from "./Dash";
 import EditProject from "./EditProject";
+import Epic from "./Epic";
 import Project from "./Project";
 
 function Navigation() {
@@ -19,6 +20,7 @@ function Navigation() {
             {" "}
           </Route>
           <Route path="/editproject" element={<EditProject/>}></Route>
+          <Route path="/epic" element={<Epic/>}></Route>
           
         </Routes>
       </BrowserRouter>

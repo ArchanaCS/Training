@@ -2,31 +2,35 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaAngleDown, FaAngleRight } from "react-icons/fa";
-
+import { ReactSession } from "react-client-session";
 function Project() {
   const navigate = useNavigate();
   const [array, setArray] = useState([]);
+  const [id,setPrjctId]=useState({});
   var url = "http://localhost:8000/projectdetailfetchNew";
-  var request = { poid: 4 };
+  var request = { poid:4};
   var header = {};
   useEffect(() => {
     axios
       .post(url, request, header)
       .then((res) => {
         setArray(res.data);
-        console.log(res.data);
+       // console.log(res.data);
       })
       .catch();
   }, []);
-  const [test, setTest] = useState([1, 2, 3]);
+
 
   function createnew() {
     navigate("/addproject");
+    
   }
 
   function editproject() {
 
     navigate('/editproject');
+    //ReactSession.set("id",id);
+    console.log(id);
 
   }
   const handleExpand = (e, item, index) => {
@@ -91,7 +95,7 @@ function Project() {
                         <tr key={item.id}></tr>
                         {/* <td className="right constant"></td> */}
                         <tr className="project">
-                          <td>
+                          <td >
                             {item.isExpaned ? (
                               <FaAngleDown
                                 onClick={(e) => handleExpand(e, item, index)}
@@ -102,8 +106,8 @@ function Project() {
                               />
                             )}
                           </td>
-                          <td className="constant">{item.id}</td>
-                          <td onClick={editproject} >{item.txtName}</td>
+                          <td onClick={editproject(()=>{ReactSession.setPrjctId(item.id)})} value={item.id} className="constant">{item.id}</td>
+                          <td  >{item.txtName}</td>
                           <td>{item.txtUserName}</td>
                           <td></td>
                           {/* <td>{JSON.stringify(item.epic)}</td>  */}

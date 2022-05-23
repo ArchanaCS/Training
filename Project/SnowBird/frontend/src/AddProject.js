@@ -1,11 +1,12 @@
 import axios from "axios";
-
+import { ReactSession } from "react-client-session";
 import { useEffect, useState } from "react";
 function AddProject() {
   const [options, setOption] = useState([]);
   const [name, setTextName] = useState("");
   const [type, setTextType] = useState("");
-  const [owner, setRefOwner] = useState("3");
+  const [owner, setRefOwner] = useState("");
+
   //  Dropdown for owner
   useEffect(() => {
 
@@ -21,10 +22,8 @@ function AddProject() {
         if (len > 0) {
 
           setOption(res.data);
-
-
-        }
-
+           }
+           
       })
       .catch();
   }, []);
@@ -37,10 +36,12 @@ function AddProject() {
     axios
       .post(url, request, header)
       .then((res) => {
-        console.log("reS"+res);
-        if (res.data.length > 0) {
+        console.log("reS"+JSON.stringify(res.data));
+        if (res.data!='undefined') {
           alert("Inserted New project successfully");
         }
+        //ReactSession.get("setRefOwner"+owner);
+
 
       })
       .catch();

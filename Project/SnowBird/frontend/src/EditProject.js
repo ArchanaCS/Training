@@ -1,24 +1,59 @@
 import axios from "axios";
-import { useEffect } from "react";
-
+import { ReactSession } from "react-client-session";
+import { useEffect, useState } from "react";
 
 function EditProject() {
+  const [options, setOption] = useState([]);
+  const [name, setTextName] = useState("");
+  const [type, setTextType] = useState("");
+  const [owner, setRefOwner] = useState("3");
+  const [pid,setPid]=useState("");
   useEffect(()=>{
 
-    var url="http://localhost:8000/selectedproject";
-    var header={};
-    var request={};
-    axios.post(url,).then((res)=>{
-      console.log(res.data);
-    }).catch();
+    var url = "http://localhost:8000/ownerfetch";
+    var request = {};
+    var header = {};
+    axios
+      .post(url, request, header)
+      .then((res) => {
+        console.log(res.data);
+        var len = res.data.length;
+        // setA(len);
+        if (len > 0) {
 
+          setOption(res.data);
+          setPid(ReactSession.get("id"));
+          console.log(pid);
+        }
+      
+
+      })
+      .catch();
 
   },[])
+  function updateproject()
+  {
+    var url = "http://localhost:8000/projectUpdate";
+    var request = { name: name, type: type, owner: owner };
+    console.log("owner :" + JSON.stringify(owner));
+    var header = {};
+    axios
+      .post(url, request, header)
+      .then((res) => {
+        console.log("reS"+res);
+        if (res.data !='undefined') {
+          alert("Project updated successfully");
+        }
+
+      })
+      .catch();
+  }
+  
     return (
       <div>
         <div className="outer">
           {/* USer name with icon */}
-          
+
           <div className="firstrow">
             <div className="usericon"> </div>
             <label>User</label>
@@ -39,7 +74,7 @@ function EditProject() {
             <div className="secondcolumn">
               <div className="prowone">
                 <label>Edit Project</label>
-                <button>SAVE</button>
+                <button onClick={updateproject}>SAVE</button>
               </div>
   
               <div className="psecondrow">
@@ -63,13 +98,20 @@ function EditProject() {
                </div>
   
                <div className="ownerrow">
-                 <label>Owner</label><br></br>
-                 <select>
-                     <option>--options--</option>
-                     <option>AAA</option>
-                     <option>BBB</option>
-                 </select>
-               </div>
+                <label>Owner</label>
+                <br></br>
+                {/* onSelect={(e)=>{setRefOwner(e.target.value)}} */}
+                <select onChange={(e) => { setRefOwner(e.target.value) }} >
+
+                  {options.map((item, index) => {
+                    return <option>{item.txtUserName}</option>
+                    
+
+
+                  })}
+
+                </select>
+              </div>
               </div>
             </div>
   

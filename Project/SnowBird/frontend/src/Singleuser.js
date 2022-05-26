@@ -1,18 +1,19 @@
 import axios from "axios";
 import {useState } from "react";
 import React from 'react';
-function Singleuser({ items,getUid}){
+function Singleuser({ items,index,getUid}){
   
- // console.log("items" + JSON.stringify(items));
+ 
    const id=items.id;
-  //console.log("id"+id);
-
+   const status=items.isSelected;
+   console.log("sts"+status);
+  
 
   return (
     <div>
       <div className="eachuser">
-        
-        <div className="users" onClick={()=>getUid(id)}>
+        <div ></div>
+        <div className={items.isSelected ? "redcircle" : "selectedredcircle"} onClick={()=>getUid(id,items.index,items.isSelected)}>
           <div className="userlabel">
             <>
               <label>{items.txtUserName}</label>

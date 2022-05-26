@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Singleuser from "./Singleuser";
 import "./style/styles.css";
+import Menu from "./Menu";
 function Dash() {
   var navigate = useNavigate();
   const [array, setArray] = useState([]);
@@ -13,76 +14,88 @@ function Dash() {
     var url = "http://localhost:8000/userfetch";
     var request = {};
     var header = {};
-    axios.post(url, request, header).then((res) => {
-      setArray(res.data);
+    axios
+      .post(url, request, header)
+      .then((res) => {
+        for (const element of res.data) {
+          element.isSelected = true;
+          setArray(res.data);
+        }
+        console.log("array"+JSON.stringify(array));
+    
+      })
+      .catch()   
+  }, []);
 
-    }).catch()
-  }, [])
-
-  function tasklist(id) {
-
-
+  function tasklist(id,index,sts) {
     var url = "http://localhost:8000/usertaskfetch";
     var header = {};
-    var request = { "userId": id };
-    console.log("req" + JSON.stringify(request));
-    axios.post(url, request, header).then((res) => {
-      console.log(res.data);
-      var len = res.data.length;
-      temp = res.data;
-      console.log("temp" + JSON.stringify(temp));
-      setTask(res.data);
-      console.log("task" + JSON.stringify(task));
-    }).catch()
-
+    var request = { userId: id };
+    //console.log("req" + JSON.stringify(request));
+    axios
+      .post(url, request, header)
+      .then((res) => {
+        setTask(res.data);
+        //setTask(res.data);
+      // console.log("task" + JSON.stringify(task));
+      // if(sts[index].isSelected==true)
+      // {
+      //   sts[index].isSelected ? false:true;
+      // }
+        var temp1 = [...task];
+        var position = 0;
+        for (const element of temp1) {
+          if (position == index) {
+            element.isSelected = false;
+          } else element.isSelected = true;
+          position++;
+          console.log(element.isSelected)
+        }
+        setTask(temp1);
+      })
+      .catch();
   }
 
-
-
-  function project() {
-    navigate('/project');
-  }
   return (
-
     <div>
-
       <div className="outer">
         {/* USer name with icon */}
         <div className="firstrow">
-          <div className="usericon"> </div>
-          <label>User</label>
-
+          
+            <div className="usericon"></div> 
+            <div className="loginuser">
+            <label>User</label>
+            
+          </div>
         </div>
         <div className="secondrow">
           {/* Side navigation menu */}
 
-          <div className="firstcolumn">
-            <nav>
-              <li>Board</li>
-              <li onClick={project}>Projects</li>
-              <li>Epics</li>
-              <li>Tasks</li>
-              <li>Sprints</li>
-              <li>Users</li>
-            </nav>
-          </div>
+          {<Menu />}
 
           {/* Main outline */}
           <div className="secondcolumn">
-            <div className="slider">
+            <div className="listcontainer">
               <div className="usernamerow">
                 {array.map((item, index) => {
-                  return <>
-
-                    {<Singleuser items={item} getUid={tasklist} />}
-                  </>
+                  return (
+                    <>
+                      {
+                        <Singleuser
+                          items={item}
+                          index={index}
+                          getUid={tasklist}
+                          
+                        />
+                      }
+                    </>
+                  );
                 })}
               </div>
             </div>
             {/* Task status name */}
             <div className="statusnamerow">
-
-              <label >TO DO</label>
+              <label>TO DO</label>
               <label>InProgress</label>
               <label>Review</label>
               <label>Complete</label>
@@ -91,42 +104,42 @@ function Dash() {
             <div className="tasks"></div>
             <div className="taskbar1">
               {task.map((taskitem, taskindex) => {
-
-                if (taskitem.txtStatus == 'to-do')
-                  return <>
-                    <p>{taskitem.txtTitle}</p>
-                  </>
-
+                if (taskitem.txtStatus == "to-do")
+                  return (
+                    <>
+                      <p>{taskitem.txtTitle}</p>
+                    </>
+                  );
               })}
             </div>
             <div className="taskbar2">
               {task.map((taskitem, taskindex) => {
-
-                if (taskitem.txtStatus == 'review')
-                  return <>
-                    <p>{taskitem.txtTitle}</p>
-                  </>
-
+                if (taskitem.txtStatus == "review")
+                  return (
+                    <>
+                      <p>{taskitem.txtTitle}</p>
+                    </>
+                  );
               })}
             </div>
             <div className="taskbar3">
               {task.map((taskitem, taskindex) => {
-
-                if (taskitem.txtStatus == 'Inprogress')
-                  return <>
-                    <p>{taskitem.txtTitle}</p>
-                  </>
-
+                if (taskitem.txtStatus == "Inprogress")
+                  return (
+                    <>
+                      <p>{taskitem.txtTitle}</p>
+                    </>
+                  );
               })}
             </div>
             <div className="taskbar4">
               {task.map((taskitem, taskindex) => {
-
-                if (taskitem.txtStatus == 'completed')
-                  return <>
-                    <p>{taskitem.txtTitle}</p>
-                  </>
-
+                if (taskitem.txtStatus == "completed")
+                  return (
+                    <>
+                      <p>{taskitem.txtTitle}</p>
+                    </>
+                  );
               })}
             </div>
           </div>
@@ -135,4 +148,4 @@ function Dash() {
     </div>
   );
 }
-export default Dash
+export default Dash;

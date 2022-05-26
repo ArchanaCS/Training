@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 var mysql = require('mysql');
 const cors = require('cors');
+const react = require('react');
 app.use(cors());
 app.use(express.json());
 var con = mysql.createConnection(
@@ -150,10 +151,8 @@ app.post('/projectUpdate', function (req, res) {
   var pname = req.body.prjctname;
   var ptype = req.body.prjcttype;
   var owner = req.body.refowner;
-  var startdate = req.body.strtdate;
-  var enddate = req.body.endate;
   var prjctid = req.body.id;
-  var sql = "update tblprojects set txtName='" + pname + "', txtType='" + ptype + "',refProjectOwner='" + owner + "',dtEstStartDate='" + startdate + "',dtEstEndDate='" + enddate + "' where id='" + prjctid + "' ;;"
+  var sql = "update tblprojects set txtName='" + pname + "', txtType='" + ptype + "',refProjectOwner='" + owner + "' where id='" + prjctid + "' ;;"
   con.query(sql, function (err, result) {
     if (err) throw err;
     res.send(result);
@@ -176,7 +175,7 @@ app.post('/selectedproject', function (req, res) {
 
 app.post('/projectdetailfetchNew', function (req, res) {
 
-  var pownerid = 4;
+  var pownerid = 3;
   const project = new Promise((resolve, reject) => {
     con.query(
       "SELECT  tp.id,tp.txtName,tu.txtUserName FROM tblprojects tp join tblusers tu on tp.refProjectOwner=tu.id where refProjectOwner ='" + pownerid + "'",
@@ -251,21 +250,99 @@ app.post('/projectdetailfetchNew', function (req, res) {
 })
 /****************************************************Epic ****************************************/
 
-app.post('/epicfetch',function(req,res)
-{
-     
-  const epic = new Promise((resolve, reject) => {
-    con.query(
-      "select * from tblepic;",
-      function (err, result) {
+
+
+/*****************************************  ADD USER  **************************************************************** */
+/* API for fetchUserRole-- populate dropdown*/
+
+app.post('/userRolefetch', function (req, res) {
+  var sql = "select txtUserRole from tbluserroles;"
+  con.query(sql, function (err, result) {
+      if (err) throw err;
+      res.send(result);
+  })
+})
+
+
+app.post('/projectload', function (req, res) {
+  var pid=req.body.pid;
+  var sql = "select tb.txtName,tb.txtType ,tu.txtUserName from tblprojects tb join  tblusers tu on tb.refProjectOwner=tu.id  where tb.id='"+pid+"';"
+  con.query(sql, function (err, result) {
+      if (err) throw err;
+      res.send(result);
+  })
+})
+
+/*****************************************USERS PAGE********************************************************************************** */
+app.post('/userfetchforusers', function (req, res) {
+  var sql = "select tu.txtUserName,tu.id ,tr.txtUserRole from tblusers tu join tbluserroles tr on tu.refUserRole=tr.id where tr.txtUserRole='Employee';;"
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    res.send(result);
+  })
+})
+
+ app.post('/epicfecth',function(req,res){
+
+  const Epic = new Promise((resolve, reject) => {
+    var sql="select te.id,te.refProjectId,te.txtTitle,te.txtStatus,tb.txtName from tblepic te join tblprojects tb where te.refProjectId=tb.id;"
+    con.query(sql,function (err, result) 
+    {
         if (err) resolve(err);
         resolve(result);
+        //res.send(result);
       }
     );
   });
-}
+  
+  const Task = new Promise((resolve, reject) => {
+    var sql="select id,refEpicid,txtTitle,txtStatus from tbltasks;"
+    con.query(sql,function (err, result) 
+    {
+        if (err) resolve(err);
+        resolve(result);
+        //res.send(result);
+      }
+    );
+  });
 
-)
+  Promise.all([Epic,Task]).then((values) => { 
+    var Epic = values[0];
+    var Task = values[1];
+  var Epicobj = {};
+  var Taskobj = {};
+  for (element of Task) {
+    if (Taskobj[element.refEpicid] == undefined) {
+      Taskobj[element.refEpicid] = [element];
+    } else {
+      var temp =Taskobj[element.refEpicid];
+      Taskobj[element.refEpicid] = [...temp, element];
+    }
+    //res.send(Taskobj);
+    //console.log(Taskobj);
+  }
+
+    for (element of Epic) {
+      if (Epicobj[element.refProjectId] == undefined) {
+        Epicobj[element.refProjectId] = [element];
+      } else {
+        var temp =Epicobj[element.refProjectId];
+        Epicobj[element.refProjectId] =[...temp, element];
+      }
+      //res.send(Epicobj);
+    }
+  //console.log(Epicobj);
+  for (element of Epic) {
+    if (Taskobj[element.id] == undefined) element.Task = [];
+    else {
+      element.Task = Taskobj[element.id];
+    }
+  }
+  //console.log(Epic);
+  res.send(Epic);
+})
+
+})
 
 app.listen(8000, () => {
   console.log("Server is running");

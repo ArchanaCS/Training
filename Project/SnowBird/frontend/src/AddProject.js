@@ -1,6 +1,7 @@
 import axios from "axios";
 import { ReactSession } from "react-client-session";
 import { useEffect, useState } from "react";
+import Menu from "./Menu";
 function AddProject() {
   const [options, setOption] = useState([]);
   const [name, setTextName] = useState("");
@@ -56,17 +57,9 @@ function AddProject() {
         </div>
         <div className="secondrow">
           {/* Side navigation menu */}
-
-          <div className="firstcolumn">
-            <nav>
-              <li>Board</li>
-              <li>Projects</li>
-              <li>Epics</li>
-              <li>Tasks</li>
-              <li>Sprints</li>
-              <li>Users</li>
-            </nav>
-          </div>
+           
+          {<Menu/>}
+          
           <div className="secondcolumn">
             <div className="prowone">
               <label>Add Project</label>
@@ -103,9 +96,9 @@ function AddProject() {
                 <br></br>
                 {/* onSelect={(e)=>{setRefOwner(e.target.value)}} */}
                 <select onChange={(e) => { setRefOwner(e.target.value) }} >
-
+                
                   {options.map((item, index) => {
-                    return <option>{item.txtUserName}</option>
+                    return <option value={item.id}>{item.txtUserName}</option>
                     
 
 

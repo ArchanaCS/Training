@@ -1,23 +1,6 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import Menu from "./Menu";
 import "./style/styles.css";
-import Menu from './Menu'
-function AddUser() {
-  const[array,setArray]=useState([]);
-  var temp;
-  useEffect(()=>{
-    var url="http://localhost:8000/userRolefetch";
-    var req={};
-    var header={};
-    axios.post(url,req,header).then((res)=>{
-      console.log(res.data);
-        var len = res.data.length;
-        if (len > 0) {
-          setArray(res.data);
-          //console.log(JSON.stringify(array));
-           }
-    }).catch();
-  },[])
+function EditUser() {
   return (
     <div>
       <div className="outer">
@@ -32,7 +15,7 @@ function AddUser() {
           {<Menu/>}
           <div className="secondcolumn">
             <div className="prowone">
-              <label>Add User</label>
+              <label>Edit User</label>
               <button >SAVE</button>
             </div>
 
@@ -52,14 +35,10 @@ function AddUser() {
               <div className="typerow">
                 <label>Role</label>
                 <br></br>
-                
                 <select>
-                {array.map((item,index)=>{
-                  return<>
-                   <option>{item.txtUserRole}</option>
-                  </>
-                })}
-                
+                  <option>--options--</option>
+                  <option>Employee</option>
+                  <option>Manager</option>
                 </select>
               </div>
 
@@ -73,4 +52,4 @@ function AddUser() {
     </div>
   );
 }
-export default AddUser;
+export default EditUser;

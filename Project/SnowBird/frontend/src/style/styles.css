@@ -7,10 +7,22 @@
   text-align: right;
   height: 5vh;
 }
-.firstrow label {
+/* .firstrow label {
   color: gray;
   font-size: small;
-}
+
+} */
+/* .loginuser label
+{
+  padding-top: 20px;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-bottom: 20px;
+  text-align: center;
+  color:gray;
+  font-size:medium;
+
+} */
 .secondrow {
   width: 100%;
   height: 100vh;
@@ -21,7 +33,20 @@
   border-radius: 25px;
   background-color: blue;
   float: right;
+  
+  
 }
+
+.loginuser label{
+  color:gray;
+
+text-align: right;
+padding-top: 20px;
+padding-bottom: 10px;
+padding-right: 10px;
+width: 100%;
+}
+
 
 .firstcolumn {
   width: 20%;
@@ -31,9 +56,9 @@
 }
 .firstcolumn li {
   list-style: none;
-  text-align: center;
-  padding: 8%;
-  background-color: lightgray;
+  text-align: left;
+  padding: 6%;
+  background-color: #D4CBCB;
 }
 .firstcolumn li:hover {
   color: white;
@@ -66,6 +91,7 @@
   overflow-x: scroll;
   padding-top: 10%;
   margin-right: 20%;
+  
 }
 .eachuser {
   padding: 2%;
@@ -141,11 +167,12 @@
 }
 .prowone button {
   float: right;
-  background-color: gray;
+  background-color:#B2B2B2;
   color: white;
   border: none;
-  height: 5vh;
-  width: 10%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  width: 15%;
 }
 /* .tablerow table {
   background-color: aqua; 
@@ -274,14 +301,17 @@ width:100%;
 }
 .project
 {
-  background-color:gainsboro;
+  background-color:white;
 }
 .epic
 { 
-   background-color:antiquewhite;
+   background-color:#D4CBCB;
+   
+   
 }
 .task{
-  background-color:azure;
+  background-color:#EEE6E6;
+  
 }
 .withborder {
   border: 1px solid gray;
@@ -323,4 +353,97 @@ th {
   transition-property: all;
   transition-duration: 4s;
   transition-delay: 2s;
+}
+
+.secondcolumn .secfirstrow {
+  width: 100%;
+}
+
+.secondcolumn .secsecondrow {
+  width: 100%;
+}
+.secondcolumn .secthirdrow {
+  width: 100%;
+  margin-left: 50px;
+  float: left;
+  border: 1px solid black;
+  border-left: 0;
+  border-right: 0;
+}
+.secthirdrow table{
+width:100%;
+text-align: left;
+}
+
+.secthirdrow th{
+  text-align: left;
+  background-color:lightgray ;
+} */
+
+.secondcolumn .secsecondrow button{
+  float:right;
+  border: 1px;
+  border-style: solid;
+  border-color: black;
+  margin-bottom: 60px;
+  background-color: rgb(236, 203, 203) ;
+}
+.listcontainer {
+  background-color: white;
+  width: 40%;
+  margin-left: 25%;
+  padding-top: 10px;
+  padding-left: 10px;
+  overflow-x: scroll;
+  display: flex;
+  padding-bottom: 10px;
+  padding-right: 5px;
+}
+.listcontainer::-webkit-scrollbar{ 
+    height: 6px;
+    border-radius: 2px;
+    background-color: #ededed; 
+}
+.listcontainer::-webkit-scrollbar-thumb{
+    border-radius: 3px; 
+    background-color: #a3a3a3;
+}
+
+.redcircle {
+  background-color: rgba(234, 19, 19, 0.909);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.selectedredcircle { 
+    background-color: rgb(51, 0, 255);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; 
+}
+#fbox:checked+label
+{
+  text-decoration: line-through;
+  
+}
+#fbox .label
+{
+  text-decoration: line-through;
+  
+}
+
+#secbox:checked+label
+{
+  text-decoration: line-through;
+  
+}
+#thirdbox:checked+label
+{
+  text-decoration: line-through;
+  
+}
+#fourbox:checked+label
+{
+  text-decoration: line-through;
+  
 }

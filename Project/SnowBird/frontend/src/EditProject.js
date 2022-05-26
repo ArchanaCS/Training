@@ -1,16 +1,23 @@
 import axios from "axios";
 import { ReactSession } from "react-client-session";
 import { useEffect, useState } from "react";
-
+import Menu from "./Menu";
 function EditProject() {
   const [options, setOption] = useState([]);
   const [name, setTextName] = useState("");
   const [type, setTextType] = useState("");
   const [owner, setRefOwner] = useState("3");
-  const [pid,setPid]=useState("");
+  const [pdetails,setPdetails]=useState([]);
+  var pid;
+  pid=localStorage.getItem("Id");
   useEffect(()=>{
 
+    
+    console.log("pid"+pid);
     var url = "http://localhost:8000/ownerfetch";
+    var url1="http://localhost:8000/projectload";
+    var request1={"pid":pid};
+    var header1={};
     var request = {};
     var header = {};
     axios
@@ -22,20 +29,23 @@ function EditProject() {
         if (len > 0) {
 
           setOption(res.data);
-          setPid(ReactSession.get("id"));
-          console.log(pid);
-        }
-      
-
+         }
       })
       .catch();
+
+      axios.post(url1,request1,header1).then((res)=>{
+        console.log(res.data);
+        setPdetails(res.data);
+
+      }).catch();
 
   },[])
   function updateproject()
   {
     var url = "http://localhost:8000/projectUpdate";
-    var request = { name: name, type: type, owner: owner };
+    var request = { prjctname: name, prjcttype: type, refowner: owner ,id:pid};
     console.log("owner :" + JSON.stringify(owner));
+    console.log("id :" + JSON.stringify(pid));
     var header = {};
     axios
       .post(url, request, header)
@@ -60,17 +70,8 @@ function EditProject() {
           </div>
           <div className="secondrow">
             {/* Side navigation menu */}
-  
-            <div className="firstcolumn">
-              <nav>
-                <li>Board</li>
-                <li>Projects</li>
-                <li>Epics</li>
-                <li>Tasks</li>
-                <li>Sprints</li>
-                <li>Users</li>
-              </nav>
-            </div>
+            {<Menu/>}
+            
             <div className="secondcolumn">
               <div className="prowone">
                 <label>Edit Project</label>
@@ -80,7 +81,12 @@ function EditProject() {
               <div className="psecondrow">
                   <div className="titlerow">
                   <label>Title</label><br></br>
-                     <input type="text"/>
+                  {pdetails.map((item,index)=>{
+                    return<>
+                      <input type="text" defaultValue={item.txtName} onChange={(e) => { setTextName(e.target.value)}}></input>
+                    </>
+                  })}
+                     
                </div>
                <div className="descriptiion">
                    <label>Description</label><br></br>
@@ -90,10 +96,18 @@ function EditProject() {
   
                <div className="typerow">
                  <label>Type</label><br></br>
-                 <select>
-                     <option>--options--</option>
-                     <option>Telecom</option>
-                     <option>Business</option>
+                 
+                 <select     onChange={(e) => { setTextType(e.target.value) }}>
+                 {pdetails.map((pitem,pindex)=>{
+                     return<>
+                     
+                     <option value={pitem.txtType}>{pitem.txtType}</option>
+                      <option value={"Telecom"}>Telecom</option>
+                     <option value={"Business"}>Business</option>
+                     </>
+                   })}
+                    
+                    
                  </select>
                </div>
   
@@ -102,9 +116,12 @@ function EditProject() {
                 <br></br>
                 {/* onSelect={(e)=>{setRefOwner(e.target.value)}} */}
                 <select onChange={(e) => { setRefOwner(e.target.value) }} >
-
+                  
                   {options.map((item, index) => {
-                    return <option>{item.txtUserName}</option>
+                    return <>
+
+                  <option>{item.txtUserName}</option>
+      </>
                     
 
 

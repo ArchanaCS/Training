@@ -61,11 +61,10 @@ function Dash() {
       <div className="outer">
         {/* USer name with icon */}
         <div className="firstrow">
-          
-            <div className="usericon"></div> 
+            <div className="usericon"> 
             <div className="loginuser">
             <label>User</label>
-            
+            </div>
           </div>
         </div>
         <div className="secondrow">
@@ -75,6 +74,7 @@ function Dash() {
 
           {/* Main outline */}
           <div className="secondcolumn">
+           
             <div className="listcontainer">
               <div className="usernamerow">
                 {array.map((item, index) => {
@@ -93,6 +93,7 @@ function Dash() {
                 })}
               </div>
             </div>
+            
             {/* Task status name */}
             <div className="statusnamerow">
               <label>TO DO</label>

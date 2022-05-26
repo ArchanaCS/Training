@@ -11,6 +11,7 @@ function Singleuser({ items,index,getUid}){
 
   return (
     <div>
+       
       <div className="eachuser">
         <div ></div>
         <div className={items.isSelected ? "redcircle" : "selectedredcircle"} onClick={()=>getUid(id,items.index,items.isSelected)}>
@@ -21,6 +22,7 @@ function Singleuser({ items,index,getUid}){
           </div>
         </div>
       </div>
+     
     </div>
   );
 }

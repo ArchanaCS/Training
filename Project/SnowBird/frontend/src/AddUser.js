@@ -33,8 +33,8 @@ function AddUser() {
    var header={};
    console.log(JSON.stringify(request));
    axios.post(url,request,header).then((res)=>{
-     
-
+     if(res.data=="User already exist!!!")
+    alert(res.data);
    }).catch();
 
  }

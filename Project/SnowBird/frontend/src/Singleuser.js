@@ -1,7 +1,7 @@
 import axios from "axios";
 import {useState } from "react";
 import React from 'react';
-function Singleuser({ items,index,getUid}){
+function Singleuser({ items,index,getUid,SingleUserClick}){
   
  
    const id=items.id;
@@ -14,7 +14,7 @@ function Singleuser({ items,index,getUid}){
        
       <div className="eachuser">
         <div ></div>
-        <div className={items.isSelected ? "redcircle" : "selectedredcircle"} onClick={()=>getUid(id,items.index,items.isSelected)}>
+        <div className={items.isSelected ? "selectedredcircle" : "redcircle"} onClick={()=>{getUid(id,index,items.isSelected); }}>
           <div className="userlabel">
             <>
               <label>{items.txtUserName}</label>

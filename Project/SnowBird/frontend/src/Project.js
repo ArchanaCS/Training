@@ -26,11 +26,15 @@ function Project() {
   }
 
   function editproject(n) {
-    console.log(n);
-    setPrjctId(n);
-    ReactSession.set("id", n);
+    console.log("fetid"+n);
+    //setPrjctId(n);
+    localStorage.setItem("Id",n);
     console.log("id:" + JSON.stringify(id));
+    //localStorage.setItem("index",index);
+   
+    //console.log("index"+JSON.stringify(index));
     navigate("/editproject");
+
   }
   const handleExpand = (e, item, index) => {
     e.preventDefault();
@@ -60,10 +64,10 @@ function Project() {
     <div>
       <div className="outer">
         {/* USer name with icon */}
-        <div className="firstrow">
+        {/* <div className="firstrow">
           <div className="usericon"> </div>
           <label>User</label>
-        </div>
+        </div> */}
         <div className="secondrow">
           {/* Side navigation menu */}
 
@@ -101,12 +105,7 @@ function Project() {
                               />
                             )}
                           </td>
-                          <td
-                            className="constant"
-                            value={item.id}
-                            onClick={() => {
-                              editproject(item.id);
-                            }}
+                          <td className="constant" value={item.id} onClick={() => { editproject(item.id); }}
                           >
                             {item.id}
                           </td>

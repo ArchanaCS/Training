@@ -27,46 +27,43 @@ function Dash() {
       .catch()   
   }, []);
 
-  function tasklist(id,index,sts) {
+  const SingleUserClick=(indx)=>{
+    // alert(indx)
+    const temp=[...array]
+    for (const element of temp) {
+      element.isSelected = false;
+    }
+    temp[indx].isSelected=true; 
+    setArray(temp)
+  }
+
+   function tasklist(id,index) {
     var url = "http://localhost:8000/usertaskfetch";
     var header = {};
     var request = { userId: id };
     //console.log("req" + JSON.stringify(request));
-    axios
+     axios
       .post(url, request, header)
       .then((res) => {
         setTask(res.data);
-        //setTask(res.data);
-      // console.log("task" + JSON.stringify(task));
-      // if(sts[index].isSelected==true)
-      // {
-      //   sts[index].isSelected ? false:true;
-      // }
-        var temp1 = [...task];
-        var position = 0;
-        for (const element of temp1) {
-          if (position == index) {
-            element.isSelected = false;
-          } else element.isSelected = true;
-          position++;
-          console.log(element.isSelected)
-        }
-        setTask(temp1);
+        
       })
-      .catch();
+      .catch((err)=>{});
+
+      SingleUserClick(index)
   }
 
   return (
     <div>
       <div className="outer">
         {/* USer name with icon */}
-        <div className="firstrow">
+        {/* <div className="firstrow">
             <div className="usericon"> 
             <div className="loginuser">
             <label>User</label>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="secondrow">
           {/* Side navigation menu */}
 
@@ -85,7 +82,7 @@ function Dash() {
                           items={item}
                           index={index}
                           getUid={tasklist}
-                          
+                          SingleUserClick={SingleUserClick}
                         />
                       }
                     </>

@@ -256,7 +256,7 @@ app.post('/projectdetailfetchNew', function (req, res) {
 /* API for fetchUserRole-- populate dropdown*/
 
 app.post('/userRolefetch', function (req, res) {
-  var sql = "select txtUserRole from tbluserroles;"
+  var sql = "select id, txtUserRole from tbluserroles;"
   con.query(sql, function (err, result) {
       if (err) throw err;
       res.send(result);
@@ -273,6 +273,27 @@ app.post('/projectload', function (req, res) {
   })
 })
 
+
+app.post('/insertuser', function (req, res) {
+  var uname = req.body.username;
+  var pass = req.body.password;
+  var typ = req.body.type;
+  var sql1 = "select id from tblusers where txtUserName='" + uname + "';"
+  var sql2 = "insert into tblusers(txtUserName,txtPassword,refUserRole)values('" + uname + "','" + pass + "','" + typ + "');"
+  con.query(sql1, function (err, result) {
+      var a = result[0];
+      if (a != undefined) {
+          res.send("User already exist!!!");
+      }
+      else {
+          //res.send("Ready to insert values into user "+uname);
+          con.query(sql2, function (err, result) {
+              if (err) throw err;
+              res.send(result);
+          })
+      }
+  });
+})
 /*****************************************USERS PAGE********************************************************************************** */
 app.post('/userfetchforusers', function (req, res) {
   var sql = "select tu.txtUserName,tu.id ,tr.txtUserRole from tblusers tu join tbluserroles tr on tu.refUserRole=tr.id where tr.txtUserRole='Employee';;"

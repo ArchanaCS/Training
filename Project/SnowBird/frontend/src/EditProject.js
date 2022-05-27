@@ -9,7 +9,8 @@ function EditProject() {
   const [owner, setRefOwner] = useState("3");
   const [pdetails,setPdetails]=useState([]);
   var pid;
-  pid=localStorage.getItem("Id");
+  var pid=localStorage.getItem("Id");
+ 
   useEffect(()=>{
 
     
@@ -17,6 +18,7 @@ function EditProject() {
     var url = "http://localhost:8000/ownerfetch";
     var url1="http://localhost:8000/projectload";
     var request1={"pid":pid};
+    
     var header1={};
     var request = {};
     var header = {};
@@ -101,7 +103,7 @@ function EditProject() {
                  {pdetails.map((pitem,pindex)=>{
                      return<>
                      
-                     <option value={pitem.txtType}>{pitem.txtType}</option>
+                     <option defaultValue={pitem.txtType}>{pitem.txtType}</option>
                       <option value={"Telecom"}>Telecom</option>
                      <option value={"Business"}>Business</option>
                      </>

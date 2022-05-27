@@ -25,6 +25,13 @@ function Menu() {
 }
   return (
     <>
+    <div className="firstrow">
+            <div className="usericon"> 
+            <div className="loginuser">
+            <label>User</label>
+            </div>
+          </div>
+        </div>
       <div className="firstcolumn">
         <nav>
           <li onClick={board}>Board</li>

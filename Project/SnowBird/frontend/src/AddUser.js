@@ -4,6 +4,10 @@ import "./style/styles.css";
 import Menu from './Menu'
 function AddUser() {
   const[array,setArray]=useState([]);
+  const [username,setUname]=useState("");
+  const[password,setPassword]=useState("");
+  const [type,setType]=useState("");
+
   var temp;
   useEffect(()=>{
     var url="http://localhost:8000/userRolefetch";
@@ -11,13 +15,29 @@ function AddUser() {
     var header={};
     axios.post(url,req,header).then((res)=>{
       console.log(res.data);
+      
         var len = res.data.length;
         if (len > 0) {
           setArray(res.data);
+         
+       
           //console.log(JSON.stringify(array));
            }
     }).catch();
   },[])
+
+ function adduser()
+ {
+   var url="http://localhost:8000/insertuser";
+   var request={username:username,password:password,type:type};
+   var header={};
+   console.log(JSON.stringify(request));
+   axios.post(url,request,header).then((res)=>{
+     
+
+   }).catch();
+
+ }
   return (
     <div>
       <div className="outer">
@@ -33,34 +53,37 @@ function AddUser() {
           <div className="secondcolumn">
             <div className="prowone">
               <label>Add User</label>
-              <button >SAVE</button>
+              <button onClick={adduser} >SAVE</button>
             </div>
 
 
             <div className="psecondrow">
               <div className="titlerow">
-                <label>User Name</label>
+                <label >User Name</label>
                 <br></br>
-                <input type="text"/>
+                <input type="text" onChange={(e)=>{setUname(e.target.value)}}/>
               </div>
 
               <div className="titlerow">
-                <label>Password</label>
+                <label >Password</label>
                 <br></br>
-                <input type="text"/>
+                <input type="text" onChange={(e)=>{setPassword(e.target.value)}}/>
               </div>
               <div className="typerow">
-                <label>Role</label>
+                <label >Role</label>
                 <br></br>
                 
-                <select>
+                <select onChange={(e)=>{setType(e.target.value)}}>
+                <option>--Options--</option>
                 {array.map((item,index)=>{
                   return<>
-                   <option>{item.txtUserRole}</option>
+                  
+                   <option value={item.id}>{item.txtUserRole}</option>
                   </>
                 })}
                 
                 </select>
+                
               </div>
 
               </div>

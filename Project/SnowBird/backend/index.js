@@ -3,6 +3,7 @@ const app = express();
 var mysql = require('mysql');
 const cors = require('cors');
 const react = require('react');
+//const { useSyncExternalStore } = require('react/cjs/react.production.min');
 app.use(cors());
 app.use(express.json());
 var con = mysql.createConnection(
@@ -294,6 +295,51 @@ app.post('/insertuser', function (req, res) {
       }
   });
 })
+
+app.post('/userupdatefetch',function(req,res){
+  usrid=req.body.id;
+   var sql="SELECT tu.txtUserName,tu.txtPassword,tr.txtUserRole,tu.refUserRole from tblusers tu join tbluserroles tr on tu.refUserRole=tr.id where tu.id='"+usrid+"';"
+  con.query(sql,function(err,result){
+     if(err)throw err;
+     res.send(result);
+   })
+})
+
+app.post('/userupdate', function (req, res) {
+  //fetch id from users where username=req username
+
+  var uname = req.body.username;
+  var suname=req.body.suname;
+  var pass = req.body.password;
+  var ty = req.body.reftype;
+  var uid = req.body.id;
+  var sql1 = "select id from tblusers where txtUserName='" + suname + "';";
+  console.log("uname"+suname);
+  var sql2 = "update tblusers set txtPassword='" + pass + "',txtUserName='" + uname + "' ,refUserRole='" + ty + "'where id= '" + uid + "';";
+  con.query(sql1, function (err, result) {
+
+     
+      if (result.length > 0) {
+          
+          if (result[0].id == req.body.id) {
+
+              
+              con.query(sql2, function (err, result1) {
+                  if(err) throw res.send(err);
+                  res.send(result1);
+                  //console.log(result1);
+              })
+
+          }
+        
+          else {
+             
+              res.send("Username duplicate");
+          }
+      }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+  });
+})
 /*****************************************USERS PAGE********************************************************************************** */
 app.post('/userfetchforusers', function (req, res) {
   var sql = "select tu.txtUserName,tu.id ,tr.txtUserRole from tblusers tu join tbluserroles tr on tu.refUserRole=tr.id where tr.txtUserRole='Employee';;"
@@ -307,18 +353,7 @@ app.post('/userfetchforusers', function (req, res) {
 
   const Epic = new Promise((resolve, reject) => {
     var sql="select te.id,te.refProjectId,te.txtTitle,te.txtStatus,tb.txtName from tblepic te join tblprojects tb where te.refProjectId=tb.id;"
-    con.query(sql,function (err, result) 
-    {
-        if (err) resolve(err);
-        resolve(result);
-        //res.send(result);
-      }
-    );
-  });
-  
-  const Task = new Promise((resolve, reject) => {
-    var sql="select id,refEpicid,txtTitle,txtStatus from tbltasks;"
-    con.query(sql,function (err, result) 
+    con.query(sql,function (err, result)
     {
         if (err) resolve(err);
         resolve(result);
@@ -327,7 +362,18 @@ app.post('/userfetchforusers', function (req, res) {
     );
   });
 
-  Promise.all([Epic,Task]).then((values) => { 
+  const Task = new Promise((resolve, reject) => {
+    var sql="select id,refEpicid,txtTitle,txtStatus from tbltasks;"
+    con.query(sql,function (err, result)
+    {
+        if (err) resolve(err);
+        resolve(result);
+        //res.send(result);
+      }
+    );
+  });
+
+  Promise.all([Epic,Task]).then((values) => {
     var Epic = values[0];
     var Task = values[1];
   var Epicobj = {};

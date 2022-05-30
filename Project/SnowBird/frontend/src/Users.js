@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './style/styles.css';
 import Menu from './Menu';
@@ -7,7 +7,8 @@ import Menu from './Menu';
 function Users() {
     const [array,setArray]=useState([]);
     const navigate=useNavigate();
-    var url="http://localhost:8000/userfetchforusers";
+    useEffect(()=>{
+      var url="http://localhost:8000/userfetchforusers";
     var header={};
     var request={};
     axios.post(url,request,header).then((res)=>{
@@ -15,18 +16,31 @@ function Users() {
         setArray(res.data);
     }).catch();
 
-    function newuser(){
+    },[])
+    
 
- navigate('/adduser');
+function newuser()
+{
+
+         navigate('/adduser');
     }
+    function edituser(n,name)
+    {
+      console.log(n);
+      navigate("/edituser")
+      localStorage.setItem("id",n);
+      localStorage.setItem("name",name);
+
+    }
+  
   return (
     <div>
       <div className="outer">
         {/* USer name with icon */}
-        <div className="firstrow">
+        {/* <div className="firstrow">
           <div className="usericon"></div>
           <label>User</label>
-        </div>
+        </div> */}
         <div className="secondrow">
           {/* Side navigation menu */}
           
@@ -49,7 +63,7 @@ function Users() {
                        
                         return<>
                         <tr>
-                        <td>{item.id}</td>
+                        <td onClick={()=>{edituser(item.id,item.txtUserName)}}>{item.id}</td>
                         <td>{item.txtUserName}</td>
                         <td>{item.txtUserRole}</td>
                         <td></td>

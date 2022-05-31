@@ -39,6 +39,7 @@ function Navigation() {
           <Route path="/menu" element={<Menu />}></Route>
           <Route path="/test" element={<Test />}></Route>
           <Route path="/sample" element={<Sample />}></Route>
+         
         </Routes>
       </BrowserRouter>
     </div>

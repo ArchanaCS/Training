@@ -66,10 +66,10 @@ function EditProject() {
         <div className="outer">
           {/* USer name with icon */}
 
-          <div className="firstrow">
+          {/* <div className="firstrow">
             <div className="usericon"> </div>
             <label>User</label>
-          </div>
+          </div> */}
           <div className="secondrow">
             {/* Side navigation menu */}
             {<Menu/>}

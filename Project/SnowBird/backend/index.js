@@ -249,8 +249,25 @@ app.post('/projectdetailfetchNew', function (req, res) {
   });
 
 })
-/****************************************************Epic ****************************************/
+/****************************************************Sprint ****************************************/
+app.post('/InsertSprint', function (req, res) {
+  var Sname = req.body.txtSprintname
+  var Stdate = req.body.stdate
+  var Enddate = req.body.enddate
+  var Acstdate = req.body.acstdate
+  var Acenddate = req.body.acenddate
 
+  //var sql1 = "Select id from tblusers where txtUsername='" + uname + "';"
+  var sql =
+    "Insert into tblsprints(txtSprintname,dtEststartdate,dtestenddate) values('" + Sname + "' ,'" +   Stdate + "','" + Enddate +  "')"
+
+  con.query(sql, function (err, result) {
+    if (err) throw err
+    else {
+      res.send(result)
+    }
+  })
+})
 
 
 /*****************************************  ADD USER  **************************************************************** */
@@ -340,7 +357,7 @@ app.post('/userupdate', function (req, res) {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
   });
 })
-/*****************************************USERS PAGE********************************************************************************** */
+/*****************************************EPIC PAGE********************************************************************************** */
 app.post('/userfetchforusers', function (req, res) {
   var sql = "select tu.txtUserName,tu.id ,tr.txtUserRole from tblusers tu join tbluserroles tr on tu.refUserRole=tr.id where tr.txtUserRole='Employee';;"
   con.query(sql, function (err, result) {

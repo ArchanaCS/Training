@@ -1,0 +1,20 @@
+body{
+   text-align: center;
+}
+.form
+{
+    border-radius: 25px;
+    width:50%;
+    height:80vh;
+    background-color:#A4C2F4;
+    text-align: center;
+    display: inline-block; 
+
+}
+.form button
+{
+    margin-top: 20%;
+    background-color:grey;
+    color: white;
+    
+}

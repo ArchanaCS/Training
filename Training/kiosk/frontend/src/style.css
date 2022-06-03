@@ -9,12 +9,77 @@ body{
     background-color:#A4C2F4;
     text-align: center;
     display: inline-block; 
-
+}
+.five_div
+{
+    width:40%;
+    height: 6vh;
+    text-align: center;
+    margin-left: 35%;
+    /* background-color: blue; */
+    padding-top: 20px;
 }
 .form button
 {
-    margin-top: 20%;
+    margin-top: 4%;
     background-color:grey;
     color: white;
     
+}
+.five
+{
+    width:25px;
+    border-radius: 25px;
+    height:4vh;
+    background-color:white;
+    border: 1px solid black;
+    color: black;
+    float: left;
+    padding-left: 5px;
+    margin-left: 15px;
+    margin-right: 10px;
+    
+  
+}
+.five label{
+    text-align: center;
+    color: black;
+    padding: 10%;
+   
+}
+.ls
+{
+    /* background-color: aqua; */
+     padding-top: 10%;
+}
+.form button.next
+{
+    background-color:#ff44ff;
+    border:white;
+    padding:2%;
+    width:15%;
+    border-radius: 10px;
+    /* float:right; */
+    
+}
+.form button.prev
+{
+    background-color:blue;
+    border:white;
+    padding:2%;
+    width:15%;
+    float:left;
+    border-radius: 10px;
+    /* float: left; */
+}
+.pos_button{
+    
+    /* background-color: aqua; */
+    width:70%;
+    padding-left: 30px;
+   
+} 
+.pos_button .next
+{
+    float: right;
 }

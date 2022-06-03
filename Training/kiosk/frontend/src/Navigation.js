@@ -4,7 +4,8 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import FeedBack from "./FeedBack";
+import Ratefive from "./Ratefive";
+import Test from "./Test";
 import Welcome from "./Welcome";
 
 function Navigation()
@@ -14,7 +15,8 @@ function Navigation()
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Welcome />}></Route>
-        <Route path="/feedback" element={<FeedBack />}></Route>
+        <Route path="/test" element={<Test/>}></Route>
+        <Route path="/five" element={<Ratefive/>}></Route>
       </Routes>
     </BrowserRouter>
 

@@ -3,7 +3,7 @@ import  './style.css';
 const Welcome=()=>{
     var navigate=useNavigate();
     const feedback_from=()=>{
-        navigate("/feedback");
+        navigate("/test");
     }
 return<>
 <div className="form">

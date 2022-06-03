@@ -3,7 +3,9 @@ import { useEffect, useState } from "react";
 import "./style/styles.css";
 import Menu from "./Menu";
 import { FaAngleDown, FaAngleRight } from "react-icons/fa";
+import { Navigate, useNavigate } from "react-router-dom";
 function Epic() {
+  const navigate=useNavigate();
   const [array, setArray] = useState([]);
   var url = "http://localhost:8000/epicfecth";
   var request = {};
@@ -29,7 +31,10 @@ function Epic() {
     console.log("temp" + JSON.stringify(temp[index]));
     setArray(temp);
   };
-
+function editepic()
+{
+  navigate("/editepic")
+}
   return (
     <div>
       <div className="outer">
@@ -78,7 +83,7 @@ function Epic() {
                             )}
                           </td>
                          
-                          <td className="constant">{item.id}</td>
+                          <td className="constant" onClick={editepic}>{item.id}</td>
                           <td>{item.txtStatus}</td>
                           <td>{item.txtName}</td>
                           <td></td>

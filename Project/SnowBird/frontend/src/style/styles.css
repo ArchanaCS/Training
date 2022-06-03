@@ -44,6 +44,8 @@ body{
   float: right;
   /* padding-left: 5px; 
    padding-top: 5px; */
+   top: 0px;
+   right: 0px;
   
   
 }
@@ -51,7 +53,7 @@ body{
 {
   padding-top: 20px; 
   
-  /* float: right; */
+  float: right;
 }
 .loginuser label{
   color:gray;
@@ -121,13 +123,12 @@ body{
   padding: 2%;
   float: left;
   width: 20%;
-  height: 20vh;
+  height: 10vh;
   text-align: center;
   margin-left:20px;
   
 
-}
-.statusnamerow {
+}.statusnamerow {
   width: 100%;
   height: 5vh;
   margin-top: 4%;
@@ -135,31 +136,35 @@ body{
   
 }
 .taskbar1 {
-  width: 20%;
-  height: 50vh;
+  width:95%;
+  height: 60vh;
   border: 1px solid black;
   float: left;
+  
 }
 .taskbar2 {
-  width: 20%;
-  height: 50vh;
+  width:95%;
+  height: 60vh;
   border: 1px solid black;
   float: left;
   margin-left: 3%;
+  position: static;
 }
 .taskbar3 {
-  width: 20%;
-  height: 50vh;
+  width:95%;
+  height: 60vh;
   border: 1px solid black;
   float: left;
   margin-left: 3%;
+  position: static;
 }
 .taskbar4 {
-  width: 20%;
-  height: 50vh;
+  width:95%;
+  height: 60vh;
   border: 1px solid black;
   float: left;
   margin-left: 3%;
+  position: static;
 }
 /* .tasks
 {
@@ -418,7 +423,7 @@ text-align: left;
 }
 .listcontainer {
   background-color:white;
-  width: 20%;
+  width: 30%;
   margin-left: 25%;
   padding-top: 10px;
   padding-left: 10px;
@@ -439,15 +444,17 @@ text-align: left;
 
 .redcircle {
   background-color: rgba(229, 125, 125, 0.909);
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
+  margin-right: 30px;
 }
 .selectedredcircle { 
     background-color: red;
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%; 
+    margin-right: 30px;
 }
 #fbox:checked+label
 {
@@ -474,4 +481,31 @@ text-align: left;
 {
   text-decoration: line-through;
   
+}
+.taskbar_1
+{
+  /* background-color: pink; */
+  width:20%;
+  height:80vh;
+  float: left;
+  /* border: 1px solid black; */
+  margin-right: 0px;
+  margin-left: 10%;
+  padding-top: 20px;
+  position: static;
+
+}
+.taskbar_2 ,.taskbar_3 ,.taskbar_4
+{
+  
+  width:20%;
+  height:80vh;
+
+  float: left;
+  margin-right: 0px;
+  padding-top: 20px;
+}
+.lab{
+  padding-bottom:10%;
+
 }

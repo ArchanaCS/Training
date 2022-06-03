@@ -92,15 +92,19 @@ function Dash() {
             </div>
             
             {/* Task status name */}
-            <div className="statusnamerow">
+            {/* <div className="statusnamerow">
               <label>TO DO</label>
               <label>InProgress</label>
               <label>Review</label>
               <label>Complete</label>
-            </div>
+            </div> */}
 
-            <div className="tasks"></div>
-            <div className="taskbar1">
+            {/* <div className="tasks"></div>
+            <div className="taskbar1"> */}
+             <div className="taskbar_1">
+              <div className="lab"> <label>TODO</label></div>
+               <div className="taskbar1">
+             
               {task.map((taskitem, taskindex) => {
                 if (taskitem.txtStatus == "to-do")
                   return (
@@ -109,8 +113,15 @@ function Dash() {
                     </>
                   );
               })}
+              </div>
             </div>
-            <div className="taskbar2">
+
+
+            {/* <div className="taskbar2"> */}
+            <div className="taskbar_2">
+             <div className="lab"><label>InProgress</label></div>
+               <div className="taskbar2">
+            
               {task.map((taskitem, taskindex) => {
                 if (taskitem.txtStatus == "review")
                   return (
@@ -119,8 +130,15 @@ function Dash() {
                     </>
                   );
               })}
+              </div>
             </div>
-            <div className="taskbar3">
+
+
+            {/* <div className="taskbar3"> */}
+            <div className="taskbar_3">
+             <div className="lab"><label>OnReview</label></div>
+               <div className="taskbar3">
+             
               {task.map((taskitem, taskindex) => {
                 if (taskitem.txtStatus == "Inprogress")
                   return (
@@ -129,8 +147,15 @@ function Dash() {
                     </>
                   );
               })}
+              </div>
             </div>
-            <div className="taskbar4">
+
+
+            {/* <div className="taskbar4"> */}
+            <div className="taskbar_4">
+             <div className="lab"><label>Completed</label></div>
+               <div className="taskbar4">
+             
               {task.map((taskitem, taskindex) => {
                 if (taskitem.txtStatus == "completed")
                   return (
@@ -139,6 +164,7 @@ function Dash() {
                     </>
                   );
               })}
+              </div>
             </div>
           </div>
         </div>

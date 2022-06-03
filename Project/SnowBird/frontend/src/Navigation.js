@@ -14,6 +14,7 @@ import Menu from "./Menu";
 import Sprint from "./Sprint";
 import Task from "./Task";
 import Test from "./Test";
+import Editepic from "./Editepic";
 
 function Navigation() {
   return (
@@ -39,6 +40,7 @@ function Navigation() {
           <Route path="/menu" element={<Menu />}></Route>
           <Route path="/test" element={<Test />}></Route>
           <Route path="/sample" element={<Sample />}></Route>
+          <Route path="/editepic" element={<Editepic />}></Route>
          
         </Routes>
       </BrowserRouter>

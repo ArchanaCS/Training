@@ -8,10 +8,10 @@ app.use(cors());
 app.use(express.json());
 var con = mysql.createConnection(
   {
-    host: "localhost",
-    user: "root",
-    password: "password1234",
-    database: "project"
+    host: "database-1.cnqwiwmwxmd4.us-west-2.rds.amazonaws.com",
+    user: "admin",
+    password: "abcd1234",
+    database: "snowbird"
 
   });
 con.connect(function (err) {

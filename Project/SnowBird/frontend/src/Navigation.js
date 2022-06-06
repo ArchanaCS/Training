@@ -7,8 +7,7 @@ import Project from "./Project";
 import AddUser from "./AddUser";
 import EditUser from "./EditUser";
 import Users from "./Users";
-import CheckBox from "./CheckBox";
-import Sample1 from "./Sample1";
+
 import Sample from "./Sample";
 import Menu from "./Menu";
 import Sprint from "./Sprint";

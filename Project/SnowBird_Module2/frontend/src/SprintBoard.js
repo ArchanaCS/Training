@@ -21,23 +21,40 @@ function SprintBoard(){
           {/* Side navigation menu */}
           {<Menu />}
           {/* Main outline */}
+          <div className="secondcolumn">
           <div className="prowone">
               <label>Sprint Board</label>
         </div> 
+        <div className="sprint_box">
         {sprintlist.map((item,index)=>{
             return<>
-             {<SprintBox index={item.refSprintid} />}
+            {item.refSprintid==1}
+             {<SprintBox index={item.refSprintid}/>}
             </>
             
         })}
-        
-        <div className="thirdrow">
+        </div>
+        <div className="task_row">
+            <h3 style={{color:"gray"}}>Tasks</h3>
             <table>
-                <th></th>
+            <thead>
+            <th style={{width:10}}>#id</th>
+            <th >Task</th>
+            <th>Status</th>
+            <th>Epic</th>
+            <th>Project</th>
+            </thead>
+            <tbody>
+                <td>1</td>
+                <td>Task1</td>
+                <td>To-do</td>
+                <td>Epic1</td>
+                <td>Event Management</td>
+            </tbody>
             </table>
         </div>
           
-         
+        </div>
           </div>
           </div>
 

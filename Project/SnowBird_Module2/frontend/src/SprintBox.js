@@ -6,11 +6,13 @@ function SprintBox(index){
     return<>
      <div className="sprint">
               <div> <label>Sprint {no.index}</label></div>
+              
                <div className="sprint1">
-                   <label>ToDo</label><br></br>
-                   <label>InProgress</label><br></br>
-                   <label>Review</label><br></br>
-                   <label>Completed</label>
+               
+                   {/* <label id="todo">ToDo</label><br></br>
+                   <label id="inprogress">InProgress</label><br></br>
+                   <label id="review">Review</label><br></br>
+                   <label id="complete">Completed</label> */}
                </div>
              </div>
     </>

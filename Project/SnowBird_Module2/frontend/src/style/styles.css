@@ -35,7 +35,7 @@ body{
 .secondrow {
   width: 100%;
   height: 100vh;
-  /* background-color: bisque; */
+ 
 }
 .usericon {
   height: 3vh;
@@ -84,6 +84,7 @@ body{
   width: 79%;
   height: 100vh;
   float: right;
+  
 }
 .log_button button
 {
@@ -213,7 +214,7 @@ font-weight: 700;
 .prowone {
   width: 80%;
   height: 10vh;
-  /* background-color: aquamarine; */
+ 
   /* border-bottom: 1px solid black; */
   border-left: 5%;
   padding-top: 5%;
@@ -275,7 +276,7 @@ font-weight: 700;
 {
     width:100%;
     height: 10vh;
-   
+  
     padding-left: 10%;
 }
 .titlerow
@@ -544,26 +545,56 @@ text-align: left;
   float: left;
   margin-right: 0px;
   margin-left: 3%;
- 
 }
 .sprint label
 {
   font-size: medium;
   font-weight: 100;
   color: gray;
-  
+  width:5%;
+
 }
+.sprint #todo,#inprogress,#review,#complete
+{
+  background-color:lightgrey;
+}
+
 .sprint1
 {
   width:100%;
   height: 40vh;
   border: 1px solid black;
   float: left;
+   
+}
+.sprint_box
+{
+  
+  width:100%;
+  height: 45vh;
+}
+.task_row
+{
+  width:100%;
+}
+.task_row th,td{
+  color: gray;
+  font-weight: 100;
+  font-size: medium;
+  width:100px; 
+  padding: 15px;  
  
 }
-.thirdrow{
-  width:100%;
-  /* background-color: aqua; */
+.task_row table{
   
-
+  text-align: center;
+  table-layout: fixed;
+  /* width: 80%; */
+  
 }
+.task_row th
+{
+  border-top: 1px solid black;
+  border-bottom: 1px solid black; 
+}
+

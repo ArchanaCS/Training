@@ -429,7 +429,7 @@ app.post('/userfetchforusers', function (req, res) {
 })
 
 
-/****************************************Sprint Board *************************************************/
+/**************************************** Sprint Board *************************************************/
 
 app.post('/sprintfetch',function(req,res)
 {
@@ -441,6 +441,35 @@ app.post('/sprintfetch',function(req,res)
     console.log(result);
   })
 
+})
+
+
+/**************************************** Attendance Page *********************************************/
+
+app.post('/fetchstatus',function(req,res)
+{
+  var sql="select txtStatus from tblattendance where refUname=1";
+  con.query(sql,function(err,result)
+  {
+    if (err) throw err;
+    res.send(result);
+    console.log("current "+JSON.stringify(result));
+   
+  })
+})
+
+app.post('/updatestatus',function(req,res)
+{
+  var status=req.body.status;
+  console.log("status"+status);
+  var sql="update tblattendance set txtStatus='"+status+"' where refUname=1;";
+  con.query(sql,function(err,result)
+  {
+    if(err)throw err;
+    res.send(result);
+    console.log("updated"+JSON.stringify(result));
+
+  })
 })
 
 app.listen(8000, () => {

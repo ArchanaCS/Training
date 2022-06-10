@@ -25,7 +25,8 @@ function Menu() {
 }
 function report()
 {
-  navigate("/report")
+   navigate("/report")
+  
 }
 function attendance()
 {
@@ -35,7 +36,7 @@ function sprintboard()
 {
   navigate("/sprintboard")
 }
-  return (
+return(
     <>
     <div className="firstrow">
      
@@ -54,7 +55,8 @@ function sprintboard()
           <li onClick={task}>Tasks</li>
           <li onClick={sprint}>Sprints</li>
           <li onClick={users}>Users</li>
-          <li onClick={report}>Report</li>
+          <li onClick={report} >Report</li>
+          
           <li onClick={attendance}>Attendance</li>
           <li onClick={sprintboard}>Sprint Board</li>
         </nav>

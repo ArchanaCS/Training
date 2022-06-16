@@ -2,6 +2,7 @@ body{
   margin:0 auto;
   overflow: hidden;
   font-family: Arial;
+  font-size: large;
 }
 .outer {
   width: 100%;
@@ -580,7 +581,7 @@ text-align: left;
 {
   width:100%;
 }
-.task_row td,tr{
+.task_row td{
   color: gray;
   font-weight: 100;
   font-size: medium;
@@ -593,6 +594,7 @@ text-align: left;
   text-align: center;
   table-layout: fixed;
   /* width: 80%; */
+  border-bottom: 1px solid gray;
   
 }
 .task_row th
@@ -692,7 +694,7 @@ padding-left:70%;
 {
   padding-top:3%;
   width:100%;
-  height:20vh;
+  /* height:11vh; */
   /* background-color: aquamarine; */
 }
 .report_rowone label 
@@ -718,33 +720,82 @@ padding-left:70%;
 }
 .report_secrow
 {
-  text-align: center;
+  /* text-align: center; */
+  padding-left:30%;
   color: grey;
-  
+ 
 }
+
 .report_secrow #FaDownload
 {
 float: left;
 }
 .icons{
-  padding-left: 90%;
- 
+  padding-left: 70%;
+  color:gray;
+  
+   /* background-color: aqua; */
+   width:100%;
+   /* height:5vh; */
   
 }
+
 .report_third
 {
-  /* background-color: aqua; */
+
   width:100%;
  
 }
 .report_third table{
   margin-left: 10%;
+  /* border:1px solid black; */
+  border-bottom: 1px solid gray;
+  /* border-top: 1px solid gray; */
+  
+  border-spacing: 50px 0;
+  width:80%;
 }
 .report_third th{
   /* border:1px solid black; */
   border-top: 1px solid gray;
   border-bottom: 1px solid gray;
+  color: gray;
+  font-weight: 100;
+  font-size: medium;
+ 
+
 }
 .report_third td{
-
+  color: gray;
+  font-weight: 100;
+  font-size: medium;
+  /* padding: 10px 0; */
+  /* padding-right:100px; */
+  width: 20%;
+}
+.fa_download
+{
+  border:1px solid black;
+  width:4%;
+  padding-top:6px;
+  padding-bottom:6px;
+}
+.dropdown
+{
+  margin-top:0rem;
+  
+}
+.dropdown li
+{
+  
+  text-align: left;
+  /* display:none;  */
+  background-color: #E9D8D8;
+  /* display: block; */
+}
+.show {
+  display:block;
+}
+.hide{
+  display: none;
 }

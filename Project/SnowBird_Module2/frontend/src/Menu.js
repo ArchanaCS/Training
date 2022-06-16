@@ -1,7 +1,15 @@
 import "./style/styles.css";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 function Menu() {
   var navigate = useNavigate();
+  const[select,setSelect]=useState(false);
+ 
+  useEffect(()=>{
+    localStorage.setItem("select1",true);
+   console.log("Select from report",select)
+  },[])
+ 
   function project() {
     navigate("/project");
   }
@@ -23,9 +31,16 @@ function Menu() {
   {
     navigate("/users")
 }
-function report()
-{
-   navigate("/report")
+function report(select2)
+{ 
+  
+   
+   navigate("/report");
+   console.log("select2",select2)
+   setSelect(true);
+   
+   //console.log("select in report",select);
+   
   
 }
 function attendance()
@@ -35,6 +50,16 @@ function attendance()
 function sprintboard()
 {
   navigate("/sprintboard")
+}
+function showlist(e)
+{
+  
+  setSelect(true);
+  e.preventDefault();
+  console.log(select)
+   console.log("stae"+select);
+   
+  console.log(select)
 }
 return(
     <>
@@ -55,10 +80,14 @@ return(
           <li onClick={task}>Tasks</li>
           <li onClick={sprint}>Sprints</li>
           <li onClick={users}>Users</li>
-          <li onClick={report} >Report</li>
-          
           <li onClick={attendance}>Attendance</li>
           <li onClick={sprintboard}>Sprint Board</li>
+          <li onClick={showlist} >Report</li>
+             <ul className="dropdown">
+              <li onClick={report} className={select?"show":"hide"} id="timesheet">TimeSheet</li>
+              </ul>
+         
+         
         </nav>
       </div>
     </>

@@ -15,9 +15,11 @@ function EditProject() {
 
     
     console.log("pid"+pid);
-    var url = "http://localhost:8000/ownerfetch";
-    var url1="http://localhost:8000/projectload";
-    var request1={"pid":pid};
+    //var url = "http://localhost:8000/ownerfetch";
+    var url="https://wc9kyrz7xi.execute-api.us-west-2.amazonaws.com/ownerfetch";
+   // var url1="http://localhost:8000/projectload";
+   var url1="https://iivyvr2ukc.execute-api.us-west-2.amazonaws.com/default/projectload";
+    var request1='{"pid":"pid"}';
     
     var header1={};
     var request = {};

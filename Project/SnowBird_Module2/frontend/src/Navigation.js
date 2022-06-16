@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Attendance from "./Attendance";
+
 import Dash from "./Dash";
 import Report from "./Report";
 import AddProject from "./AddProject";
@@ -14,6 +14,9 @@ import Menu from "./Menu";
 
 import SprintBoard from "./SprintBoard";
 
+import Attendance from "./Attendance";
+// import Attendance1 from "./Attendance1";
+
 function Navigation() {
   return (
     <div>
@@ -25,9 +28,9 @@ function Navigation() {
           <Route path="/report" element={<Report />}>
             {" "}
           </Route>
-          <Route path="/attendance" element={<Attendance />}>
+          {/* <Route path="/attendance " element={<Attendance  />}>
             {" "}
-          </Route>
+          </Route> */}
           <Route path="/project" element={<Project />}>
             {" "}
           </Route>
@@ -41,8 +44,9 @@ function Navigation() {
           <Route path="/editepic" element={<Editepic />}></Route>
           <Route path="/users" element={<Users />}></Route>
           <Route path="/menu" element={<Menu />}></Route>
-         
+          {/* <Route path="/attendance" element={<Attendance />}></Route> */}
           <Route path="/sprintboard" element={<SprintBoard />}></Route>
+          <Route path="/attendance" element={<Attendance/>}></Route>
         </Routes>
       </BrowserRouter>
     </div>

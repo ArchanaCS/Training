@@ -10,7 +10,8 @@ function AddUser() {
 
   var temp;
   useEffect(()=>{
-    var url="http://localhost:8000/userRolefetch";
+    //var url="http://localhost:8000/userRolefetch";
+    var url=" https://wu75jb9222.execute-api.us-west-2.amazonaws.com/userrolefetch";
     var req={};
     var header={};
     axios.post(url,req,header).then((res)=>{

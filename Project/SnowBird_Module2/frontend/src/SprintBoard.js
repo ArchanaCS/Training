@@ -53,7 +53,7 @@ function SprintBoard(){
             <h3 style={{color:"gray"}}>Tasks</h3>
             <table>
             <thead>
-            <th style={{width:10}}>#id</th>
+            <th style={{width:15}}>#id</th>
             <th >Task</th>
             <th>Status</th>
             <th>Epic Name</th>

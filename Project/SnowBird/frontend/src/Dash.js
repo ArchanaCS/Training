@@ -11,12 +11,16 @@ function Dash() {
   const [task, setTask] = useState([]);
   var temp;
   useEffect(() => {
-    var url = "http://localhost:8000/userfetch";
-    var request = {};
+    // var url='https://7pa5079le0.execute-api.us-west-2.amazonaws.com/default/fortesting'
+    // var url = "http://localhost:8000/userfetch";
+    var url="https://elvvu6z51m.execute-api.us-west-2.amazonaws.com/userfetch"
+    // var request = '{"text1":"hi"}';
+    var request ={};
     var header = {};
     axios
       .post(url, request, header)
       .then((res) => {
+        console.log(res.data)
         for (const element of res.data) {
           element.isSelected = true;
           setArray(res.data);
@@ -38,9 +42,10 @@ function Dash() {
   }
 
    function tasklist(id,index) {
-    var url = "http://localhost:8000/usertaskfetch";
+    // var url = " https://poqffwu8v6.execute-api.us-west-2.amazonaws.com/usertaskfetch";
+    var url="https://zrz50ev48l.execute-api.us-west-2.amazonaws.com/usertaskfetch";
     var header = {};
-    var request = { userId: id };
+    var request = '{ "userId": "id" }';
     //console.log("req" + JSON.stringify(request));
      axios
       .post(url, request, header)

@@ -11,7 +11,8 @@ function AddProject() {
   //  Dropdown for owner
   useEffect(() => {
 
-    var url = "http://localhost:8000/ownerfetch";
+   // var url = "http://localhost:8000/ownerfetch";
+   var url="https://wc9kyrz7xi.execute-api.us-west-2.amazonaws.com/ownerfetch";
     var request = {};
     var header = {};
     axios

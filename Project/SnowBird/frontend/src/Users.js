@@ -8,7 +8,8 @@ function Users() {
     const [array,setArray]=useState([]);
     const navigate=useNavigate();
     useEffect(()=>{
-      var url="http://localhost:8000/userfetchforusers";
+     // var url="http://localhost:8000/userfetchforusers";
+     var url=" https://xhbkx3swl6.execute-api.us-west-2.amazonaws.com/userfetchforusers_epic";
     var header={};
     var request={};
     axios.post(url,request,header).then((res)=>{
@@ -26,7 +27,7 @@ function newuser()
     }
     function edituser(n,name)
     {
-      console.log(n);
+      //console.log(n);
       navigate("/edituser")
       localStorage.setItem("id",n);
       localStorage.setItem("name",name);

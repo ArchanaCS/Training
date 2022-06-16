@@ -132,7 +132,7 @@ app.post('/projectinsert', function (req, res) {
     else
       //res.send(JSON.stringify(req));
       res.send(result);
-      console.log(sql);
+    console.log(sql);
   })
 })
 /* API to fetch Managers- populate dropdown list  */
@@ -163,10 +163,9 @@ app.post('/projectUpdate', function (req, res) {
 /*API to dispaly the details pf selected project*/
 app.post('/selectedproject', function (req, res) {
   var id = req.body.prjctId;
-  var sql = "SELECT tb.txtName,tb.txtType,tb.refProjectOwner ,tu.txtUserName from tblprojects tb join tblusers tu on tb.refProjectOwner=tu.id where tb.id='"+id+"';"
-  con.query(sql,function(err,result)
-  {
-    if(err)throw err;
+  var sql = "SELECT tb.txtName,tb.txtType,tb.refProjectOwner ,tu.txtUserName from tblprojects tb join tblusers tu on tb.refProjectOwner=tu.id where tb.id='" + id + "';"
+  con.query(sql, function (err, result) {
+    if (err) throw err;
     res.send(result);
   })
 })
@@ -259,7 +258,7 @@ app.post('/InsertSprint', function (req, res) {
 
   //var sql1 = "Select id from tblusers where txtUsername='" + uname + "';"
   var sql =
-    "Insert into tblsprints(txtSprintname,dtEststartdate,dtestenddate) values('" + Sname + "' ,'" +   Stdate + "','" + Enddate +  "')"
+    "Insert into tblsprints(txtSprintname,dtEststartdate,dtestenddate) values('" + Sname + "' ,'" + Stdate + "','" + Enddate + "')"
 
   con.query(sql, function (err, result) {
     if (err) throw err
@@ -276,18 +275,18 @@ app.post('/InsertSprint', function (req, res) {
 app.post('/userRolefetch', function (req, res) {
   var sql = "select id, txtUserRole from tbluserroles;"
   con.query(sql, function (err, result) {
-      if (err) throw err;
-      res.send(result);
+    if (err) throw err;
+    res.send(result);
   })
 })
 
 
 app.post('/projectload', function (req, res) {
-  var pid=req.body.pid;
-  var sql = "select tb.txtName,tb.txtType ,tu.txtUserName from tblprojects tb join  tblusers tu on tb.refProjectOwner=tu.id  where tb.id='"+pid+"';"
+  var pid = req.body.pid;
+  var sql = "select tb.txtName,tb.txtType ,tu.txtUserName from tblprojects tb join  tblusers tu on tb.refProjectOwner=tu.id  where tb.id='" + pid + "';"
   con.query(sql, function (err, result) {
-      if (err) throw err;
-      res.send(result);
+    if (err) throw err;
+    res.send(result);
   })
 })
 
@@ -299,62 +298,62 @@ app.post('/insertuser', function (req, res) {
   var sql1 = "select id from tblusers where txtUserName='" + uname + "';"
   var sql2 = "insert into tblusers(txtUserName,txtPassword,refUserRole)values('" + uname + "','" + pass + "','" + typ + "');"
   con.query(sql1, function (err, result) {
-      var a = result[0];
-      if (a != undefined) {
-          res.send("User already exist!!!");
-      }
-      else {
-          //res.send("Ready to insert values into user "+uname);
-          con.query(sql2, function (err, result) {
-              if (err) throw err;
-              res.send(result);
-          })
-      }
+    var a = result[0];
+    if (a != undefined) {
+      res.send("User already exist!!!");
+    }
+    else {
+      //res.send("Ready to insert values into user "+uname);
+      con.query(sql2, function (err, result) {
+        if (err) throw err;
+        res.send(result);
+      })
+    }
   });
 })
 
-app.post('/userupdatefetch',function(req,res){
-  usrid=req.body.id;
-   var sql="SELECT tu.txtUserName,tu.txtPassword,tr.txtUserRole,tu.refUserRole from tblusers tu join tbluserroles tr on tu.refUserRole=tr.id where tu.id='"+usrid+"';"
-  con.query(sql,function(err,result){
-     if(err)throw err;
-     res.send(result);
-   })
+app.post('/userupdatefetch', function (req, res) {
+  usrid = req.body.id;
+  var sql = "SELECT tu.txtUserName,tu.txtPassword,tr.txtUserRole,tu.refUserRole from tblusers tu join tbluserroles tr on tu.refUserRole=tr.id where tu.id='" + usrid + "';"
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    res.send(result);
+  })
 })
 
 app.post('/userupdate', function (req, res) {
   //fetch id from users where username=req username
 
   var uname = req.body.username;
-  var suname=req.body.suname;
+  var suname = req.body.suname;
   var pass = req.body.password;
   var ty = req.body.reftype;
   var uid = req.body.id;
   var sql1 = "select id from tblusers where txtUserName='" + suname + "';";
-  console.log("uname"+suname);
+  console.log("uname" + suname);
   var sql2 = "update tblusers set txtPassword='" + pass + "',txtUserName='" + uname + "' ,refUserRole='" + ty + "'where id= '" + uid + "';";
   con.query(sql1, function (err, result) {
 
-     
-      if (result.length > 0) {
-          
-          if (result[0].id == req.body.id) {
 
-              
-              con.query(sql2, function (err, result1) {
-                  if(err) throw res.send(err);
-                  res.send(result1);
-                  //console.log(result1);
-              })
+    if (result.length > 0) {
 
-          }
-        
-          else {
-             
-              res.send("Username duplicate");
-          }
+      if (result[0].id == req.body.id) {
+
+
+        con.query(sql2, function (err, result1) {
+          if (err) throw res.send(err);
+          res.send(result1);
+          //console.log(result1);
+        })
+
       }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+
+      else {
+
+        res.send("Username duplicate");
+      }
+    }
+
   });
 })
 /*****************************************EPIC PAGE********************************************************************************** */
@@ -366,76 +365,72 @@ app.post('/userfetchforusers', function (req, res) {
   })
 })
 
- app.post('/epicfecth',function(req,res){
+app.post('/epicfecth', function (req, res) {
 
   const Epic = new Promise((resolve, reject) => {
-    var sql="select te.id,te.refProjectId,te.txtTitle,te.txtStatus,tb.txtName from tblepic te join tblprojects tb where te.refProjectId=tb.id;"
-    con.query(sql,function (err, result)
-    {
-        if (err) resolve(err);
-        resolve(result);
-        //res.send(result);
-      }
+    var sql = "select te.id,te.refProjectId,te.txtTitle,te.txtStatus,tb.txtName from tblepic te join tblprojects tb where te.refProjectId=tb.id;"
+    con.query(sql, function (err, result) {
+      if (err) resolve(err);
+      resolve(result);
+      //res.send(result);
+    }
     );
   });
 
   const Task = new Promise((resolve, reject) => {
-    var sql="select id,refEpicid,txtTitle,txtStatus from tbltasks;"
-    con.query(sql,function (err, result)
-    {
-        if (err) resolve(err);
-        resolve(result);
-        //res.send(result);
-      }
+    var sql = "select id,refEpicid,txtTitle,txtStatus from tbltasks;"
+    con.query(sql, function (err, result) {
+      if (err) resolve(err);
+      resolve(result);
+      //res.send(result);
+    }
     );
   });
 
-  Promise.all([Epic,Task]).then((values) => {
+  Promise.all([Epic, Task]).then((values) => {
     var Epic = values[0];
     var Task = values[1];
-  var Epicobj = {};
-  var Taskobj = {};
-  for (element of Task) {
-    if (Taskobj[element.refEpicid] == undefined) {
-      Taskobj[element.refEpicid] = [element];
-    } else {
-      var temp =Taskobj[element.refEpicid];
-      Taskobj[element.refEpicid] = [...temp, element];
+    var Epicobj = {};
+    var Taskobj = {};
+    for (element of Task) {
+      if (Taskobj[element.refEpicid] == undefined) {
+        Taskobj[element.refEpicid] = [element];
+      } else {
+        var temp = Taskobj[element.refEpicid];
+        Taskobj[element.refEpicid] = [...temp, element];
+      }
+      //res.send(Taskobj);
+      //console.log(Taskobj);
     }
-    //res.send(Taskobj);
-    //console.log(Taskobj);
-  }
 
     for (element of Epic) {
       if (Epicobj[element.refProjectId] == undefined) {
         Epicobj[element.refProjectId] = [element];
       } else {
-        var temp =Epicobj[element.refProjectId];
-        Epicobj[element.refProjectId] =[...temp, element];
+        var temp = Epicobj[element.refProjectId];
+        Epicobj[element.refProjectId] = [...temp, element];
       }
       //res.send(Epicobj);
     }
-  //console.log(Epicobj);
-  for (element of Epic) {
-    if (Taskobj[element.id] == undefined) element.Task = [];
-    else {
-      element.Task = Taskobj[element.id];
+    //console.log(Epicobj);
+    for (element of Epic) {
+      if (Taskobj[element.id] == undefined) element.Task = [];
+      else {
+        element.Task = Taskobj[element.id];
+      }
     }
-  }
-  //console.log(Epic);
-  res.send(Epic);
-})
+    //console.log(Epic);
+    res.send(Epic);
+  })
 
 })
 
 
 /**************************************** Sprint Board *************************************************/
 
-app.post('/sprintfetch',function(req,res)
-{
-  var sql="select distinct refSprintid from tbltasks;"
-  con.query(sql,function(err,result)
-  {
+app.post('/sprintfetch', function (req, res) {
+  var sql = "select distinct refSprintid from tbltasks;"
+  con.query(sql, function (err, result) {
     if (err) throw err;
     res.send(result);
     console.log(result);
@@ -446,32 +441,64 @@ app.post('/sprintfetch',function(req,res)
 
 /**************************************** Attendance Page *********************************************/
 
-app.post('/fetchstatus',function(req,res)
-{
-  var sql="select txtStatus from tblattendance where refUname=1";
-  con.query(sql,function(err,result)
-  {
+app.post('/fetchstatus', function (req, res) {
+  var id=req.body.id;
+  var sql = "select txtstatus from tblattendance where refUserid='"+id+"' and id=(select max(id) from tblattendance where refUserid='"+id+"')group by refUserid;";
+  con.query(sql, function (err, result) {
     if (err) throw err;
     res.send(result);
-    console.log("current "+JSON.stringify(result));
-   
+    console.log("current " + JSON.stringify(result));
+
   })
 })
 
-app.post('/updatestatus',function(req,res)
-{
+app.post('/insertstatus',function(req,res){
+
+  var refuid=req.body.refid;
+  var login_time=req.body.logintime;
   var status=req.body.status;
-  console.log("status"+status);
-  var sql="update tblattendance set txtStatus='"+status+"' where refUname=1;";
-  con.query(sql,function(err,result)
-  {
-    if(err)throw err;
-    res.send(result);
-    console.log("updated"+JSON.stringify(result));
+  var sql="insert into tblattendance (refUserid,txtstatus,txtdatetime) values('"+refuid+"','"+status+"','"+login_time+"');";
+  con.query(sql,function(err,result){
 
+    if (err) throw err;
+    res.send(result);
+    console.log("insertattendance" + JSON.stringify(result));
   })
+ 
+
+
 })
+// app.post('/insertstatus_logout',function(req,res){
+
+//   var refuid=req.body.refid;
+//   var login_time=req.body.logintime;
+//   var status=req.body.status;
+//   var sql="insert into tblattendance (refUserid,txtstatus,txtdatetime) values('"+refuid+"','"+status+"','"+login_time+"');";
+//   con.query(sql,function(err,result){
+
+//     if (err) throw err;
+//     res.send(result);
+//     console.log("insertattendance" + JSON.stringify(result));
+//   })
+ 
+
+
+// })
+// app.post('/updatestatus', function (req, res) {
+//   var status = req.body.status;
+//   console.log("status" + status);
+//   var sql = "update tblattendance set txtStatus='" + status + "' where refUname=1;";
+//   con.query(sql, function (err, result) {
+//     if (err) throw err;
+//     res.send(result);
+//     console.log("updated" + JSON.stringify(result));
+
+//   })
+// })
 
 app.listen(8000, () => {
   console.log("Server is running");
 })
+
+
+

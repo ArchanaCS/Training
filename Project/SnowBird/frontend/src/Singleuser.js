@@ -6,7 +6,7 @@ function Singleuser({ items,index,getUid,SingleUserClick}){
  
    const id=items.id;
    const status=items.isSelected;
-   console.log("sts"+status);
+  //  console.log("sts"+status);
   
 
   return (

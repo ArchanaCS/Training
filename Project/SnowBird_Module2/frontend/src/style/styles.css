@@ -697,6 +697,14 @@ padding-left:70%;
   /* height:11vh; */
   /* background-color: aquamarine; */
 }
+.report_rowone select{
+  /* padding-left: 10%; */
+  margin-left: 10%;
+  color: gray;
+  border: 1px solid gray;
+  width:10%;
+  height: 3vh;
+}
 .report_rowone label 
 {
    padding-left: 10%;
@@ -762,8 +770,11 @@ float: left;
   color: gray;
   font-weight: 100;
   font-size: medium;
- 
+  width:50px;
 
+}
+.report_third .time{
+  width:150px;
 }
 .report_third td{
   color: gray;
@@ -771,7 +782,7 @@ float: left;
   font-size: medium;
   /* padding: 10px 0; */
   /* padding-right:100px; */
-  width: 20%;
+  /* width: 20%; */
 }
 .fa_download
 {

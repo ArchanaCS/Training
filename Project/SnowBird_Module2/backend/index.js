@@ -5,6 +5,11 @@ const cors = require('cors');
 // const react = require('react');
 //const { useSyncExternalStore } = require('react/cjs/react.production.min');
 app.use(cors());
+// var jsJoda = require("@js-joda/core");
+// require("@js-joda/timezone");
+var { ZoneId, ZonedDateTime } = require("@js-joda/core");
+require("@js-joda/timezone");
+
 app.use(express.json());
 var con = mysql.createConnection(
   {
@@ -44,8 +49,32 @@ app.post('/usertaskfetch', function (req, res) {
     res.send(result);
   })
 })
+// app.post('/usertaskfetch', function (req, res) {
+//   var a = req.body.id;
+//   var sql = "select txtTitle,txtStatus from tblTask where refAssignee='" + a + "'";
+//   console.log(a);
+//   con.query(sql, function (err, result) {
+//     if (err) {
+//         throw err;
+//     }else
+//     {
+//     res.send(result);
+//    console.log(result);
+//     }
+//   });
+// });
 
-
+app.post('/logtable',function(req,res){
+  var refTaskid=req.body.taskid;
+  var txtStatus=req.body.status;
+  var refUser=req.body.user;
+  var dtLoggedOn=req.body.logon;
+  var sql="insert into tbllogs(refTaskid,txtStatus,refUser,dtLoggedOn)values('"+refTaskid+"','"+txtStatus+"','"+refUser+"','"+dtLoggedOn+"');"
+  con.query(sql,function(err,result){
+    if (err)throw err;
+    res.send(result);
+  })
+})
 /***************************************PROJECT PAGE***********************************************************************************************/
 /* API to fetch project details -Project Page  */
 
@@ -466,6 +495,32 @@ app.post('/insertstatus',function(req,res){
   })
  
 
+
+})
+
+/**********************************************************Timesheet****************************************************************** */
+
+app.post('/timesheet_taskfetch',function(req,res){
+  var userid=req.body.userid;
+  var sql="select tu.txtUserName,te.txtDescription,te.txtStatus,DATE_FORMAT(te.dtActStartDate,'%Y-%m-%d %h %i %s %p')as startdate,date_format(te.dtActEndDate,'%Y-%m-%d %h %i %s %p')as enddate,te.EstHours,te.refAssignee from tbltasks te join tblusers tu on te.refAssignee=tu.id where refAssignee='"+userid+"';";
+  con.query(sql,function(err,result){
+
+    if (err) throw err;
+    // res.send(result);
+    console.log("task" + JSON.stringify(result));
+    res.send(result);
+    var date = result[0].dtActStartDate;
+
+    var dateTime = ZonedDateTime.parse(date);
+    console.log(dateTime);
+    //  result = dateTime.withZoneSameInstant(ZoneId.of("//desired zone id")).format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss a"));
+
+
+   
+
+
+    // console.log(dateTime);
+  })
 
 })
 // app.post('/insertstatus_logout',function(req,res){

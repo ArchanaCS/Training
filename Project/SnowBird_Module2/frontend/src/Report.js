@@ -2,13 +2,35 @@ import Menu from "./Menu";
 import { FaDownload } from "react-icons/fa";
 import { FiRefreshCw } from "react-icons/fi";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 function Report() {
-  
-  const[abc,setSelect]=useState(true);
-  // var select=localStorage.getItem("select1");
-  // setSelect(select);
-  // console.log("select",select)
+  const[taskdetails,setTaskDetails]=useState([]);
+  const[user,setUser]=useState([]);
+  const[uid,setUid]=useState("");
+  useEffect(()=>{
+    var url_u="http://localhost:8000/userfetch";
+    var request={};
+    var header={};
+    axios.post(url_u,request,header).then((res)=>{
+      console.log(res.data);
+      var temp=res.data;
+      console.log("temp",temp);
+      setUser(temp);
+    }).catch()
+  },[])
+ 
+  function fetchtask()
+  {
+          var url="http://localhost:8000/timesheet_taskfetch";
+          var request={userid:uid};
+          var header={};
+          console.log("request"+JSON.stringify(request));
+          axios.post(url,request,header).then((res)=>{
+            console.log("response"+JSON.stringify(res.data));
+            setTaskDetails(res.data);
+          }).catch()
+  }
   return (
     <>
       <div className="outer">
@@ -18,14 +40,22 @@ function Report() {
           {/* Main outline */}
           <div className="secondcolumn">
           <div className="report_rowone">
-            <label style={{color:'gray'}}>Parameter</label>
+            <label style={{color:'gray'}}>UserName</label>
             <br></br>
-            <input type="textbox" />
-            <button>OK</button>
+            {/* <input type="textbox" /> */}
+            <select onChange={(e) => {setUid(e.target.value) }}>
+            {/* <option>--options---</option> */}
+            {user.map((item,index)=>{
+              return<>
+                <option value={item.id}>{item.txtUserName}</option>
+                </>
+            })}
+             </select>
+            <button onClick={fetchtask}>OK</button>
           </div>
 
           <div className="report_secrow">
-            <h1>Sample Report</h1>
+            <h1>TimeSheet</h1>
             <h3>Parameters Passed-<label style={{fontWeight:'100',fontSize:'medium'}}>One:One,Two</label></h3>
             
           </div>
@@ -44,12 +74,25 @@ function Report() {
              <th>AssignedTo</th>
             <th>Status</th>
             <th>EstimatedHours</th>
-            <th>ActualFrom</th>
-            <th>ActualTo</th>
+            <th className="time" >ActualFrom</th>
+            <th className="time" >ActualTo</th>
             <th>ActualHours</th>
             </thead>
             <tbody>
-              <tr>
+              {taskdetails.map((item,index)=>{
+                return<>
+                <tr>
+                  <td>{item.txtDescription}</td>
+                  <td>{item.txtUserName}</td>
+                  <td>{item.txtStatus}</td>
+                  <td>{item.EstHours}</td>
+                  <td>{item.startdate}</td>
+                  <td>{item.enddate}</td>
+                  <td></td>
+                </tr>
+                </>
+              })}
+              {/* <tr>
                 <td>LoginPage</td>  
                 <td>Ajay</td>
                 <td>InProgress</td>
@@ -57,7 +100,7 @@ function Report() {
                 <td>2022-04-21</td>
                 <td>2022-05-10</td>
                 <th>45</th>
-                </tr>
+                </tr> */}
                
             </tbody>
             </table>

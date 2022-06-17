@@ -14,21 +14,21 @@ function EditUser() {
   // console.log("id"+id);
   useEffect(()=>{
     //alert("hi");
-   // var url="http://localhost:8000/userupdatefetch";
-   var url=" https://8owucr0eu2.execute-api.us-west-2.amazonaws.com/userupdatefetch";
+    var url="http://localhost:8000/userupdatefetch";
+  //  var url=" https://8owucr0eu2.execute-api.us-west-2.amazonaws.com/userupdatefetch";
     var header={};
     setId(id);
     //setUname(nme);
-    var request='{"id":"id"}';
+    var request={"id":id};
   
     axios.post(url,request,header).then((res)=>{
-        //  console.log("res"+JSON.stringify(res.data));
+         console.log("res"+JSON.stringify(res.data));
          setArray(res.data);
        
           setUname(res.data[0].txtUserName);
          
           setPw(res.data[0].txtPassword);
-       
+         console.log(pw);
           setRole(res.data[0].txtUserRole);
 
           setRole(res.data[0].refUserRole);

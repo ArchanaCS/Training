@@ -22,7 +22,7 @@ function Navigation() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Dash />}>
+          <Route path="/" element={<Dash/>}>
             {" "}
           </Route>
           <Route path="/report" element={<Report />}>

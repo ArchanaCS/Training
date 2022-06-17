@@ -43,7 +43,7 @@ app.post('/userfetch', function (req, res) {
 
 app.post('/usertaskfetch', function (req, res) {
   var uid = req.body.userId;
-  var sql = "select txtTitle,txtStatus from tbltasks where refAssignee='" + uid + "';"
+  var sql = "select id,txtTitle,txtStatus from tbltasks where refAssignee='" + uid + "';"
   con.query(sql, function (err, result) {
     if (err) throw err;
     res.send(result);

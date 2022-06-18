@@ -93,7 +93,7 @@ function Project() {
                       <>
                         {/* <tr key={item.id}></tr> */}
                         {/* <td className="right constant"></td> */}
-                        <tr className="project">
+                        <tr className="project"  >
                           <td>
                             {item.isExpaned ? (
                               <FaAngleDown
@@ -101,11 +101,11 @@ function Project() {
                               />
                             ) : (
                               <FaAngleRight
-                                onClick={(e) => handleExpand(e, item, index)}
+                                onClick={(e) => handleExpand(e, item, index)} 
                               />
                             )}
                           </td>
-                          <td className="constant" value={item.id} onClick={() => { editproject(item.id); }}
+                          <td className="constant" onClick={() => { editproject(item.id); }} value={item.id} 
                           >
                             {item.id}
                           </td>

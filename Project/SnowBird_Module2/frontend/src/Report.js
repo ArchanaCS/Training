@@ -44,8 +44,9 @@ function Report() {
             <br></br>
             {/* <input type="textbox" /> */}
             <select onChange={(e) => {setUid(e.target.value) }}>
-            {/* <option>--options---</option> */}
+            <option>--options---</option>
             {user.map((item,index)=>{
+              // <option>--Options----</option>
               return<>
                 <option value={item.id}>{item.txtUserName}</option>
                 </>

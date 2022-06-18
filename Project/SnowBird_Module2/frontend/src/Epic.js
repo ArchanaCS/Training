@@ -66,10 +66,10 @@ function editepic()
                   {array.map((item, index) => {
                     return (
                       <>
-                        <tr 
-                          onClick={(e) => {
-                            handleClick(e, index);
-                          }}
+                        <tr  onClick={(e) => {
+  handleClick(e, index);
+}}
+                          
                         >
                           <td>
                             {item.isClicked? (

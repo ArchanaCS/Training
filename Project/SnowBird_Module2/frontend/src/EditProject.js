@@ -8,6 +8,7 @@ function EditProject() {
   const [type, setTextType] = useState("");
   const [owner, setRefOwner] = useState("3");
   const [pdetails,setPdetails]=useState([]);
+  const[desc,setDesc]=useState("");
   var pid;
   var pid=localStorage.getItem("Id");
  
@@ -38,6 +39,7 @@ function EditProject() {
       axios.post(url1,request1,header1).then((res)=>{
         console.log(res.data);
         setPdetails(res.data);
+        
 
       }).catch();
 
@@ -45,7 +47,7 @@ function EditProject() {
   function updateproject()
   {
     var url = "http://localhost:8000/projectUpdate";
-    var request = { prjctname: name, prjcttype: type, refowner: owner ,id:pid};
+    var request = { prjctname: name, prjcttype: type, refowner: owner ,id:pid,desc:desc};
     console.log("owner :" + JSON.stringify(owner));
     console.log("id :" + JSON.stringify(pid));
     var header = {};
@@ -93,7 +95,12 @@ function EditProject() {
                <div className="descriptiion">
                    <label>Description</label><br></br>
                    {/* <textarea/> */}
-                   <input type="text"/>
+                   {pdetails.map((item,index)=>{
+                    return<>
+                          <input type="text" defaultValue={item.txtDescription } onChange={(e) => { setDesc(e.target.value)}}/>
+                    </>
+                   })}
+                   
                </div>
   
                <div className="typerow">

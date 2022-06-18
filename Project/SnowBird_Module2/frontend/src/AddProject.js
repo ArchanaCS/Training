@@ -7,7 +7,7 @@ function AddProject() {
   const [name, setTextName] = useState("");
   const [type, setTextType] = useState("");
   const [owner, setRefOwner] = useState("");
-
+  const[descri,setDescri]=useState("");
   //  Dropdown for owner
   useEffect(() => {
 
@@ -77,7 +77,7 @@ function AddProject() {
                 <label>Description</label>
                 <br></br>
                 {/* <textarea/> */}
-                <input type="text" />
+                <input type="text" onChange={(e) => { setDescri(e.target.value) }} />
               </div>
 
               <div className="typerow">

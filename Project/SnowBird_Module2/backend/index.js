@@ -73,6 +73,7 @@ app.post('/logtable',function(req,res){
   con.query(sql,function(err,result){
     if (err)throw err;
     res.send(result);
+    console.log(sql)
   })
 })
 /***************************************PROJECT PAGE***********************************************************************************************/
@@ -137,7 +138,7 @@ app.post('/projectdetailfetch', function (req, res) {
     });
 
     console.log(JSON.stringify(project));
-    res.send(project);
+    res.send(sql);
 
   })
 
@@ -152,10 +153,11 @@ app.post('/projectinsert', function (req, res) {
   var txtName = req.body.name;
   var txtType = req.body.type;
   var refProjectOwner = req.body.owner;
+  var desc=req.body.desc;
   // var dtEstStartDate = req.body.stdate;
   // var dtEstEndDate = req.body.endate;
 
-  var sql = "insert into tblprojects(txtName,txtType,refProjectOwner)values('" + txtName + "','" + txtType + "','" + refProjectOwner + "');";
+  var sql = "insert into tblprojects(txtName,txtType,refProjectOwner,txtDescription)values('" + txtName + "','" + txtType + "','" + refProjectOwner + "','"+desc+"');";
   con.query(sql, function (err, result) {
     if (err) throw err;
     else
@@ -182,7 +184,8 @@ app.post('/projectUpdate', function (req, res) {
   var ptype = req.body.prjcttype;
   var owner = req.body.refowner;
   var prjctid = req.body.id;
-  var sql = "update tblprojects set txtName='" + pname + "', txtType='" + ptype + "',refProjectOwner='" + owner + "' where id='" + prjctid + "' ;;"
+  var desc=req.body.desc;
+  var sql = "update tblprojects set txtName='" + pname + "', txtType='" + ptype + "',refProjectOwner='" + owner + "',txtDescription='"+desc+"' where id='" + prjctid + "' ;;"
   con.query(sql, function (err, result) {
     if (err) throw err;
     res.send(result);
@@ -312,7 +315,7 @@ app.post('/userRolefetch', function (req, res) {
 
 app.post('/projectload', function (req, res) {
   var pid = req.body.pid;
-  var sql = "select tb.txtName,tb.txtType ,tu.txtUserName from tblprojects tb join  tblusers tu on tb.refProjectOwner=tu.id  where tb.id='" + pid + "';"
+  var sql = "select tb.txtName,tb.txtType ,tu.txtUserName,tb.txtDescription from tblprojects tb join  tblusers tu on tb.refProjectOwner=tu.id  where tb.id='" + pid + "';"
   con.query(sql, function (err, result) {
     if (err) throw err;
     res.send(result);
@@ -509,14 +512,7 @@ app.post('/timesheet_taskfetch',function(req,res){
     // res.send(result);
     console.log("task" + JSON.stringify(result));
     res.send(result);
-    var date = result[0].dtActStartDate;
-
-    var dateTime = ZonedDateTime.parse(date);
-    console.log(dateTime);
-    //  result = dateTime.withZoneSameInstant(ZoneId.of("//desired zone id")).format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss a"));
-
-
-   
+       
 
 
     // console.log(dateTime);

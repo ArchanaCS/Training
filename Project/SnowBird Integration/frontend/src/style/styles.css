@@ -954,3 +954,65 @@ color:gray ;
   width:70%;
     height: 5vh;
 }
+.Container {
+  height: 100vh;
+  width: 100%;
+  background-color: white;
+  float: left;
+  padding: 0%;
+}
+.Outerdiv {
+  margin-top: 50px;
+  margin-left: 10px;
+  height: 60vh;
+  width: 20%;
+  background-color: lightgray;
+  float: left;
+  padding-top: 10px;
+  border-radius: 10px;
+  border: end start radius 50px;
+  border-style: solid;
+}
+.outerdiv.label {
+  margin-left: 20px;
+}
+.Username {
+  margin-left: 10px;
+  width: 80%;
+  height: 10vh;
+  padding-bottom: 1px;
+}
+.Username input {
+  width: 100%;
+}
+.Password {
+  margin-left: 10px;
+  width: 100%;
+  height: 10vh;
+  padding-bottom: 5px;
+}
+.Password input {
+  width: 80%;
+}
+
+.Newuser {
+  width: 80%;
+  color: blue;
+  height: 10vh;
+  float: left;
+  margin-left: 10px;
+  background-color: lightgrey;
+}
+.Newuser:hover {
+  color: blue;
+}
+.Login {
+  width: 100%;
+  height: 5vh;
+  float: left;
+  margin-left: 10px;
+  padding-top: 10px;
+}
+.Login button {
+  background-color: lightsteelblue;
+}

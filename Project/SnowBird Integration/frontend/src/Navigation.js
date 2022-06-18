@@ -20,6 +20,7 @@ import AddTask from "./AddTask";
 import EditEpic from "./EditEpic";
 import AddEpic from "./AddEpic";
 import EditTask from "./EditTask";
+import LoginPage from "./LoginPage";
 // import Attendance1 from "./Attendance1";
 
 function Navigation() {
@@ -27,7 +28,7 @@ function Navigation() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Dash/>}>
+          <Route path="/dash" element={<Dash/>}>
             {" "}
           </Route>
           <Route path="/report" element={<Report />}>
@@ -42,6 +43,7 @@ function Navigation() {
           <Route path="/addproject" element={<AddProject />}>
             {" "}
           </Route>
+          <Route path="/" element={<LoginPage/>}></Route>
           <Route path="/editproject" element={<EditProject />}></Route>
           <Route path="/epic" element={<Epic />}></Route>
           <Route path="/edituser" element={<EditUser />}></Route>

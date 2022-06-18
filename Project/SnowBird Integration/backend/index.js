@@ -630,6 +630,30 @@ var hrs=req.body.EstHours;
     }
   });
 });
+
+
+/***********************************LOGIN****************************************************** */
+app.post('/uservalidation', function (req, res) {
+  var a = req.body.txtUserName;
+  var b = req.body.txtPassword;
+
+
+  var sql =
+    "SELECT IFNULL((SELECT  refUserRole from tblusers where txtUserName ='" +
+    a +
+    "' AND txtPassword ='" +
+    b +
+    "'),0) AS VAL";
+    con.query(sql, function (err, result) {
+        if (err) {
+            throw err;
+          } else {
+            console.log(result);
+            res.send(result);
+          }
+        });
+      
+});
 app.listen(8000, () => {
   console.log("Server is running");
 })

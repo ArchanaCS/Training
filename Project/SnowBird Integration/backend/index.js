@@ -301,6 +301,16 @@ app.post('/InsertSprint', function (req, res) {
 })
 
 
+app.post('/fetchuser', function (req, res) {
+  var sql = ' select id,txtUserName,txtPassword from tblusers'
+
+  con.query(sql, function (err, result) {
+    if (err) throw err
+    else {
+      res.send(result)
+    }
+  })
+})
 /*****************************************  ADD USER  **************************************************************** */
 /* API for fetchUserRole-- populate dropdown*/
 
@@ -518,6 +528,18 @@ app.post('/sprintfetch_task', function (req, res) {
   });
 });
 
+
+app.post('/fetchsprintlist', function (req, res) {
+  var sql =
+    ' select id,txtSprintName,dtActStartDate,dtActEndDate from tblsprints'
+
+  con.query(sql, function (err, result) {
+    if (err) throw err
+    else {
+      res.send(result)
+    }
+  })
+})
 /**************************************** Attendance Page *********************************************/
 
 app.post('/fetchstatus', function (req, res) {

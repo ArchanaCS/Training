@@ -21,6 +21,7 @@ import EditEpic from "./EditEpic";
 import AddEpic from "./AddEpic";
 import EditTask from "./EditTask";
 import LoginPage from "./LoginPage";
+import Sprint from "./Sprint";
 // import Attendance1 from "./Attendance1";
 
 function Navigation() {
@@ -58,6 +59,7 @@ function Navigation() {
           <Route path="/addtask" element={<AddTask/>}></Route>
           <Route path="/addepic" element={<AddEpic/>}></Route>
           <Route path="/edittask" element={<EditTask/>}></Route>
+          <Route path="/sprint" element={<Sprint/>}></Route>
         </Routes>
       </BrowserRouter>
     </div>

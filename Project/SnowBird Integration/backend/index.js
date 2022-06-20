@@ -311,6 +311,22 @@ app.post('/fetchuser', function (req, res) {
     }
   })
 })
+
+
+app.post('/sprintdetails', function (req, res) {
+  var Sid = req.body.Id
+  var sql =
+    "select txtSprintname,Description,txtUsername,Status,dtActstartdate,dtActenddate from tblsprints where Id='" +
+    Sid +
+    "';"
+
+  con.query(sql, function (err, result) {
+    if (err) throw err
+    else {
+      res.send(result)
+    }
+  })
+})
 /*****************************************  ADD USER  **************************************************************** */
 /* API for fetchUserRole-- populate dropdown*/
 
@@ -501,6 +517,18 @@ app.post("/updateEpic", function (req, res) {
 
 /**************************************** Sprint Board *************************************************/
 
+
+app.post('/sprintboardfetch', function (req, res) {
+  var sql = " select distinct refSprintId from tbltask";
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    res.send(result);
+    console.log(result);
+  })
+
+})
+
+
 app.post('/sprintfetch', function (req, res) {
   var sql = "select distinct refSprintid from tbltasks;"
   con.query(sql, function (err, result) {
@@ -628,6 +656,32 @@ app.post('/fetchtask', function (req, res) {
     else {
       res.send(result)
       console.log(result)
+    }
+  })
+})
+
+app.post('/fetchtask', function (req, res) {
+  
+  var sql ="select ta.id,ta.txtTitle,ta.txtStatus,ep.txtTitle as epicname,pr.txtName from ((tbltasks ta join tblepic ep on ta.refEpicid=ep.id)join tblprojects pr on pr.id=ep.refProjectId) order by ta.id asc;"
+    
+
+  con.query(sql, function (err, result) {
+    if (err) throw err
+    else {
+      res.send(result)
+      console.log(result)
+    }
+  })
+})
+app.post('/taskdetails', function (req, res) {
+  var tid = req.body.id;
+  var sql =
+    "select ta.txtTitle,ta.txtDescription,ta.txtStatus,ta.EstHours,tu.txtUserName from(tbltasks ta join tblusers tu on ta.refAssignee=tu.id)  where ta.id='"+tid+"';";
+
+  con.query(sql, function (err, result) {
+    if (err) throw err
+    else {
+      res.send(result)
     }
   })
 })

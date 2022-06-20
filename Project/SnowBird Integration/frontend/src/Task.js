@@ -10,7 +10,8 @@ function Task() {
   function handleClick() {
     navigate('/AddTask')
   }
-  function newClick() {
+  function newClick(id) {
+    localStorage.setItem('taskid',id)
     navigate('/EditTask')
   }
 
@@ -60,8 +61,8 @@ function Task() {
               {taskarray.map((item, index) => {
                 return (
                   <>
-                    <tr onClick={newClick}>
-                      <td>{item.id}</td>
+                     <tr onClick={()=>newClick(item.id)}>
+                     <td className="tbdata">{item.id}</td>
                       <td>{item.txtTitle}</td>
                       <td>{item.txtStatus}</td>
                       <td>{item.epicname}</td>

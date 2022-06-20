@@ -12,42 +12,70 @@ function EditTask() {
   const [description, setDescription] = useState([]);
   const [status, setStatus] = useState([]);
   const [hours, setHours] = useState(" ");
+  const [id,setId]=useState("");
+  const [taskdetail,setTaskDetail]=useState([]);
+  const[username,setUserName]=useState("");
   useEffect(() => {
-    var url = "http://localhost:8000/userfetch";
-    var request = {};
-    var header = {};
+    var tempid = localStorage.getItem('taskid')
+    setId(tempid);
+    var url="http://localhost:8000/taskdetails";
+    var request={id:tempid};
+    console.log(request);
+    var header={};
     axios
-      .post(url, request, header)
+    .post(url,request,header)
+    .then((res)=>{
+      
+      console.log("aaa"+JSON.stringify(res.data));
+      setTaskDetail(res.data);
+
+      setTitle(res.data[0].txtTitle);
+      setDescription(res.data[0].txtDescription);
+      setStatus(res.data[0].txtStatus);
+      setUserName(res.data[0].txtUserName);
+      setHours(res.data[0].EstHours);
+      
+      
+    })
+    .catch();
+
+    var url1 = "http://localhost:8000/userfetch";
+    var request1 = {id:tempid};
+    var header1 = {};
+    axios
+      .post(url1, request1, header1)
       .then((res) => {
         console.log(res.data);
         setUser(res.data);
+        console.log(tempid)
       })
+      
       .catch();
-  }, []);
-  useEffect(() => {
-    var url = "http://localhost:8000/sprintfetch";
-    var request = {};
-    var header = {};
+
+      var url2 = "http://localhost:8000/sprintfetch";
+      var request2 = {id:tempid};
+      var header2 = {};
+      axios
+        .post(url2, request2, header2)
+        .then((res) => {
+          console.log(res.data);
+          setSprint(res.data);
+        })
+        .catch();
+
+        var url3 = "http://localhost:8000/Epiclistfetch";
+    var request3 = {id:tempid};
+    var header3 = {};
     axios
-      .post(url, request, header)
-      .then((res) => {
-        console.log(res.data);
-        setSprint(res.data);
-      })
-      .catch();
-  }, []);
-  useEffect(() => {
-    var url = "http://localhost:8000/Epiclistfetch";
-    var request = {};
-    var header = {};
-    axios
-      .post(url, request, header)
+      .post(url3, request3, header3)
       .then((res) => {
         console.log(res.data);
         setEpic(res.data);
       })
       .catch();
   }, []);
+
+
   function handleClick(e) {
     console.log("hi");
     var url = "http://localhost:8000/Taskinsert";      
@@ -82,28 +110,30 @@ function EditTask() {
             </div>
             <div className="seccolumsecondrow">
               <div className="titleinput">
-                <lable>Title</lable><br></br>
-                <input  type="text"></input>
+                <label>Title</label><br></br>
+                <input  type="text" value={title}></input>
               </div>
               <br></br>
               <div>
-                <label className="titleinput">
+                <label className="titleinput" >
                    Description
                 </label><br></br>
-                <input className="descriptioninput" type="text"></input>
+                <input className="descriptioninput" type="text" value={description}></input>
               </div>
 <br></br>
 <div className="statusin">
                 <label className="lb1">Status</label> <label className="lb2">Estimated Hours</label>
                 <br></br>
-                <select className="select1" id="status-select">
-                  <option value="">-- option--</option>
+                <select className="select1" value={status} onChange={(e) => {
+                    setStatus(e.target.value);
+                  }}id="status-select">
+                  
                   <option value="ToDo">ToDo</option>
-                  <option value="InProgress">InProgress</option>
-                  <option value="Review">Review</option>
-                  <option value="Complete">Complete</option>
+                  <option value="InProgress">InProgress</option> 
+                   <option value="Review">Review</option> 
+                   <option value="Complete">Complete</option>
                 </select>
-                <input type="text" onSelect={(e) => {
+                <input type="text"value={hours} onChange={(e) => {
                     setHours(e.target.value);
                   }}></input>
               </div>
@@ -111,7 +141,7 @@ function EditTask() {
               <div className="assignuser">
                 <label>Assigned to</label>
                 <br></br>
-                <select
+                <select 
                   onSelect={(e) => {
                     setUser(e.target.value);
                   }}

@@ -18,24 +18,36 @@ const Attendance = () => {
     console.log("id for status", request);
     var header = {};
     axios
-      .post(url, request, header)
-      .then((res) => {
-        console.log("current" + JSON.stringify(res.data));
-
-        if (res.data.txtstatus != null) {
-          if (res.data.txtstatus != "login") {
-            document.getElementById("login").disabled = true;
-            document.getElementById("logout").disabled = false;
-            
-          } else if (res.data.txtstatus != "logout") {
-            document.getElementById("login").disabled = true;
-            document.getElementById("logout").disabled = false;
+    .post(url, request, header)
+    .then((res) => {
+      console.log("current" + JSON.stringify(res.data[0].txtstatus));
+      var temp=JSON.stringify(res.data);
+      var sta=res.data[0].txtstatus
+      console.log("t-->",sta)
+            // setStatus(res.data.txtstatus)
+           if(temp!=null)
+           {
+            if(sta!="login")
+            {
+              console.log("sta-logn ",sta)
+              document.getElementById("login").disabled = false;
+              document.getElementById("logout").disabled =true;      
+            }
+            else if(sta!="logout")
+            {
+              console.log("sta",sta)
+              document.getElementById("login").disabled = true;
+              document.getElementById("logout").disabled = false; 
+              
+            }
           }
-        } else {
-          document.getElementById("login").disabled = false;
-          document.getElementById("logout").disabled = true;
-        }
-      })
+          else
+          {
+            console.log("sta",sta)
+            document.getElementById("login").disabled = false;
+            document.getElementById("logout").disabled = true;  
+          }
+        })
       .catch();
   }, []);
 

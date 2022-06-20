@@ -10,7 +10,7 @@ const Attendance = () => {
   const [status, setStatus] = useState("");
 
   useEffect(() => {
-    var id = 16;
+    var id = 1;
     setId(id);
     console.log("id", id);
     var url = "http://localhost:8000/fetchstatus";
@@ -20,28 +20,55 @@ const Attendance = () => {
     axios
       .post(url, request, header)
       .then((res) => {
-        console.log("current" + JSON.stringify(res.data));
-
-        if (res.data.txtstatus != null) {
-          if (res.data.txtstatus != "login") {
-            document.getElementById("login").disabled = false;
-            document.getElementById("logout").disabled = true;
-          } else if (res.data.txtstatus != "logout") {
-            document.getElementById("login").disabled = true;
-            document.getElementById("logout").disabled = false;
-          }
-        } else {
-          document.getElementById("login").disabled = false;
-          document.getElementById("logout").disabled = true;
-        }
+        console.log("current" + JSON.stringify(res.data[0].txtstatus));
+        var temp=JSON.stringify(res.data);
+        var sta=res.data[0].txtstatus
+        console.log("t-->",sta)
+              // setStatus(res.data.txtstatus)
+             if(temp!=null)
+             {
+              if(sta!="login")
+              {
+                console.log("sta-logn ",sta)
+                document.getElementById("login").disabled = false;
+                document.getElementById("logout").disabled =true;      
+              }
+              else if(sta!="logout")
+              {
+                console.log("sta",sta)
+                document.getElementById("login").disabled = true;
+                document.getElementById("logout").disabled = false; 
+                
+              }
+            }
+            else
+            {
+              console.log("sta",sta)
+              document.getElementById("login").disabled = false;
+              document.getElementById("logout").disabled = true;  
+            }
+          // if (res.data.txtstatus != "login") {
+          //   console.log("hi")
+          //   document.getElementById("login").disabled = true;
+          //   document.getElementById("logout").disabled = false;
+          // } else if(res.data.txtstatus=="login") {
+          //   console.log("hello")
+          //   document.getElementById("login").disabled = true;
+          //   document.getElementById("logout").disabled = false;
+          // }
+         
+          
+        
       })
       .catch();
+     
   }, []);
 
   const disablefirst = () => {
     document.getElementById("login").disabled = true;
     document.getElementById("logout").disabled = false;
-
+    
+    
     var formattedDate = Moment(new Date()).format("YYYY-MM-DD hh:mm:ss ");
     console.log(formattedDate);
 
@@ -50,8 +77,8 @@ const Attendance = () => {
     // console.log("status", status);
     // console.log("dat", datetime);
     var url = "http://localhost:8000/insertstatus";
-    var request = { refid: id, status: "login", logintime: formattedDate };
-    console.log("req", JSON.stringify(request));
+    var request = { refid: id, status:"login", logintime: formattedDate };
+    console.log("req_login", JSON.stringify(request));
     var header = {};
     axios
       .post(url, request, header)
@@ -64,7 +91,7 @@ const Attendance = () => {
   function disablesecond() {
     document.getElementById("logout").disabled = true;
     document.getElementById("login").disabled = false;
-
+    // // setStatus("logout")
     var formattedDate = Moment(new Date()).format("YYYY-MM-DD hh:mm:ss ");
     console.log(formattedDate);
     var url = "http://localhost:8000/insertstatus";

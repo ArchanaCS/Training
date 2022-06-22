@@ -1,0 +1,22 @@
+.body
+{
+    background-color: black;
+}
+.main_div
+{
+    width:100%;
+    display: flex;
+    
+}
+.main_div .first_col
+{
+    width:70%;
+    background-color: bisque;
+    display: flex;
+    
+}
+.main_div .sec_col
+{
+   background-color: aqua;
+   width:30%;
+}

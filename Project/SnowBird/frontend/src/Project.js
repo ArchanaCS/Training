@@ -8,8 +8,9 @@ function Project() {
   const navigate = useNavigate();
   const [array, setArray] = useState([]);
   const [id, setPrjctId] = useState({});
-  var url = "http://localhost:8000/projectdetailfetchNew";
-  var request = { poid: 4 };
+  // var url = "http://localhost:8000/projectdetailfetchNew";
+  var url="https://vrwxcu8r03.execute-api.us-west-2.amazonaws.com/default/projectfetch"
+  var request = { "poid": "4" };
   var header = {};
   useEffect(() => {
     axios

@@ -11,8 +11,6 @@ var con = mysql.createConnection(
 
      });
 
-app.post('/test', function (req, res) 
-{
      con.connect(function (err) 
      {
           if (err) 
@@ -23,6 +21,10 @@ app.post('/test', function (req, res)
           {
                console.log("Connected");
           }
+     })
+app.post('/test', function (req, res) 
+{
+    
           var sql = "select id,StdName,district from tblstudentdetail;";
 
           con.query(sql, function (err, result) 
@@ -40,7 +42,7 @@ app.post('/test', function (req, res)
                }
 
           });
-     })
+     
 })
      app.listen(8080, () => 
      {

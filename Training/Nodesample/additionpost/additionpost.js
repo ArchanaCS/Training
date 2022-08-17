@@ -5,8 +5,9 @@ const port = 8080
 app.post('/addition', (req, res) =>{
     var a=10;
     var b=6;
-   var c =10+6; 
+   var c =a+b; 
    res.send('addition!'+c)
+   console.log("a",a)
 })
 app.post('/subtraction', (req, res) =>{
    var a=10;

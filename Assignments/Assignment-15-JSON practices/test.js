@@ -48,3 +48,8 @@ console.log("Id of Manu  : " +Student[2]["id"]);
 
 console.log( "{" +Student[0]["id"]+"," +Student[0]["name"]+"," +Student[0]["dob"]+"," +Student[0]["mark"]+"}");
 
+
+
+https://github.com/ArchanaCS/SnowBirdFinal.git
+
+https://stackoverflow.com/questions/68497926/how-can-i-fix-failing-to-load-resource-status-404-github-pages

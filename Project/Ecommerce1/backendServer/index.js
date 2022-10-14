@@ -52,20 +52,15 @@ app.post("/uservalidate", function (req, res) {
   console.log(sql);
   con.query(sql, function (err, result) {
     console.log(result.length);
-    if (result.length > 0) {
-      console.log("result  " + JSON.stringify(result));
-      const usr = result[0];
-      console.log("usr  " + JSON.stringify(usr));
-      jwt.sign({ user: usr }, "secretkey", (err, token) => {
-        console.log("error=>" + err);
-        console.log("toke=>" + token);
-        if (err) res.send(err);
-        res.json({ token: token });
-        //console.log("token  "+token);
-      });
-    } else {
-      res.json({ token: "" });
+   if(result.length>0)
+   {
+    console.log("result is",JSON.parse(result[0]))
+    const usr=result[0];
+    jwt.sign({user:usr}),'secret key',(err,token)=>{
+      if(err)
+
     }
+   }
 
     // res.send(result);
 

@@ -1,0 +1,21 @@
+{
+  "name": "temp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --exec \"sls offline start\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jsonwebtoken": "^8.5.1",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.20",
+    "serverless-middleware": "^3.0.0"
+  },
+  "devDependencies": {
+    "serverless-offline": "^11.1.2"
+  }
+}

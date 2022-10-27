@@ -29,12 +29,9 @@ module.exports.login = async (event) => {
     "'";
   console.log("uname:", sql);
   let result = await new Promise((resolve, reject) => {
-    console.log("step2");
     con.query(sql, function (err, result) {
-      console.log("step3");
       if (err) resolve(err);
       else {
-        console.log("step4");
         token = jwt.sign(JSON.stringify(result), "secretkey");
         console.log(token);
         resolve(token);

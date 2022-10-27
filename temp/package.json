@@ -1,0 +1,24 @@
+{
+  "name": "temp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "deploy": "npx sls deploy",
+    "start": "nodemon --exec \"sls offline start\"",
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^29.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.20",
+    "querystring": "^0.2.1",
+    "serverless-middleware": "^3.0.0"
+  },
+  "devDependencies": {
+    "serverless-offline": "^11.1.2"
+  }
+}

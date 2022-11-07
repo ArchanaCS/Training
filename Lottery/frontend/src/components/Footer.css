@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@100&display=swap');
+.footer_outer{
+    width: 100%;
+    /* background-color: yellow; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction:row;
+    padding: 10px;  
+    border-radius: 5px;
+    /* box-shadow: 0px 8px 8px -4px lightblue;
+    border-bottom: 1px solid lightblue; */
+    box-shadow: -1px -8px 8px -4px lightblue;
+    border-top: 1px solid lightblue;
+
+   
+}
+.footer_col{
+    width: 10%;
+    display: flex;
+}
+.footer_col label{
+    width: 100%;
+    text-align: center;
+    color: grey;
+    /* color: black; */
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px
+}
+
+.footer_col label:hover{
+    /* color: #FB4997; */
+    color: black;
+    
+    
+}

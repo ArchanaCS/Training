@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@100&display=swap');
+
+.LotteryUnits_outer{
+    width: 70%;
+    background-color: rgb(242, 242, 152);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    /* border: 0.2px solid lightblue; */
+    margin-bottom: 20px;
+    border-radius: 8px;
+    /* box-shadow: 0px 0px 8px 1px rgb(190, 190, 190); */
+    box-shadow: 0px 8px 8px -4px lightblue;
+    border-bottom: 1px solid lightblue;
+
+    
+}
+.LotteryUnits_col11{
+    width: 70%;
+    /* background-color: rgb(123, 123, 47); */
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction:column ;
+}
+.LotteryUnits_sell{
+    width:70%;
+    height: 15vh;
+    background-color: rgb(42, 148, 228);
+    border-radius: 8px;
+    margin-top: 20px;
+    margin-left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border-right: .8px solid lightblue;; */
+    padding: 20px;
+}
+.LotteryUnits_sell label{
+    width: 100%;
+    text-align: center;
+    color:rgb(235, 51, 201);
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 15px;
+}
+
+
+.LotteryUnits_date{
+    width: 30%;
+    background-color: rgb(20, 119, 196);
+    border-radius: 8px;
+    display: flex;
+    justify-content:right;
+   
+    /* align-items: right; */
+    margin-left:60vh;
+    padding: 15px;
+}
+    
+.LotteryUnits_date label{
+    width: 100%;
+    text-align: center;
+    color:black;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 200;
+    font-size: 20px;
+    line-height: 15px;
+}
+
+.LotteryUnits_buy{
+    width: 15%;
+    /* background-color: rgb(42, 148, 228); */
+    border-radius: 8px;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    margin-left: 70px;
+}
+.LotteryUnits_buy button{
+    width: 100%;
+    background-color: rgb(42, 148, 228);
+    border-radius: 8px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    padding: 15px;
+}
+.LotteryUnits_col12{
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border-right: .8px solid lightblue;; */
+    padding: 20px;
+}
+.LotteryUnits_col12 label{
+    width: 100%;
+    text-align: center;
+    color:black;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 15px;
+}   

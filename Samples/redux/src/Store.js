@@ -1,7 +1,8 @@
 import { legacy_createStore } from "redux";
 const initialState = {
   txt: "",
-  pass:""
+  pass:"",
+  id:"1"
 };
 const reducer = (prevState = initialState, action) => {
   switch (action.type) {

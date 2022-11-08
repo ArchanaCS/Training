@@ -500,6 +500,9 @@
     display: flex;
     margin-bottom: 10px;
   }
+  .login_errmsg label{
+color: red;;
+  }
   .login_form_row8 button {
     width: 100%;
     color: black;

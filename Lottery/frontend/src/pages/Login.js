@@ -6,13 +6,37 @@ import { AiFillFacebook } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 
 function Login() {
     const navigate= useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errmsg,setErrmsg]=useState("");
+  const login=()=>{
+       let url="http://localhost:8080/uservalidate";
+       let request={"username":username,"password":password};
+       let header={};
+       console.log(request)
+       axios.post(url,request,header).then((res)=>{
+        if(res.data=="User doesn't exist")
+        {
+          console.log(res.data)
+          setErrmsg("Check username or password !!")
+          
+          // navigate()
+        }
+        else{
+          setErrmsg("")
+          console.log(res.data)
+          alert("validated")
+        }
+       }).catch();
+
+  }
   const signup=()=>{
+    
     navigate("/Signup")
   }
   const handleEmailChange = (e) => {
@@ -44,7 +68,7 @@ function Login() {
               <label>Stay updated on your profession world</label>
             </div> */}
             <div className="login_form_input">
-              {username}
+             
               <input
                 type="name"
                 placeholder="Email or Phone"
@@ -55,7 +79,7 @@ function Login() {
               />
             </div>
             <div className="login_form_input">
-              {password}
+           
               <input
                 type="password"
                 placeholder="Password"
@@ -69,8 +93,11 @@ function Login() {
             <div className="login_form_row5">
               <label>Forget password?</label>
             </div>
+            <div className="login_errmsg"> 
+              <label>{errmsg}</label>
+            </div>
             <div className="login_form_row6">
-              <button>Sign in</button>
+              <button onClick={login}>Sign in</button>
             </div>
             <div className="login_form_row7">
               <div className="login_form_row7_col"></div>

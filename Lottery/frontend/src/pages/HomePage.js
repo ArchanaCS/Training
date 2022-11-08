@@ -9,7 +9,7 @@ import LotteryUnits from '../components/LotteryUnits';
 import Animation from '../components/Animation';
 import Option from '../components/Option';
 import Footer from '../components/Footer';
-import { useNavigate } from "react-router-dom";
+
 
 
 

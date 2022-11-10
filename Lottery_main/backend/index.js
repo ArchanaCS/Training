@@ -133,6 +133,14 @@ app.post("/confirmuser",(req,res)=>{
     })
 })
 
+
+app.post("/drawticket",(req,res)=>{
+  let sql="SELECT txtLotteryname,dtLotterydrawdate FROM tbllotterymaster WHERE dtLotterydrawdate > NOW()  ORDER BY dtLotterydrawdate LIMIT 1; "
+  con.query(sql,(err,result)=>{
+    res.send(result)
+  })
+
+})
 app.listen(8080, (err) => {
   if (err) throw err;
   console.log("Server running in port 8080");

@@ -45,7 +45,7 @@ function Timer({ expiryTimestamp }) {
   );
 }
 export default function MyTimer() {
-  const time = new Date("2022-11-10");
+  const time = new Date();
 
   return (
     <div>

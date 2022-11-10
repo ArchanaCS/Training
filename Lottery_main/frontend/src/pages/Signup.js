@@ -1,10 +1,10 @@
 import "./Signup.css";
-import { RiLinkedinBoxFill } from "react-icons/ri";
+import { RiEyeCloseFill, RiLinkedinBoxFill } from "react-icons/ri";
 import { BiCopyright } from "react-icons/bi";
 import { AiOutlineDown } from "react-icons/ai";
 import { AiFillFacebook } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import VerifyOTP from "./VerifyOTP";
 import axios from "axios";
 // import logo from "./image/Linkedin_logo.png";
@@ -17,6 +17,10 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [repassword, setRePassword] = useState("");
   const [newid, setNewid] = useState("");
+  const [errmsg, setErr] = useState("");
+  const [errpmsg, setPErr] = useState("");
+
+ 
   const verifyotp = () => {
     console.log("before", show);
     setShow(true);
@@ -31,39 +35,49 @@ function Signup() {
       uname: uname,
       password: password,
     };
+    console.log("passwd and repw", password, repassword);
     let header = {};
-    axios
-      .post(url, request, header)
-      .then((res) => {
-        setNewid(res.data.insertId);
-        var newid = res.data.insertId;
-        let url_otp = "http://localhost:8080/otpgenerate";
-        let request_otp = { newid: newid };
-        let header_otp = {};
+    if (fname && lname && uname && password && repassword != "") {
+      if (password != repassword) {
+        console.log("repassword", repassword);
+        setPErr("Password not same");
+      } else
         axios
-          .post(url_otp, request_otp, header_otp)
+          .post(url, request, header)
           .then((res) => {
-            console.log("response", res.data);
-            var email = res.data[0].txtUemail;
-            var otp = res.data[0].txtOtp;
-            console.log("email is", email);
-            let url_email = "http://localhost:8080/sendmail";
-            let request_email = { email: email, otp: otp };
-            let header_email = {};
-            console.log(request_email);
+            setNewid(res.data.insertId);
+            var newid = res.data.insertId;
+            let url_otp = "http://localhost:8080/otpgenerate";
+            let request_otp = { newid: newid };
+            let header_otp = {};
             axios
-              .post(url_email, request_email, header_email)
+              .post(url_otp, request_otp, header_otp)
               .then((res) => {
                 console.log("response", res.data);
+                var email = res.data[0].txtUemail;
+                var otp = res.data[0].txtOtp;
+                console.log("email is", email);
+                let url_email = "http://localhost:8080/sendmail";
+                let request_email = { email: email, otp: otp };
+                let header_email = {};
+                console.log(request_email);
+                axios
+                  .post(url_email, request_email, header_email)
+                  .then((res) => {
+                    console.log("response", res.data);
+                  })
+                  .catch();
+                setShow(true);
+                console.log(res.data.insertId);
               })
               .catch();
-            setShow(true);
-            console.log(res.data.insertId);
           })
           .catch();
-      })
-      .catch();
+    } else {
+      setErr("Mandatory fileds cannot be empty");
+    }
   };
+
   const handleEmailChange = (e) => {
     setUsername(e.target.value);
     // console.log("usernameis ", e);
@@ -78,11 +92,11 @@ function Signup() {
   };
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
-    // console.log("passwordis ", e);
+    console.log("passwordis ", password);
   };
   const handleRePasswordChange = (e) => {
     setRePassword(e.target.value);
-    // console.log("repasswordis ", e);
+    console.log("repasswordis ", repassword);
   };
   return (
     <>
@@ -156,7 +170,10 @@ function Signup() {
                   }}
                 />
               </div>
-
+              <div className="ermsg">
+                {errmsg}
+                {errpmsg}
+              </div>
               <div className="signup_form_row6">
                 <button onClick={signup}>Create your account</button>
               </div>

@@ -11,12 +11,23 @@ import Option from '../components/Option';
 import Footer from '../components/Footer';
 import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
+import axios from 'axios';
+import { useEffect } from 'react';
 
 
 
 function HomePage() {
   const navigate= useNavigate();
- 
+  const [lotterydetails,setLotterdetails]=useState([]);
+  useEffect(()=>{
+    let url="http://localhost:8080/drawticket";
+    let request={};
+    let header={};
+    axios.post(url,request,header).then((res)=>{
+      console.log(res.data)
+      setLotterdetails(res.data);
+    }).catch()
+  },[])
   const LogIn=()=>{
     navigate("/Login")
   }
@@ -30,7 +41,7 @@ function HomePage() {
       <div className='lottery_menu'><Menu /></div>
       {/* <div className='lottery_betterwin'><Betterwin /></div> */}
       <div className='lottery_sliderswipe'><Sliderswipe /></div>
-      <div className='lottery_lottunits'><LotteryUnits /></div>
+      <div className='lottery_lottunits'><LotteryUnits lotterydetails={lotterydetails}/></div>
       <div className='lottery_animation'><Animation /></div>
       <div className='lottery_option'> <Option  /></div>
       <div className='lottery_footer'> <Footer /></div>

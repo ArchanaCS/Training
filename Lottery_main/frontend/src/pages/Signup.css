@@ -534,4 +534,9 @@
     line-height: 20px;
     padding: 10px;
   }
+ .ermsg
+ {
+color: red;
+ }
+  
   /* --------------end form-------------- */

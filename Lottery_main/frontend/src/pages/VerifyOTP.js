@@ -41,8 +41,10 @@ export default function VerifyOTP({ show, setShow, newid }) {
   };
  const reverify=()=>{
   
+  console.log("reverfiy");
         let url_otp = "http://localhost:8080/otpgenerate";
-        let request_otp = { id:newid };
+        let request_otp = { newid:newid };
+        console.log("request_otp",request_otp)
         let header_otp = {};
         axios
           .post(url_otp, request_otp, header_otp)

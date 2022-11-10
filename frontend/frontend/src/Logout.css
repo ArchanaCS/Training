@@ -1,0 +1,31 @@
+.dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  .dropdown-content {
+    display: none;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    position:absolute;
+    width: 400%;
+    height: auto;
+    text-align: center;
+    background-color: white;
+    z-index: 1;
+  }
+  .dropdown:hover .dropdown-content {
+    display:block;
+  }
+  .dropdown-content label{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    font-size: medium;
+    font-weight: 600;
+    margin-top:5px;
+  }
+
+
+
+
+
+

@@ -48,8 +48,8 @@ app.post("/date",(req,res)=>{
 
 let date=req.body.date;
 console.log(date)
-let fdate=moment(date).format('YYYY-MM-DD HH:mm:ss')
-let sql="insert into tbldate (txtdate)values('"+fdate+"');";
+// let fdate=moment(date).format('YYYY-MM-DD HH:mm:ss')
+let sql="insert into tbldate (txtdate)values('"+date+"');";
 console.log("sql",sql)
 con.query(sql,(err,result)=>{
 
@@ -60,8 +60,9 @@ con.query(sql,(err,result)=>{
 
 app.post("/retrieve",(req,res)=>
 {
- let sql="select txtdate from tbldate where id=1;"
+ let sql="SELECT DATE_FORMAT(txtdate, '%Y-%d-%m')as date from tbldate where id=1;"
  con.query(sql,(err,result)=>{
+  console.log("date from select",result)
   res.send(result);
 
  })

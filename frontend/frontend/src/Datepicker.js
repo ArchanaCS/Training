@@ -9,7 +9,7 @@ export default function Datepicker() {
   // console.log(startDate)
   const dateentry = () => {
     let url = "http://localhost:8000/date";
-    let request = { date: startDate };
+    let request = { date: startDate};
 
     let header = {};
     console.log(request);
@@ -25,11 +25,11 @@ export default function Datepicker() {
     let request = {};
     let header = {};
     axios
-      .post(url, request.header)
+      .post(url, request,header)
       .then((res) => {
-        var d = res.data[0].txtdate;
-        console.log(d.substring(0, 10));
-        setDate(d.substring(0, 10));
+        var d = res.data[0].date;
+        console.log(res.data[0].date);
+        setDate(d);
       })
       .catch();
   };

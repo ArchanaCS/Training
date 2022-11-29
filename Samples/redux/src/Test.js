@@ -4,6 +4,7 @@ export default function Test() {
     const txt = useSelector((state) => state.txt);
     const pass=useSelector((state)=>state.pass)
     const id=useSelector((state)=>state.id)
+    
     const dispatch = useDispatch();
   return (
     <>
